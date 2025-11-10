@@ -10,6 +10,17 @@
 # For classification: i) graph label, ii) node label and regression. 
 
 # %%
+# ! pwd
+
+# %%
+import sys
+from pathlib import Path
+
+# Add project root to path (go up 2 levels from notebook location)
+project_root = Path('/dss/dsshome1/05/di93tig/1_projects/InterScale_reproducibility')
+sys.path.insert(0, str(project_root))
+
+# %%
 import wandb
 import pandas as pd
 wandb.login()
@@ -19,7 +30,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # ste sys path correctly
-from .src.wandb import load_result_as_df, compute_mean_and_std, summary_df, plot_robustness
+from src.wandb import load_result_as_df, compute_mean_and_std, summary_df, plot_robustness
 
 # %%
 custom_palette = {
@@ -57,10 +68,11 @@ SWEEP_GOAL = 'robustness'
 
 
 # %%
-def load_result_as_df(sweep_id, sweep_goal: str):
+def load_result_as_df(sweep_id, sweep_goal: str, classes: list):
     """
     sweep_id: str - ID from WandB run
     sweep_goal: robustenss, parameter
+    calsses: list of class names
     """
     api = wandb.Api()
     entity, project = "francesca-drummer", "InterScale_hyperparameter_sweep"  
@@ -71,12 +83,12 @@ def load_result_as_df(sweep_id, sweep_goal: str):
     data = []
     for run in sweep_runs:
         if run.state == 'finished':
-            prediction_task = run.config['cfg']['dataset']['prediction_task']
+            prediction_task = run.config['dataset']['prediction_task']
         
             run_data = {
                 "id": run.id,
                 "name": run.name,
-                "seed": run.config.get("model.optim.seed", None),
+                "seed": run.config.get("optim.seed", None),
                 "state": run.state,  # finished, running, failed
                 "pct_mask_nodes": run.config.get("dataset.pct_mask_nodes", None),
                 "radius": run.config.get("dataset.spatial_neigbors_kwargs.radius", None),
@@ -90,13 +102,13 @@ def load_result_as_df(sweep_id, sweep_goal: str):
                     "test_pearson_corr": run.summary.get("test_pearson_corr", None),
                 })
             elif 'classification' in prediction_task:
-                num_classes = run.config['cfg']['dataset']['num_classes']
+                num_classes = run.config['dataset']['num_classes']
                 run_data.update({
-                    "test_acc": run.summary.get("test_acc", None),
+                    "test_acc": run.summary.get("test_accuracy", None),
                     "test_f1_micro/avg": run.summary.get("test_f1_micro/avg", None)
                 })
-                for class_idx in range(num_classes):
-                    run_data[f'test_f1/class_{class_idx}'] = run.summary.get(f"test_f1/class_{class_idx}", None)
+                for class_idx in classes:
+                    run_data[f'test_f1/class_{class_idx}'] = run.summary.get(f"test_f1_{class_idx}", None)
     
             if 'graph' in prediction_task:
                 run_data.update({
@@ -125,22 +137,17 @@ def load_result_as_df(sweep_id, sweep_goal: str):
 
 
 # %%
-df_GNN = load_result_as_df(Pancreas_GNN_condition_robustness, SWEEP_GOAL)
-df_GNNTrans = load_result_as_df(Pancreas_GNNTrans_condition_robustness, SWEEP_GOAL)
-df_PCATrans = load_result_as_df(Pancreas_PCATrans_condition_robustness, SWEEP_GOAL)
-df_NeighTrans = load_result_as_df(Pancreas_NeighTrans_condition_robustness, SWEEP_GOAL)
+# df_GNN = load_result_as_df(Pancreas_GNN_condition_robustness, SWEEP_GOAL)
+# df_GNNTrans = load_result_as_df(Pancreas_GNNTrans_condition_robustness, SWEEP_GOAL)
+# df_PCATrans = load_result_as_df(Pancreas_PCATrans_condition_robustness, SWEEP_GOAL)
+# df_NeighTrans = load_result_as_df(Pancreas_NeighTrans_condition_robustness, SWEEP_GOAL)
+df_InterScale = load_result_as_df(InterScale_condition_robustness, SWEEP_GOAL, ['ND', 'T1D'])
 
 # %%
-df_GNN.head()
+df_InterScale.head()
 
 # %%
-df_GNNTrans.head()
-
-# %%
-df_PCATrans.head()
-
-# %%
-plot_robustness(df_GNN, metric="test_acc")
+plot_robustness(df_InterScale, metric="test_acc")
 
 # %%
 plot_robustness(df_GNNTrans, metric="test_acc")
