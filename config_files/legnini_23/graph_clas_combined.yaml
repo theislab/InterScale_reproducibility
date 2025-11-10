@@ -1,0 +1,32 @@
+wandb:
+  use: True
+  project_name: GTLongRange_Legnini23
+model:
+  local_component:
+    name: GCN
+  global_component:
+    name: self-attn-transformer
+    parameters:
+      max_seq_len: 4299
+  decoder:
+    type: linear
+  save: /dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/results/legnini23/ #Options: local, wandb, None
+optim:
+  lr: 0.001
+  loss: CrossEntropy
+  seed: 44
+dataset:
+  h5ad_data: /dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/legnini23.h5ad
+  name: legnini23
+  prediction_task: classification
+  prediction_level: graph
+  prediction_obs: condition
+  layer_key: log1p_norm
+  sample_key: ['sample']
+  group_label: condition
+  spatial_neigbors_kwargs:
+    radius: 200
+    library_key: sample
+  batch_size: 3
+  pct_mask_nodes: 0.3
+  segmentation_robustness: [0.2, 0.5]
