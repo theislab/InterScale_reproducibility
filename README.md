@@ -1,3 +1,5 @@
-# My super cool repo
+# InterScale's reproducibility repository
 
-tbd
+This repsitory contains the code to reproduce results shown in InterScale. 
+
+All datasets are freely available via figshare. If you use our tool in your own work, please cite it as:
