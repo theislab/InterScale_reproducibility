@@ -14,13 +14,14 @@ from InterScale.tl import prepare_geome_dataset, check_and_update_cfg
 from InterScale.geome_dataloader import GraphAnnDataModule
 #from InterScale.eval.gene_rank_analysis import predict_gene_r2, gene_rank_analysis
 from InterScale.tl import prepare_a2d_dataset
+from InterScale.evaluation import scale_cls_by_sample
 
 from pathlib import Path
 import torch
 
 # %%
 CFG_CLASS = "/dss/dsshome1/05/di93tig/1_projects/GT-long-range-niches/src/config_files/Cosmx_pancreas/clas_graph.yaml"
-RESULTS_DIR = "/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/results/cosmx_pancreas/"
+RESULTS_DIR = "/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/results/melton25/"
 
 # %% [markdown]
 # ## Load pretrained models
@@ -40,6 +41,9 @@ adata.obsm['spatial']
 
 # model = torch.load('/lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/cosmx_pancreas/pancreas_regr_node_GCN__model.pt')
 # state_dict = model['state_dict']
+
+# %% [markdown]
+# Want to load from: '/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/results/melton25/melton25_clas_graph_44_GCN_self-attn-transformer_model.ckpt'
 
 # %%
 #interscale.model.LocalModel._setup_anndata(adata = adata, prediction_task = cfg.dataset.prediction_task, layer_key = cfg.dataset.layer_key, sample_key_list = cfg.dataset.sample_key, prediction_obs =  cfg.dataset.prediction_obs, group_key = cfg.dataset.group_label, view_registry = False)
@@ -77,34 +81,49 @@ from InterScale.evaluation import calculate_pr_auc
 # %%
 calculate_pr_auc(result_t1d)
 
+# %%
+result_nd
+
 # %% [markdown]
 # ## Graph Label analysis
 #
-# First, calculate the average mean expression of the CLS (horizontal and vertical) token per cell type.
+# First, we scale the CLS token and then calculate the average mean expression of the CLS (horizontal and vertical) token per cell type.
 
 # %%
-result_t1d.obs.groupby('cell_type_coarse').agg(
-    mean_cls_horizontal=('combined_cls_horizontal', 'mean'),
-    mean_cls_vertical=('combined_cls_vertical', 'mean')
-)
+from InterScale.evaluation.graph_classification import scale_cls_by_sample
+scale_cls_by_sample(result_nd, "slide_fov")
+scale_cls_by_sample(result_t1d, "slide_fov")
 
 # %%
-result_nd.obs.groupby('cell_type_coarse').agg(
-    mean_cls_horizontal=('combined_cls_horizontal', 'mean'),
-    mean_cls_vertical=('combined_cls_vertical', 'mean')
+data = result_t1d.obs.groupby('cell_type_coarse').agg(
+    mean_cls_horizontal=('combined_cls_horizontal_scaled', 'mean'),
+    mean_cls_vertical=('combined_cls_vertical_scaled', 'mean')
 )
+sns.heatmap(data, annot=True)
+
+# %%
+import seaborn as sns
+
+data = result_nd.obs.groupby('cell_type_coarse').agg(
+    mean_cls_horizontal=('combined_cls_horizontal_scaled', 'mean'),
+    mean_cls_vertical=('combined_cls_vertical_scaled', 'mean')
+)
+sns.heatmap(data, annot=True)
+
+# %%
+canpy.pl.heatmap(result_nd, var_names, groupby,
 
 # %%
 np.unique(result_t1d[result_t1d.obs['split'] == 'test'].obs['slide_fov'])
 
 # %%
 sq.pl.spatial_scatter(result_t1d[result_t1d.obs['split'] == 'test'], 
-                      color = ['combined_cls_horizontal', 'cell_type_coarse'],
+                      color = ['combined_cls_vertical_scaled', 'combined_cls_horizontal_scaled', 'cell_type_coarse'],
                       library_key = 'slide_fov',
                       library_id = ['3_12', '3_13'],
                     cmap = 'viridis_r',
                     shape= None,
-                      ncols = 2,
+                      ncols = 3,
 )
 
 # %%
@@ -112,12 +131,12 @@ np.unique(result_nd[result_nd.obs['split'] == 'test'].obs['slide_fov'])
 
 # %%
 sq.pl.spatial_scatter(result_nd[result_nd.obs['split'] == 'test'], 
-                      color = ['combined_cls_horizontal', 'cell_type_coarse'],
+                      color =  ['combined_cls_vertical_scaled', 'combined_cls_horizontal_scaled', 'cell_type_coarse'],
                       library_key = 'slide_fov',
                       library_id = ['3_15', '3_17'],
                     cmap = 'viridis_r',
                     shape= None,
-                      ncols = 2,
+                      ncols = 3,
 )
 
 # %%
