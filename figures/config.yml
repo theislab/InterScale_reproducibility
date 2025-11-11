@@ -1,0 +1,59 @@
+plot_configs:
+  general:
+    dpi: 75
+    dpi_save: 300
+    legend_fontsize: 12
+    legend_fontweight: bold
+    title_fontsize: 14
+    title_fontweight: bold
+    font_family: "DejaVu Sans"
+  embeddings_plots:
+    alpha: 0.75
+    frameon: false
+    add_outline: true
+    layer: log_norm
+    legend_fontsize: 12
+    outline_color: [black, white]
+    outline_width: [.2, .025]
+    ncols: 1
+    vmax: 'p98'
+    cmap: viridis
+    na_color: white
+    na_in_legend: false
+  continuous_plots:
+    layer: log_norm
+    var_group_rotation: 90
+    cmap: viridis
+  rank_genes_plots:
+    values_to_plot: logfoldchanges
+    vmin: -5
+    vmax: 5
+    var_group_rotation: 90
+    min_logfoldchange: 2
+    cmap: bwr
+palettes:
+  continuous: viridis
+  divergent: bwr
+  Legnini: #to change  
+    Immune Cell: "#4363d8"  
+    Epithelial Cell: "#e6194B"
+    Stromal Cell: "#25e907"
+  Melton_Jimenez: #to change 
+    Lymphoid: "#028E95"
+    Myeloid: "#f56d18"
+    Malignant Cell: "#ff0000"
+    Stromal Cell: "#25e907"
+    Endothelial Cell: "#9c0101"
+    Exocrine Cell: "#ea7b95"
+    Endocrine Cell: "#f5d276"
+    TreatmentType: 
+    Untreated: "#999999"  
+    Chemotherapy: "#0b559f"
+    Chemotherapy + Radiotherapy: "#5fa8d3"
+    Chemotherapy + Radiotherapy + Immunotherapy: "#bad6eb"
+    Other: "#ff7f00"
+    Unknown: "#BBBBBB"
+
+  Condition_pancreas: #to change 
+    ND: "#999999"  
+    T1D: "#0b559f"
