@@ -10,7 +10,19 @@
 # For classification: i) graph label, ii) node label and regression. 
 
 # %%
-# ! pwd
+False + float("-inf")
+
+# %%
+print(True + float(0)) # this should never happen!!!
+print(False + float(0))
+
+# %%
+import torch 
+import torch.nn as nn
+
+m = nn.Softmax(dim=0) 
+input = torch.tensor([float("-inf"), float("-inf")]) 
+output = m(input)
 
 # %%
 import sys

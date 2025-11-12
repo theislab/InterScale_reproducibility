@@ -1,0 +1,31 @@
+wandb:
+  use: True
+  project_name: GTLongRange_CosmXPancreas
+model:
+  local_component:
+    name: GCN
+  global_component:
+    name: self-attn-transformer
+    parameters:
+      max_seq_len: 3000
+      dropout_global: 0.3
+  decoder:
+    type: linear
+  save: /dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/results/melton25/
+optim:
+  lr: 0.001
+  loss: MSELoss
+  seed: 44
+dataset:
+  h5ad_data: /dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/melton25.h5ad
+  name: melton25
+  prediction_task: regression
+  prediction_obs: None
+  prediction_level: node
+  sample_key: ['sliding_window_square', "sliding_window_v"]
+  group_label: condition
+  spatial_neigbors_kwargs:
+    radius: 110
+    library_key: slide_fov
+  batch_size: 32
+  pct_mask_nodes: 0.3
