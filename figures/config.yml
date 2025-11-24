@@ -39,16 +39,15 @@ palettes:
     Epithelial Cell: "#e6194B"
     Stromal Cell: "#25e907"
   Melton_Jimenez: #to change 
-    Lymphoid: "#028E95"
-    Myeloid: "#f56d18"
-    Malignant Cell: "#ff0000"
-    Stromal Cell: "#25e907"
-    Endothelial Cell: "#9c0101"
-    Exocrine Cell: "#ea7b95"
-    Endocrine Cell: "#f5d276"
-    TreatmentType: 
-    Untreated: "#999999"  
-    Chemotherapy: "#0b559f"
+    Acinar: "#028E95"
+    Alpha: "#f56d18"
+    Beta: "#ff0000"
+    Ductal: "#25e907"
+    Endocrine: "#9c0101"
+    Endothelial: "#ea7b95"
+    Fibroblasts: "#f5d276"
+    Immune: "#999999"  
+    Mast: "#0b559f"
     Chemotherapy + Radiotherapy: "#5fa8d3"
     Chemotherapy + Radiotherapy + Immunotherapy: "#bad6eb"
     Other: "#ff7f00"
@@ -57,3 +56,8 @@ palettes:
   Condition_pancreas: #to change 
     ND: "#999999"  
     T1D: "#0b559f"
+  Models:
+    GCN: "#88C8B2"
+    PCATransformer: "#EE9B00"
+    InterScale: "#005F73"
+    
