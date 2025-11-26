@@ -460,11 +460,13 @@ plt.show()
 # %%
 
 # %%
+slide_nr = np.unique(result_nd.obs['slide_fov'])[0]
 sq.pl.spatial_scatter(result_nd, 
                       color = ['combined_cls_vertical_scaled', 'combined_cls_horizontal_scaled', 'cell_type_coarse'],
                     cmap = PALETTE,
                     shape= None,
                       ncols = 3,
+                      save = os.path.join(FIGURE_DIR, f"spatial_cls_t1d_{slide_nr}.png")
 )
 
 # %%
@@ -473,9 +475,13 @@ color_list = [CELL_TYPE_COLORS[ct] for ct in result_nd.obs[CELL_TYPE_KEY].cat.ca
 result_nd.uns[f'{CELL_TYPE_KEY}_colors'] = color_list
 
 # %%
+slide_nr = np.unique(result_t1d.obs['slide_fov'])[0]
 sq.pl.spatial_scatter(result_t1d, 
                       color = ['combined_cls_vertical_scaled', 'combined_cls_horizontal_scaled', 'cell_type_coarse'],
                    cmap = PALETTE,
                     shape= None,
                       ncols = 3,
+                      save = os.path.join(FIGURE_DIR, f"spatial_cls_t1d_{slide_nr}.png")
 )
+
+# %%
