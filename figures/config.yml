@@ -60,4 +60,11 @@ palettes:
     GCN: "#88C8B2"
     PCATransformer: "#EE9B00"
     InterScale: "#005F73"
+slide_examples: # example slides/fov we use in the publication
+  Legnini: 
+    Ctrl: ""
+    SSH: ""
+  Melton_Jimenez:
+    Ctrl: "1_12"
+    T1D: "1_10"
     
