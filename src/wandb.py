@@ -11,12 +11,16 @@ from statsmodels.nonparametric.smoothers_lowess import lowess
 
 class Wandb_evaluation():
     
-    def __init__(self, sweep_id, sweep_goal: str, classes: list):
+    def __init__(self, model, sweep_id, sweep_goal: str, classes: list):
         """
-        sweep_id: str - ID from WandB run
+        model: str
+            Model name, e.i. InterScale, GCN, ...
+        sweep_id: str 
+            ID from WandB run
         sweep_goal: robustenss, parameter
         calsses: list of class names
         """
+        self.model = model
         self.sweep_id = sweep_id
         self.sweep_goal = sweep_goal
         self.classes = classes
