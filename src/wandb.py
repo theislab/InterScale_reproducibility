@@ -9,6 +9,13 @@ from statsmodels.nonparametric.smoothers_lowess import lowess
 import os
 from statsmodels.nonparametric.smoothers_lowess import lowess
 
+import yaml
+import scanpy as sc
+
+import InterScale as interscale
+from yacs.config import CfgNode as CN
+
+
 class Wandb_evaluation():
     
     def __init__(self, model, sweep_id, sweep_goal: str, classes: list):
@@ -26,10 +33,10 @@ class Wandb_evaluation():
         self.classes = classes
         
         api = wandb.Api()
-        entity, project = "francesca-drummer", "InterScale_hyperparameter_sweep"  
+        self.entity, self.project = "francesca-drummer", "InterScale_hyperparameter_sweep"  
     
         # Get all runs associated with the sweep
-        sweep_runs = api.sweep(f"{entity}/{project}/{sweep_id}").runs
+        sweep_runs = api.sweep(f"{self.entity}/{self.project}/{self.sweep_id}").runs
 
     
         data = []
@@ -61,7 +68,7 @@ class Wandb_evaluation():
                         "test_f1_micro/avg": run.summary.get("test_f1_micro/avg", None)
                     })
                     for class_idx in classes:
-                        run_data[f'test_f1/class_{class_idx}'] = run.summary.get(f"test_f1_{class_idx}", None)
+                        run_data[f'test_f1_class_{class_idx}'] = run.summary.get(f"test_f1_{class_idx}", None)
         
                 if 'graph' in self.prediction_task:
                     run_data.update({
@@ -102,10 +109,10 @@ class Wandb_evaluation():
             return self.df.groupby(["pct_mask_nodes", "radius"]).agg(
                 mean_test_acc=("test_acc", "mean"),
                 std_test_acc=("test_acc", "std"),
-                mean_test_f1_class_0=(f"test_f1/class_{self.classes[0]}", "mean"),
-                std_test_f1_class_0=(f"test_f1/class_{self.classes[0]}", "std"),
-                mean_test_f1_class_1=(f"test_f1/class_{self.classes[1]}", "mean"),
-                std_test_f1_class_1=(f"test_f1/class_{self.classes[1]}", "std"),
+                mean_test_f1_class_0=(f"test_f1_class_{self.classes[0]}", "mean"),
+                std_test_f1_class_0=(f"test_f1_class_{self.classes[0]}", "std"),
+                mean_test_f1_class_1=(f"test_f1_class_{self.classes[1]}", "mean"),
+                std_test_f1_class_1=(f"test_f1_class_{self.classes[1]}", "std"),
             ).reset_index()
         else:
             raise ValueError(f"sweep_goal must be 'classification' or 'regression', got '{self.sweep_goal}'")
@@ -205,3 +212,221 @@ class Wandb_evaluation():
             plt.savefig(os.path.join(save_path, f'parameter_{self.prediction_level}_{self.prediction_task}_radius_vs_{metric}.jpg'), dpi=1200)
         
         plt.show()
+
+    def load_model(self, metric = 'test_acc'):
+        """Load best model artifact from WandB according to metric."""
+        
+        # 1. Get best run and associated config
+        api = wandb.Api()
+        best_run_id = self.df.loc[self.df[metric].idxmax(), 'id'] 
+        best_run = api.run(f"{self.entity}/{self.project}/{best_run_id}")
+        config_dict = best_run.config
+        
+        cfg = CN(config_dict)
+        cfg.optim.accelerator = 'cpu'
+        cfg.freeze()  # Optional: make it immutable
+        
+        # 4. Download the model artifact
+        artifact = list(best_run.logged_artifacts())[0]
+        artifact_dir = artifact.download()
+        print(f"Model artifact downloaded to: {artifact_dir}")
+
+        adata = sc.read_h5ad(cfg.dataset.h5ad_data)
+        
+        # 5. Setup AnnData
+        interscale.model.CombinedModel._setup_anndata(
+            adata=adata, 
+            prediction_task=cfg.dataset.prediction_task, 
+            layer_key=cfg.dataset.layer_key, 
+            sample_key_list=cfg.dataset.sample_key, 
+            prediction_obs=cfg.dataset.prediction_obs, 
+            group_key=cfg.dataset.group_label, 
+            view_registry=False
+        )
+        
+        # 6. Load model from the artifact directory
+        combined_model = interscale.model.CombinedModel.load(
+            artifact_dir,
+            adata, 
+            cfg= cfg,
+            model_name = f"{artifact_dir}/model",
+            local_component=True, 
+            global_component=True, 
+            wandb_save=False
+        )
+        
+        print(f"Model loaded successfully from run: {best_run_id}")
+
+        return combined_model, cfg, adata
+
+def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes, 
+                         config_path='config.yml', height=4, aspect=0.7):
+    """
+    Plot mean and standard deviation of per-class F1 scores across seeds.
+    Uses seaborn catplot with one facet per class and one bar per model.
+    
+    Parameters:
+    -----------
+    wandb_evaluations : list of Wandb_evaluation
+        List of Wandb_evaluation instances, one per model
+    radius : float or int
+        Radius value to filter by
+    pct_mask_nodes : float or int
+        Percentage of masked nodes to filter by
+    config_path : str, optional
+        Path to config.yml file (default: 'config.yml')
+    height : float, optional
+        Height of each facet in inches (default: 4)
+    aspect : float, optional
+        Aspect ratio of each facet (default: 0.7)
+    
+    Returns:
+    --------
+    g : seaborn FacetGrid
+        The catplot object
+    stats_df : pd.DataFrame
+        DataFrame with mean and std for each class and model
+    plot_data : pd.DataFrame
+        Long-form data used for plotting
+    """
+    BASE_DIR_REPO = "/home/icb/francesca.drummer/1-Projects/"
+    # Load config
+    with open(os.path.join(BASE_DIR_REPO, "InterScale_reproducibility/figures/config.yml"), "r") as f:
+        config = yaml.safe_load(f)
+    
+    general_config = config['plot_configs']['general']
+    model_palette = config['palettes']['Models']
+    
+    # Apply general plot settings
+    plt.rcParams['figure.dpi'] = general_config['dpi']
+    plt.rcParams['savefig.dpi'] = general_config['dpi_save']
+    plt.rcParams['font.family'] = general_config['font_family']
+    plt.rcParams['font.size'] = 10
+    
+    # Process each Wandb_evaluation instance
+    all_data = []
+    model_names = []
+    
+    for wandb_eval in wandb_evaluations:
+        model_name = wandb_eval.model
+        df = wandb_eval.df
+        classes = wandb_eval.classes
+        
+        model_names.append(model_name)
+        
+        # Filter by specified parameters
+        df_filtered = df[
+            (df['radius'] == radius) &
+            (df['pct_mask_nodes'] == pct_mask_nodes)
+        ].copy()
+        
+        if df_filtered.empty:
+            print(f"Warning: No data found for {model_name} with radius={radius}, pct_mask_nodes={pct_mask_nodes}")
+            continue
+        
+        # Identify F1 score columns
+        f1_cols = [col for col in df_filtered.columns if col.startswith('test_f1/class_')]
+        
+        if not f1_cols:
+            raise ValueError(f"No 'test_f1/class_*' columns found in {model_name}")
+        
+        # Add model label
+        df_filtered['model'] = model_name
+        
+        # Collect the data
+        all_data.append(df_filtered)
+    
+    if not all_data:
+        raise ValueError("No data found matching the specified parameters")
+    
+    # Combine all dataframes
+    combined_df = pd.concat(all_data, ignore_index=True)
+    
+    # Identify F1 columns
+    f1_cols = [col for col in combined_df.columns if col.startswith('test_f1/class_')]
+    
+    # Reshape to long format for seaborn
+    plot_data = combined_df.melt(
+        id_vars=['model'],
+        value_vars=f1_cols,
+        var_name='class',
+        value_name='f1_score'
+    )
+    
+    # Clean up class names
+    plot_data['class'] = plot_data['class'].str.replace('test_f1/class_', '')
+    
+    # Calculate statistics for reference
+    stats_df = plot_data.groupby(['model', 'class'])['f1_score'].agg([
+        ('mean', 'mean'),
+        ('std', 'std'),
+        ('n_seeds', 'count')
+    ]).reset_index()
+
+    print(stats_df)
+    
+    # Create color palette based on model names from config
+    palette = []
+    for model_name in model_names:
+        if model_name in model_palette:
+            palette.append(model_palette[model_name])
+        else:
+            print(f"Warning: Model '{model_name}' not found in config palette. Using default color.")
+            palette.append(None)
+    
+    # If all models are in config, use the palette; otherwise let seaborn handle it
+    use_palette = palette if all(c is not None for c in palette) else None
+    
+    # Create the catplot
+    g = sns.catplot(
+        data=plot_data,
+        kind="bar",
+        x="class",
+        y="f1_score",
+        hue="model",
+        height=height,
+        aspect=aspect,
+        errorbar="sd",  # Standard deviation error bars
+        capsize=0.1,
+        edgecolor="black",
+        linewidth=1.0,
+        alpha=0.8,
+        palette=use_palette,
+        legend=False
+    )
+    
+    # Customize the plot with config settings
+    g.set_axis_labels(
+        "Model", 
+        "Test F1 Score", 
+        fontsize=general_config['legend_fontsize'],
+        fontweight=general_config['legend_fontweight']
+    )
+    g.set_titles(
+        "Class: {col_name}", 
+        fontsize=general_config['title_fontsize'],
+        fontweight=general_config['title_fontweight']
+    )
+    
+    # Set y-axis limits and grid
+    for ax in g.axes.flat:
+        ax.set_ylim([0, 1.4])
+        ax.grid(axis='y', alpha=0.3, linestyle='--')
+        ax.set_axisbelow(True)
+    
+    # Rotate x-axis labels if needed
+    for ax in g.axes.flat:
+        ax.tick_params(axis='x', rotation=45)
+        for label in ax.get_xticklabels():
+            label.set_ha('right')
+    
+    # Overall title
+    g.fig.suptitle(
+        f'F1 Scores Across Seeds (radius={radius}, pct_mask={pct_mask_nodes})',
+        fontsize=general_config['title_fontsize'],
+        fontweight=general_config['title_fontweight'],
+        y=1.02
+    )
+    plt.tight_layout()
+    
+    return g, stats_df, plot_data
