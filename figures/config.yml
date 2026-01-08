@@ -38,7 +38,7 @@ palettes:
     Immune Cell: "#4363d8"  
     Epithelial Cell: "#e6194B"
     Stromal Cell: "#25e907"
-  Melton_Jimenez: #to change 
+  melton25: #to change 
     Acinar: "#028E95"
     Alpha: "#f56d18"
     Beta: "#ff0000"
@@ -52,7 +52,7 @@ palettes:
     Chemotherapy + Radiotherapy + Immunotherapy: "#bad6eb"
     Other: "#ff7f00"
     Unknown: "#BBBBBB"
-  Damond: 
+  damond19: 
     B: "#4363d8"           # B cells - blue
     Tc: "#9A4EAE"          # Cytotoxic T cells - purple
     Th: "#5B9BD5"          # Helper T cells - light blue
