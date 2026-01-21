@@ -1,0 +1,51 @@
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/anndata/utils.py:434: FutureWarning: Importing read_csv from `anndata` is deprecated. Import anndata.io.read_csv instead.
+  warnings.warn(msg, FutureWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/anndata/utils.py:434: FutureWarning: Importing read_excel from `anndata` is deprecated. Import anndata.io.read_excel instead.
+  warnings.warn(msg, FutureWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/anndata/utils.py:434: FutureWarning: Importing read_hdf from `anndata` is deprecated. Import anndata.io.read_hdf instead.
+  warnings.warn(msg, FutureWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/anndata/utils.py:434: FutureWarning: Importing read_loom from `anndata` is deprecated. Import anndata.io.read_loom instead.
+  warnings.warn(msg, FutureWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/anndata/utils.py:434: FutureWarning: Importing read_mtx from `anndata` is deprecated. Import anndata.io.read_mtx instead.
+  warnings.warn(msg, FutureWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/anndata/utils.py:434: FutureWarning: Importing read_text from `anndata` is deprecated. Import anndata.io.read_text instead.
+  warnings.warn(msg, FutureWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/anndata/utils.py:434: FutureWarning: Importing read_umi_tools from `anndata` is deprecated. Import anndata.io.read_umi_tools instead.
+  warnings.warn(msg, FutureWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/numba/core/decorators.py:246: RuntimeWarning: nopython is set for njit and is ignored
+  warnings.warn('nopython is set for njit and is ignored', RuntimeWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/anndata/utils.py:434: FutureWarning: Importing read_text from `anndata` is deprecated. Import anndata.io.read_text instead.
+  warnings.warn(msg, FutureWarning)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/docrep/decorators.py:43: SyntaxWarning: 'param_categorical_covariate_keys' is not a valid key!
+  doc = func(self, args[0].__doc__, *args[1:], **kwargs)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/docrep/decorators.py:43: SyntaxWarning: 'param_continuous_covariate_keys' is not a valid key!
+  doc = func(self, args[0].__doc__, *args[1:], **kwargs)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[pct-norm-99] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/lightning/fabric/plugins/environments/slurm.py:204: The `srun` command is available on your system but is not used. HINT: If your intention is to run Lightning on SLURM, prepend your python command with `srun` like so: srun python scvi_damond.py ...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/lightning/fabric/plugins/environments/slurm.py:204: The `srun` command is available on your system but is not used. HINT: If your intention is to run Lightning on SLURM, prepend your python command with `srun` like so: srun python scvi_damond.py ...
+/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:425: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=5` in the `DataLoader` to improve performance.
+Training:   0%|          | 0/5 [00:00<?, ?it/s]Epoch 1/5:   0%|          | 0/5 [00:00<?, ?it/s]Epoch 1/5:  20%|██        | 1/5 [01:57<07:50, 117.72s/it]Epoch 1/5:  20%|██        | 1/5 [01:57<07:50, 117.72s/it, v_num=1, train_loss_step=12.6, train_loss_epoch=13]Epoch 2/5:  20%|██        | 1/5 [01:57<07:50, 117.72s/it, v_num=1, train_loss_step=12.6, train_loss_epoch=13]Epoch 2/5:  40%|████      | 2/5 [03:50<05:43, 114.62s/it, v_num=1, train_loss_step=12.6, train_loss_epoch=13]Epoch 2/5:  40%|████      | 2/5 [03:50<05:43, 114.62s/it, v_num=1, train_loss_step=13.7, train_loss_epoch=12.4]Epoch 3/5:  40%|████      | 2/5 [03:50<05:43, 114.62s/it, v_num=1, train_loss_step=13.7, train_loss_epoch=12.4]Epoch 3/5:  60%|██████    | 3/5 [05:42<03:46, 113.45s/it, v_num=1, train_loss_step=13.7, train_loss_epoch=12.4]Epoch 3/5:  60%|██████    | 3/5 [05:42<03:46, 113.45s/it, v_num=1, train_loss_step=12.9, train_loss_epoch=12.5]Epoch 4/5:  60%|██████    | 3/5 [05:42<03:46, 113.45s/it, v_num=1, train_loss_step=12.9, train_loss_epoch=12.5]Epoch 4/5:  80%|████████  | 4/5 [07:32<01:52, 112.27s/it, v_num=1, train_loss_step=12.9, train_loss_epoch=12.5]Epoch 4/5:  80%|████████  | 4/5 [07:32<01:52, 112.27s/it, v_num=1, train_loss_step=11.6, train_loss_epoch=12.5]Epoch 5/5:  80%|████████  | 4/5 [07:32<01:52, 112.27s/it, v_num=1, train_loss_step=11.6, train_loss_epoch=12.5]Epoch 5/5: 100%|██████████| 5/5 [09:22<00:00, 111.33s/it, v_num=1, train_loss_step=11.6, train_loss_epoch=12.5]Epoch 5/5: 100%|██████████| 5/5 [09:22<00:00, 111.33s/it, v_num=1, train_loss_step=13.1, train_loss_epoch=12.5]`Trainer.fit` stopped: `max_epochs=5` reached.
+Epoch 5/5: 100%|██████████| 5/5 [09:22<00:00, 112.48s/it, v_num=1, train_loss_step=13.1, train_loss_epoch=12.5]/ictstr01/home/icb/francesca.drummer/1-Projects/InterScale_reproducibility/scripts/damond/scvi_damond.py:27: FutureWarning: In the future, the default backend for leiden will be igraph instead of leidenalg.
+
+ To achieve the future defaults please pass: flavor="igraph" and n_iterations=2.  directed must also be False to work with igraph's implementation.
+  sc.tl.leiden(adata_pancreas, key_added='scvi', neighbors_key='scvi')
+
+Traceback (most recent call last):
+  File "/ictstr01/home/icb/francesca.drummer/1-Projects/InterScale_reproducibility/scripts/damond/scvi_damond.py", line 34, in <module>
+    run_scvi_on_damond()
+  File "/ictstr01/home/icb/francesca.drummer/1-Projects/InterScale_reproducibility/scripts/damond/scvi_damond.py", line 29, in run_scvi_on_damond
+    sc.tl.umap(adata_pancreas, min_dist=0.3, neighbors_key='scvi')
+  File "/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/legacy_api_wrap/__init__.py", line 80, in fn_compatible
+    return fn(*args_all, **kw)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/scanpy/tools/_umap.py", line 165, in umap
+    neighbors = NeighborsView(adata, neighbors_key)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ictstr01/groups/ml01/workspace/francesca.drummer/mamba/envs/GT_long_range_env/lib/python3.11/site-packages/scanpy/_utils/__init__.py", line 1027, in __init__
+    self._conns_key = self._neighbors_dict["connectivities_key"]
+                      ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'connectivities_key'
