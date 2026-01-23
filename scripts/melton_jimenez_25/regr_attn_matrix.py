@@ -466,7 +466,7 @@ sq.pl.spatial_scatter(result_nd,
                     cmap = PALETTE,
                     shape= None,
                       ncols = 3,
-                      save = os.path.join(FIGURE_DIR, f"spatial_cls_t1d_{slide_nr}.png")
+                      save = os.path.join(FIGURE_DIR, f"spatial_cls_nd_{slide_nr}.png")
 )
 
 # %%
