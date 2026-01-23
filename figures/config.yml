@@ -52,6 +52,24 @@ palettes:
     Chemotherapy + Radiotherapy + Immunotherapy: "#bad6eb"
     Other: "#ff7f00"
     Unknown: "#BBBBBB"
+  Damond: 
+    B: "#4363d8"           # B cells - blue
+    Tc: "#9A4EAE"          # Cytotoxic T cells - purple
+    Th: "#5B9BD5"          # Helper T cells - light blue
+    acinar: "#028E95"      # Acinar cells - teal
+    alpha: "#f56d18"       # Alpha cells - orange
+    beta: "#ff0000"        # Beta cells - red
+    delta: "#8B4789"       # Delta cells - dark purple
+    ductal: "#25e907"      # Ductal cells - green
+    endothelial: "#ea7b95" # Endothelial cells - pink
+    gamma: "#FFD700"       # Gamma/PP cells - gold
+    macrophage: "#8B4513"  # Macrophages - brown
+    naiveTc: "#ADD8E6"     # Naive T cells - light blue
+    neutrophil: "#708090"  # Neutrophils - slate gray
+    otherimmune: "#999999" # Other immune - gray
+    stromal: "#D2B48C"     # Stromal cells - tan
+    unknown: "#CCCCCC"     # Unknown - light gray
+
 
   Condition_pancreas: #to change 
     ND: "#999999"  
