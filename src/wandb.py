@@ -259,8 +259,24 @@ class Wandb_evaluation():
 
         return combined_model, cfg, adata
 
-def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes, 
-                         config_path='config.yml', height=4, aspect=0.7):
+def set_plot_configs(BASE_DIR_REPO):
+    # Load config
+    with open(os.path.join(BASE_DIR_REPO, "InterScale_reproducibility/figures/config.yml"), "r") as f:
+        config = yaml.safe_load(f)
+    
+    general_config = config['plot_configs']['general']
+    model_palette = config['palettes']['Models']
+    
+    # Apply general plot settings
+    plt.rcParams['figure.dpi'] = general_config['dpi']
+    plt.rcParams['savefig.dpi'] = general_config['dpi_save']
+    plt.rcParams['font.family'] = general_config['font_family']
+    plt.rcParams['font.size'] = 10
+
+    return general_config, model_palette
+    
+
+def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes, BASE_DIR_REPO, height=4, aspect=0.7):
     """
     Plot mean and standard deviation of per-class F1 scores across seeds.
     Uses seaborn catplot with one facet per class and one bar per model.
@@ -289,20 +305,8 @@ def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes,
     plot_data : pd.DataFrame
         Long-form data used for plotting
     """
-    BASE_DIR_REPO = "/home/icb/francesca.drummer/1-Projects/"
-    # Load config
-    with open(os.path.join(BASE_DIR_REPO, "InterScale_reproducibility/figures/config.yml"), "r") as f:
-        config = yaml.safe_load(f)
-    
-    general_config = config['plot_configs']['general']
-    model_palette = config['palettes']['Models']
-    
-    # Apply general plot settings
-    plt.rcParams['figure.dpi'] = general_config['dpi']
-    plt.rcParams['savefig.dpi'] = general_config['dpi_save']
-    plt.rcParams['font.family'] = general_config['font_family']
-    plt.rcParams['font.size'] = 10
-    
+    general_config, model_palette = set_plot_configs(BASE_DIR_REPO)
+
     # Process each Wandb_evaluation instance
     all_data = []
     model_names = []
@@ -325,10 +329,10 @@ def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes,
             continue
         
         # Identify F1 score columns
-        f1_cols = [col for col in df_filtered.columns if col.startswith('test_f1/class_')]
+        f1_cols = [col for col in df_filtered.columns if col.startswith('test_f1_class_')]
         
         if not f1_cols:
-            raise ValueError(f"No 'test_f1/class_*' columns found in {model_name}")
+            raise ValueError(f"No 'test_f1_class_*' columns found in {model_name}")
         
         # Add model label
         df_filtered['model'] = model_name
@@ -343,7 +347,7 @@ def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes,
     combined_df = pd.concat(all_data, ignore_index=True)
     
     # Identify F1 columns
-    f1_cols = [col for col in combined_df.columns if col.startswith('test_f1/class_')]
+    f1_cols = [col for col in combined_df.columns if col.startswith('test_f1_class_')]
     
     # Reshape to long format for seaborn
     plot_data = combined_df.melt(
@@ -410,7 +414,7 @@ def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes,
     
     # Set y-axis limits and grid
     for ax in g.axes.flat:
-        ax.set_ylim([0, 1.4])
+        ax.set_ylim([0, 1.2])
         ax.grid(axis='y', alpha=0.3, linestyle='--')
         ax.set_axisbelow(True)
     
@@ -430,3 +434,132 @@ def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes,
     plt.tight_layout()
     
     return g, stats_df, plot_data
+
+def plot_class_f1_comparison(wandb_evaluations, radius=None, pct_mask_nodes=None, BASE_DIR_REPO=None,
+                              save_path=None, figsize=(10, 6)):
+    """
+    Plot class-specific F1 scores as grouped barplot comparing multiple models across seeds.
+    
+    Parameters:
+    -----------
+    wandb_evaluations : list of Wandb_evaluation
+        List of Wandb_evaluation instances, one per model
+    radius : float or int, optional
+        Radius value to filter by (if None, uses all data)
+    pct_mask_nodes : float or int, optional
+        Percentage of masked nodes to filter by (if None, uses all data)
+    save_path : str, optional
+        Path to save the figure
+    figsize : tuple, optional
+        Figure size (default: (10, 6))
+    palette : dict or list, optional
+        Color palette for models
+    
+    Returns:
+    --------
+    fig, ax : matplotlib figure and axes
+    stats_df : pd.DataFrame with mean and std for each class and model
+    """
+    general_config, model_palette = set_plot_configs(BASE_DIR_REPO)
+    
+    all_data = []
+    
+    for wandb_eval in wandb_evaluations:
+        df = wandb_eval.df.copy()
+        classes = wandb_eval.classes
+        model_name = wandb_eval.model
+        
+        # Apply filters if specified
+        if radius is not None:
+            df = df[df['radius'] == radius]
+        if pct_mask_nodes is not None:
+            df = df[df['pct_mask_nodes'] == pct_mask_nodes]
+        
+        if df.empty:
+            print(f"Warning: No data for {model_name} with specified filters")
+            continue
+        
+        # Get F1 columns
+        f1_cols = [f'test_f1_class_{c}' for c in classes]
+        existing_cols = [c for c in f1_cols if c in df.columns]
+        
+        if not existing_cols:
+            print(f"Warning: No F1 columns found for {model_name}")
+            continue
+        
+        # Reshape to long format
+        plot_df = df.melt(
+            id_vars=['seed'] if 'seed' in df.columns else [],
+            value_vars=existing_cols,
+            var_name='class',
+            value_name='f1_score'
+        )
+        plot_df['class'] = plot_df['class'].str.replace('test_f1_class_', '')
+        plot_df['model'] = model_name
+        all_data.append(plot_df)
+    
+    if not all_data:
+        raise ValueError("No valid data found for any model")
+    
+    combined_df = pd.concat(all_data, ignore_index=True)
+    
+    # Calculate statistics
+    stats_df = combined_df.groupby(['model', 'class'])['f1_score'].agg([
+        ('mean', 'mean'),
+        ('std', 'std'),
+        ('n_seeds', 'count')
+    ]).reset_index()
+    
+    # Create plot
+    fig, ax = plt.subplots(figsize=figsize)
+    
+    sns.barplot(
+        data=combined_df,
+        x='class',
+        y='f1_score',
+        hue='model',
+        errorbar='sd',
+        capsize=0.1,
+        edgecolor='black',
+        linewidth=1.0,
+        alpha=0.8,
+        palette=model_palette,
+        ax=ax
+    )
+    
+    ax.set_xlabel('Class', fontsize=12, fontweight='bold')
+    ax.set_ylabel('F1 Score', fontsize=12, fontweight='bold')
+    
+    title = 'Class F1 Scores Comparison Across Seeds'
+    if radius is not None or pct_mask_nodes is not None:
+        filters = []
+        if radius is not None:
+            filters.append(f'radius={radius}')
+        if pct_mask_nodes is not None:
+            filters.append(f'pct_mask={pct_mask_nodes}')
+        title += f' ({", ".join(filters)})'
+    
+    ax.set_title(title, fontsize=14, fontweight='bold')
+    ax.set_ylim(0, 1.1)
+    ax.grid(axis='y', alpha=0.3, linestyle='--')
+    ax.set_axisbelow(True)
+    ax.legend(title='Model', loc='upper right', framealpha=0.9)
+    
+    # Rotate x labels if many classes
+    if len(combined_df['class'].unique()) > 5:
+        plt.xticks(rotation=45, ha='right')
+    
+    plt.tight_layout()
+    
+    if save_path is not None:
+        plt.savefig(
+            os.path.join(save_path, 'f1_comparison_across_models.jpg'),
+            dpi=300, bbox_inches='tight'
+        )
+    
+    plt.show()
+    
+    print("\nStatistics Summary:")
+    print(stats_df.to_string(index=False))
+    
+    return fig, ax, stats_df
