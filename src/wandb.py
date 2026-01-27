@@ -276,7 +276,13 @@ def set_plot_configs(BASE_DIR_REPO):
     return general_config, model_palette
     
 
-def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes, BASE_DIR_REPO, height=4, aspect=0.7):
+def plot_f1_across_seeds(wandb_evaluations, 
+                         radius, 
+                         pct_mask_nodes, 
+                         BASE_DIR_REPO, 
+                         height=4, 
+                         aspect=0.7,
+                        save_path = None):
     """
     Plot mean and standard deviation of per-class F1 scores across seeds.
     Uses seaborn catplot with one facet per class and one bar per model.
@@ -295,6 +301,8 @@ def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes, BASE_DIR_REP
         Height of each facet in inches (default: 4)
     aspect : float, optional
         Aspect ratio of each facet (default: 0.7)
+    save_path: str
+        Path name from repo to save the plot. 
     
     Returns:
     --------
@@ -432,6 +440,14 @@ def plot_f1_across_seeds(wandb_evaluations, radius, pct_mask_nodes, BASE_DIR_REP
         y=1.02
     )
     plt.tight_layout()
+
+    if save_path is not None:
+        plt.savefig(
+            os.path.join(BASE_DIR_REPO, 'InterScale_reproducibility/figures/', f'{save_path}.jpg'),
+            dpi=300, bbox_inches='tight'
+        )
+    
+    plt.show()
     
     return g, stats_df, plot_data
 
@@ -553,7 +569,7 @@ def plot_class_f1_comparison(wandb_evaluations, radius=None, pct_mask_nodes=None
     
     if save_path is not None:
         plt.savefig(
-            os.path.join(save_path, 'f1_comparison_across_models.jpg'),
+            os.path.join(BASE_DIR_REPO, , '{}.jpg'),
             dpi=300, bbox_inches='tight'
         )
     
