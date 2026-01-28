@@ -7,6 +7,25 @@
 # - Load raw data from GEO accession (GSE220442) with [SpatialData loader](https://spatialdata.scverse.org/projects/io/en/latest/generated/spatialdata_io.visium.html).
 
 # %%
+import os
+
+# LRZ home
+if os.path.exists("/dss/dsshome1/05/di93tig"):
+    print('LRZ cluster')
+    CLUSTER = 'LRZ'
+    BASE_DIR_REPO = "/dss/dsshome1/05/di93tig/1_projects" 
+    BASE_DIR_PROJECT = "/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale"
+elif os.path.exists("/home/icb/francesca.drummer/"):
+    print('HPC cluster')
+    CLUSTER = 'HPC'
+    BASE_DIR_REPO = "/home/icb/francesca.drummer/1-Projects/"
+    BASE_DIR_PROJECT = ""
+else:
+    print('unkown')
+    CLUSTER = 'unknown'
+DATA = "melton25"
+
+# %%
 import scanpy as sc
 import squidpy as sq
 import numpy as np
@@ -19,16 +38,23 @@ from pathlib import Path
 
 # %%
 from pathlib import Path
+import sys
 
 # set INTERSCALE_DIR to the current working directory
 INTERSCALE_DIR = Path.cwd()
 print(INTERSCALE_DIR)
+project_root = Path(f'{BASE_DIR_REPO}/InterScale_reproducibility')
+print(project_root)
+sys.path.insert(0, str(project_root))
+
+# %%
+from src.sliding_window import sliding_window
 
 # %% [markdown]
 # <mark>TODO: Change data path</mark>
 
 # %%
-CHEN_22 = '/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/chen_adata.h5ad'  
+CHEN_22 = os.path.join(BASE_DIR_PROJECT, 'data/chen_adata.h5ad')
 
 # %% [markdown]
 # ## Load data
@@ -181,6 +207,13 @@ adata = adata[adata.obs['Layer'] != 'Noise']
 nr_cells_now = len(adata.obs_names)
 print(f'Cells removed: {nr_cells_before-nr_cells_now}')
 
+# %% [markdown]
+# Create combined `patient_id` and layer label to use as `sample_id`. 
+
+# %%
+adata.obs['patientID_layer'] = adata.obs['patient_id'].astype(str) + '_' + adata.obs['Layer'].astype(str)
+print(np.unique(adata.obs['patientID_layer']))
+
 # %%
 # Plot to see if it still makes sense
 sq.pl.spatial_scatter(
@@ -192,6 +225,34 @@ sq.pl.spatial_scatter(
     img=False,
     title=titles
 )
+
+# %% [markdown]
+# In addition to having the layers as `sample_id` to use as batch label we now also calculate sliding windows to split the data. 
+
+# %%
+sliding_window(adata, 
+                   library_key = 'patient_id', 
+                    partial_windows = "split",
+                  window_size = 100, 
+                  max_nr_cells = 2000, 
+                   sliding_window_key = f"sliding_window_assignment"
+                  )
+
+# %%
+# Plot to see if it still makes sense
+sq.pl.spatial_scatter(
+    adata,
+    spatial_key='spatial',
+    library_key='patient_id', 
+    color="sliding_window_assignment",
+    size=10,
+    img=False,
+    title=titles
+)
+
+# %%
+layer_cell_number = adata.obs.groupby(['sliding_window_assignment']).size()
+print(f"Nr cells per sliding window: Min: {tissue_cell_number.min()}, Max: {tissue_cell_number.max()}, Avg: {tissue_cell_number.mean()}")
 
 # %% [markdown]
 # We observe that there are a slides with only a few cells but 2 slides with more than 4k cells. For this case we have the option to 1) increase the context length to max = 4875 or 2) calculate sliding windows for all slides that have more than 3k cells. 
@@ -225,7 +286,7 @@ adata.obs['split'] = adata.obs['patient_id'].map(split_map)
 # Save the prepared adata object such that it can be loaded for the model training. 
 
 # %%
-adata_breast.write('/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/chen_adata_pp.h5ad'  )
+adata.write('/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/chen_adata_pp.h5ad')
 
 # %% [markdown]
 # ## Prepare config file
@@ -251,3 +312,9 @@ adata_breast.write('/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/
 #
 #
 # Save the config file as `.yaml` and proceed to training (either interactively in jupyter notebook or by running a script).
+
+# %%
+adata = sc.read_h5ad(os.path.join(BASE_DIR_PROJECT, 'data/chen_adata_pp.h5ad'))
+adata
+
+# %%
