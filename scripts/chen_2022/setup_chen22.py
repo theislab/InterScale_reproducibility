@@ -107,16 +107,16 @@ axes[1].set_title("Shifted logarithm")
 plt.show()
 
 # %%
-# Add a column marking which mode each cell belongs to
-cutoff = 1500  # adjust based on your plot - looks like the valley is around 1500
-adata.obs['count_mode'] = np.where(
-    adata.layers["log1p_norm"].sum(1) < cutoff, 
-    'low', 
-    'high'
+adata.layers['raw_counts'] = adata.X
+
+# %%
+# highly variable gene selection
+sc.pp.highly_variable_genes(
+    adata, flavor="seurat_v3", layer="raw_counts", n_top_genes=5000, subset=True
 )
 
-# Check the split
-print(adata.obs['count_mode'].value_counts())
+# %%
+adata
 
 # %% [markdown]
 # ### Is there a reason for the bi-modal behaviour?
@@ -279,6 +279,14 @@ split_map = {
     '2-5': 'test', 'T4857': 'test'
 }
 adata.obs['split'] = adata.obs['patient_id'].map(split_map)
+
+# %%
+split_map_1 = {
+    '1-1': 'val', '2-3': 'train',
+    '18-64': 'train', '2-8': 'val',
+    '2-5': 'test', 'T4857': 'test'
+}
+adata.obs['split_1'] = adata.obs['patient_id'].map(split_map_1)
 
 # %% [markdown]
 # ## Save adata object

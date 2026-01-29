@@ -1,0 +1,31 @@
+sweep_config:
+  method: "random"  # Can be 'grid', 'random', or 'bayes'
+  # metric:
+  #   name: "val_r2"  # or "val_r2" for regression
+  #   goal: "maximize"
+
+  parameters:
+    dataset.pct_mask_nodes:
+      values: [0.0, 0.1, 0.25, 0.5]
+    local_component.parameters.num_layers:
+      values: [1, 2]
+    local_component.parameters.hidden_dim:
+      values: [32, 64, 128, 256, 512]
+    local_component.parameters.dropout_local:
+      values: [0, 0.1, 0.3]
+    global_component.parameters.num_layers:
+      values: [1,2,4]
+    global_component.parameters.n_heads:
+      values: [2,4]
+    global_component.parameters.dropout_global:
+      values: [0, 0.1, 0.3]
+    model.n_embed:
+      values: [16, 32, 64, 128, 256]
+    dataset.batch_size:
+      values: [16, 32, 64]
+    optim.lr_warmup:
+      values: [10, 20, 30, 40]
+    optim.lr:
+      values: [0.001, 0.005, 0.01]
+    optim.wd:
+      values: [0, 0.1, 0.01, 0.001]
