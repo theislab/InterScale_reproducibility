@@ -76,12 +76,9 @@ CLASSES = ['ND', 'T1D']
 # Q: Why does PCATrans not have test_f1 scores?
 
 # %%
-GNN_wandb = Wandb_evaluation("GCN", GNN_sweep, SWEEP_GOAL, CLASSES)
-PCATrans_wandb = Wandb_evaluation("PCATransformer", PCATrans_sweep, SWEEP_GOAL, CLASSES)
-InterScale_wandb = Wandb_evaluation("InterScale", InterScale_sweep, SWEEP_GOAL, CLASSES)
-
-# %%
-InterScale_wandb.get_dataframe()
+GNN_wandb = Wandb_evaluation("GCN", GNN_sweep, True, False, SWEEP_GOAL, CLASSES)
+PCATrans_wandb = Wandb_evaluation("PCATransformer", PCATrans_sweep, False, True, SWEEP_GOAL, CLASSES)
+InterScale_wandb = Wandb_evaluation("InterScale", InterScale_sweep, True, True, SWEEP_GOAL, CLASSES)
 
 # %%
 InterScale_wandb.get_mean_and_std()
@@ -102,7 +99,7 @@ g, stats, plot_data = plot_f1_across_seeds(
     wandb_evaluations=wandb_evals,
     radius=150,
     pct_mask_nodes=0.0,
-    config_path='config.yml',
+    BASE_DIR_REPO=BASE_DIR_REPO,
     height=6,
     aspect=0.9
 )
@@ -126,22 +123,32 @@ import scanpy as sc
 import numpy as np
 
 # %%
-InterScale_wandb = Wandb_evaluation("InterScale", InterScale_sweep, SWEEP_GOAL, CLASSES)
+adata = sc.read_h5ad(os.path.join(BASE_DIR_PROJECT, "data/melton25.h5ad"))
 
 # %%
-adata = sc.read_h5ad(os.path.join(BASE_DIR_PROJECT, "data/melton25.h5ad"))
+best_run_id = InterScale_wandb.get_best_run_id(metric="test_acc")
+
+# %%
+df = InterScale_wandb.get_dataframe()
+df[df['id'] == best_run_id]
+
+# %%
+
+# %%
 
 # %%
 import InterScale as interscale
 
-combined_model, model_config, adata = InterScale_wandb.load_model("test_acc", adata)
+combined_model, model_config, adata = InterScale_wandb.load_model(best_run_id, adata)
 
 # %%
-adata
 
 # %%
-result_t1d = combined_model.get_model_output(adata[adata.obs['condition'] == 'T1D'], prefix = 'combined')
-result_nd = combined_model.get_model_output(adata[adata.obs['condition'] == 'ND'], prefix = 'combined')
+sub_adata = adata[adata.obs['split'] == 'test']
+
+# %%
+result_t1d = combined_model.get_model_output(sub_adata[sub_adata.obs['condition'] == 'T1D'], prefix = 'combined')
+result_nd = combined_model.get_model_output(sub_adata[sub_adata.obs['condition'] == 'ND'], prefix = 'combined')
 
 # %%
 scale_cls_by_sample(result_t1d, 'sliding_window_square')
@@ -161,6 +168,9 @@ fig = plot_adata_grouped_heatmaps(
 # %%
 val_min = result_t1d.obs['combined_cls_horizontal'].min()
 val_max = result_t1d.obs['combined_cls_horizontal'].max()
+print(val_min, val_max)
+val_min = result_t1d.obs['combined_cls_horizontal_scaled'].min()
+val_max = result_t1d.obs['combined_cls_horizontal_scaled'].max()
 print(val_min, val_max)
 
 # %%

@@ -189,7 +189,7 @@ sq.pl.spatial_scatter(result_nd[result_nd.obs['split'] == 'test'],
                     shape= None,
                       ncols = 3,
                       size = 50,
-                      save = f"{HPC}/InterScale_reproducibility/figures/legnini23/graph_class/"
+                      save = f"{HPC}/InterScale_reproducibility/figures/damond19/graph_class/"
 )
 
 # %%

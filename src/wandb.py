@@ -1,5 +1,6 @@
 import wandb
 import pandas as pd
+import numpy as np
 
 # plotting libraries
 import seaborn as sns
@@ -7,7 +8,6 @@ import matplotlib.pyplot as plt
 from statsmodels.nonparametric.smoothers_lowess import lowess
 
 import os
-from statsmodels.nonparametric.smoothers_lowess import lowess
 
 import yaml
 import scanpy as sc
@@ -15,15 +15,21 @@ import scanpy as sc
 import InterScale as interscale
 from yacs.config import CfgNode as CN
 
+from InterScale.config import load_config_from_yaml, config_from_wandb_run
+
 
 class Wandb_evaluation():
     
-    def __init__(self, model, sweep_id, sweep_goal: str, classes: list):
+    def __init__(self, model, sweep_id, local_component: bool, global_component: bool, sweep_goal: str, classes: list):
         """
         model: str
             Model name, e.i. InterScale, GCN, ...
         sweep_id: str 
             ID from WandB run
+        local_component: bool
+            Whether local component is used or not
+        global_component: bool
+            Whether global component is used or not
         sweep_goal: robustenss, parameter
         calsses: list of class names
         """
@@ -38,13 +44,19 @@ class Wandb_evaluation():
         # Get all runs associated with the sweep
         sweep_runs = api.sweep(f"{self.entity}/{self.project}/{self.sweep_id}").runs
 
-    
         data = []
         for run in sweep_runs:
             if run.state == 'finished':
                 self.prediction_task = run.config['dataset']['prediction_task']
                 self.prediction_level = run.config['dataset']['prediction_level']
-            
+                self.model_name = ""
+                if local_component:
+                    lc_name = run.config['model']['local_component']['name']
+                    self.model_name += f'{lc_name}_'
+                if global_component:
+                    gc_name = run.config['model']['global_component']['name']
+                    self.model_name += f'{gc_name}_'
+                    
                 run_data = {
                     "id": run.id,
                     "name": run.name,
@@ -74,23 +86,69 @@ class Wandb_evaluation():
                     run_data.update({
                         "split_key": run.config.get("dataset.split_key", None),
                     })
-                if sweep_goal == 'parameter':
-                    if 'gnn' in run_data['name']:
+                if sweep_goal == 'hyperparameter':
+                    self.hyperparameters = ["n_embed", "lr", "lr_warmup", "wd", "batch_size", "pct_mask_nodes"]
+                    run_data.update({
+                        "n_embed": run.config.get("model.n_embed", None),
+                        "lr": run.config.get("optim.lr", None),
+                        "wd": run.config.get("optim.wd", None),
+                        "lr_warmup": run.config.get("optim.lr_warmup", None),
+                        "batch_size": run.config.get("dataset.batch_size", None),
+                        "seed": run.config['optim']['seed'], #overwrite because not variable
+                        "radius": run.config['dataset']['spatial_neigbors_kwargs']['radius'], #overwrite because not variable
+                    }),
+                    if local_component:
+                        self.local_component_params = ["LC_num_layers", "LC_hidden_dim", "LC_dropout"]
                         run_data.update({
-                            "gnn_num_layers": run.config.get("gnn.num_layers", None),
-                            "gnn_hidden_dim": run.config.get("gnn.hidden_dim", None),
-                            "embed_dim": run.config.get("gnn.embed_dim", None),
+                            "LC_num_layers": run.config.get("model.local_component.parameters.num_layers", None),
+                            "LC_hidden_dim": run.config.get("model.local_component.parameters.hidden_dim", None),
+                            "LC_dropout": run.config.get("model.local_component.parameters.dropout_local", None),
                         })
-                    if 'transformer' in run_data['name']:
+                    if global_component:
+                        self.global_component_params = ["GC_n_heads", "GC_num_layers", "GC_dim_feedforward", "GC_hidden_dim", "GC_dropout"]
                         run_data.update({
-                            "trans_n_heads": run.config.get("transformer.n_heads", None),
-                            "trans_num_layers": run.config.get("transformer.num_layers", None),
-                            "trans_dim_feedforward": run.config.get("transformer.dim_feedforward", None),
+                            "GC_n_heads": run.config.get("model.global_component.parameters.n_heads", None),
+                            "GC_num_layers": run.config.get("model.global_component.parameters.num_layers", None),
+                            "GC_dim_feedforward": run.config.get("model.global_component.parameters.dim_feedforward", None),
+                            "GC_hidden_dim": run.config.get("model.global_component.parameters.hidden_dim", None),
+                            "GC_dropout": run.config.get("model.global_component.parameters.dropout_global", None),
                         })
                 
                 data.append(run_data)
         self.df = pd.DataFrame(data)
 
+    def filter_runs(self, df=None, exclude_parameters=None):
+        """
+        Filter out runs based on specific parameter values.
+        
+        Parameters:
+        -----------
+        df : pandas.DataFrame, optional
+            DataFrame to filter. If None, uses self.df
+        exclude_parameters : dict, optional
+            Dictionary where keys are column names and values are lists of values to exclude.
+            Example: {"radius": [0], "pct_mask_nodes": [0.5, 0.8]}
+        
+        Returns:
+        --------
+        pandas.DataFrame
+            Filtered DataFrame with specified parameter values removed.
+        """
+        if df is None:
+            df = self.df.copy()
+        
+        if exclude_parameters is None:
+            return df
+        
+        mask = pd.Series(True, index=df.index)
+        for param, values in exclude_parameters.items():
+            if param in df.columns:
+                mask &= ~df[param].isin(values)
+            else:
+                print(f"Warning: parameter '{param}' not found in DataFrame columns")
+        
+        return df[mask]
+    
     def get_dataframe(self):
         return self.df
     
@@ -116,6 +174,50 @@ class Wandb_evaluation():
             ).reset_index()
         else:
             raise ValueError(f"sweep_goal must be 'classification' or 'regression', got '{self.sweep_goal}'")
+
+
+    def get_best_run_id(self, metric: str = 'test_acc', maximize: bool = True):
+        """
+        Get the run ID with the best performance for a given metric.
+        
+        Parameters:
+        -----------
+        metric : str
+            Column name in self.df to evaluate (e.g., 'test_acc', 'test_r2', 'test_f1_micro/avg')
+        maximize : bool, optional (default=True)
+            If True, returns the run with the highest metric value.
+            If False, returns the run with the lowest metric value (useful for loss metrics).
+        
+        Returns:
+        --------
+        str
+            The run ID of the best performing run.
+        
+        Raises:
+        -------
+        ValueError
+            If the metric is not found in the DataFrame columns.
+        """
+        if metric not in self.df.columns:
+            raise ValueError(f"Metric '{metric}' not found in DataFrame. Available columns: {list(self.df.columns)}")
+        
+        # Drop rows with NaN values for the metric
+        valid_df = self.df.dropna(subset=[metric])
+        
+        if len(valid_df) == 0:
+            raise ValueError(f"No valid (non-NaN) values found for metric '{metric}'")
+        
+        if maximize:
+            best_idx = valid_df[metric].idxmax()
+        else:
+            best_idx = valid_df[metric].idxmin()
+        
+        best_run_id = valid_df.loc[best_idx, 'id']
+        best_value = valid_df.loc[best_idx, metric]
+        
+        print(f"Best run for {metric}: {best_run_id} (value: {best_value:.4f})")
+        
+        return best_run_id
 
     
     def summary_df(self, df, metric, decoder_type = "linear"):
@@ -187,18 +289,31 @@ class Wandb_evaluation():
         plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
 
         if save_path is not None:
-            plt.savefig(os.path.join(save_path, f'performance_{self.prediction_level}_{self.prediction_task}_radius_vs_{metric}.jpg'), dpi=1200)
+            plt.savefig(os.path.join(save_path, f'{self.model_name}_{self.prediction_level}_{self.prediction_task}_radius_vs_{metric}.jpg'), dpi=1200)
         
         # Show the plot
         plt.show()
     
-    def plot_parameter_space(self, metric: str = 'test_r2', save_path: str = None):
+    def plot_parameter_space(self, 
+                             metric: str = 'test_r2', 
+                             relevant_params = [], 
+                             save_path: str = None,
+                             exclude_parameters: None | dict = None
+        ):
+        """Plot the total number of model parameters as a function of performance.
+
+        relevant_params: List
+            If List is not empty, plot the relevant model or optim parameters. For example, select any of the self.hyperparameter lists saved in the initialization.
+        """
+        assert metric in self.df.columns.values
+
+        plot_df = self.filter_runs(exclude_parameters=exclude_parameters)
     
         # Apply LOWESS smoothing
-        smoothed = lowess(self.df[metric], self.df['total_parameters'], frac=0.4)  # frac controls smoothness
+        smoothed = lowess(plot_df[metric], plot_df['total_parameters'], frac=0.4)  # frac controls smoothness
         # Create scatterplot with trend line
         plt.figure(figsize=(8, 6))
-        sns.scatterplot(x='total_parameters', y=metric, data=self.df, label='Data Points')
+        sns.scatterplot(x='total_parameters', y=metric, data=plot_df, label='Data Points')
         
         # Plot smoothed trend
         plt.plot(smoothed[:, 0], smoothed[:, 1], color='red', label='LOWESS Curve')
@@ -209,16 +324,44 @@ class Wandb_evaluation():
         plt.title(f"Trend of {metric} with Increasing Parameters")
         
         if save_path is not None:
-            plt.savefig(os.path.join(save_path, f'parameter_{self.prediction_level}_{self.prediction_task}_radius_vs_{metric}.jpg'), dpi=1200)
+            plt.savefig(os.path.join(save_path, f'{self.model_name}_{self.prediction_level}_{self.prediction_task}_nr_params_vs_{metric}.jpg'), dpi=1200)
         
         plt.show()
 
-    def load_model(self, metric = 'test_acc', adata = None):
+        # Plot relevant parameters in subplots
+        if len(relevant_params) > 0:
+            n_params = len(relevant_params)
+            n_cols = min(4, n_params)
+            n_rows = (n_params + n_cols - 1) // n_cols  # ceiling division
+            
+            fig, axes = plt.subplots(n_rows, n_cols, figsize=(4 * n_cols, 4 * n_rows))
+            axes = np.atleast_1d(axes).flatten()  # ensure axes is always a flat array
+            
+            for i, param in enumerate(relevant_params):
+                sns.regplot(x=param, y=metric, data=plot_df, ax=axes[i], scatter_kws={'alpha': 0.6})
+                axes[i].set_xlabel(param)
+                axes[i].set_ylabel(metric)
+                axes[i].set_title(f'{param} vs {metric}')
+            
+            # Hide unused subplots
+            for j in range(i + 1, len(axes)):
+                axes[j].set_visible(False)
+            
+            plt.tight_layout()
+            
+            if save_path is not None:
+                fig.savefig(os.path.join(save_path, f"{self.model_name}_{self.prediction_level}_{self.prediction_task}_relevantParams_vs_{metric}.jpg"), dpi=1200)
+            
+            plt.show()
+    
+        if save_path is not None:
+            print(f'Saved figures to {save_path}')
+
+    def load_model(self, best_run_id: str, adata = None):
         """Load best model artifact from WandB according to metric."""
         
         # 1. Get best run and associated config
         api = wandb.Api()
-        best_run_id = self.df.loc[self.df[metric].idxmax(), 'id'] 
         best_run = api.run(f"{self.entity}/{self.project}/{best_run_id}")
         config_dict = best_run.config
         
@@ -261,6 +404,31 @@ class Wandb_evaluation():
         print(f"Model loaded successfully from run: {best_run_id}")
 
         return combined_model, cfg, adata
+
+    def export_config_to_yaml(self, best_run_id: str, save_path="best_config.yaml"):
+        """Export the best run's config to a YAML file for training with the best hyperparameters.
+
+        Uses all InterScale config variables (wandb, model, optim, dataset,
+        local/global component parameters) and writes a single YAML that can be
+        loaded with load_config_from_yaml() for training.
+
+        Parameters
+        ----------
+        metric : str, optional
+            Metric to select the best run (e.g. 'test_acc', 'test_r2'). Best = max.
+        save_path : str, optional
+            Path for the output YAML file.
+
+        Returns
+        -------
+        str
+            Path to the saved YAML file.
+        """
+        api = wandb.Api()
+        best_run = api.run(f"{self.entity}/{self.project}/{best_run_id}")
+        cfg = config_from_wandb_run(best_run, save_yaml_path=save_path)
+        print(f"Config saved to {save_path}")
+        return save_path
 
 def set_plot_configs(BASE_DIR_REPO):
     # Load config
