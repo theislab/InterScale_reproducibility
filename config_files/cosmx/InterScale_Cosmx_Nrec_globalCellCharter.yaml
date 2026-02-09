@@ -1,0 +1,33 @@
+wandb:
+  use: True
+  project_name: GTLongRange_Cosmx_Nrec_global
+model:
+  n_embed: 64
+  global_component:
+    name: self-attn-transformer
+    parameters:
+      max_seq_len: 1436
+      long_range_attention: False
+      type_gex_embedding: Precomputed #Precomputed, PCA
+    latent_obsm_key: X_cellcharter #Options: scvi_latent, X_cellcharter
+  decoder:
+    type: linear
+  save: model/ #Options: local, wandb, None
+optim:
+  lr: 0.001
+  loss: 'SCELoss'
+  seed: 44
+dataset:
+  h5ad_data: data/cosmx/adata_cosmx_IS.h5ad
+  name: cosmxnrecGCc
+  prediction_task: regression
+  prediction_level: node
+  layer_key: log1p_norm
+  sample_key: ['sliding_window_assignment']
+  group_label: condition
+  spatial_neigbors_kwargs:
+    radius: 200
+    library_key: sample
+  batch_size: 32
+  pct_mask_nodes: 0.3
+  segmentation_robustness: [0.2, 0.5]
