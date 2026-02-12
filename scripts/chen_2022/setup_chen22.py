@@ -326,3 +326,144 @@ adata = sc.read_h5ad(os.path.join(BASE_DIR_PROJECT, 'data/chen_adata_pp.h5ad'))
 adata
 
 # %%
+print(adata.X[:10, :10])
+
+# %%
+sc.pp.pca(adata, svd_solver="arpack", use_highly_variable=False)
+
+# %%
+sc.pp.neighbors(adata)
+sc.tl.umap(adata)
+
+# %%
+sc.pl.umap(adata, color=["patientID", "Layer", "stage", "nCount_Spatial"], cmap="viridis")
+
+# %% [markdown]
+# ### Highly-variable genes
+
+# %%
+sc.pp.highly_variable_genes(adata, flavor = 'seurat_v3')
+
+# %%
+sc.pp.pca(adata, svd_solver="arpack", key_added = "hvg_PCA", use_highly_variable=True)
+
+# %%
+sc.pp.neighbors(adata, use_rep = "hvg_PCA", key_added = "hvg_NN")
+sc.tl.umap(adata, key_added="hvg_umap", neighbors_key='hvg_NN')
+
+# %%
+# Patch for compatibility
+import matplotlib
+import matplotlib.cm as cm
+
+if not hasattr(matplotlib.colormaps, "get_cmap"):
+    matplotlib.colormaps.get_cmap = cm.get_cmap
+
+# %%
+sc.pl.umap(adata, color=["patientID", "Layer", "nCount_Spatial"], cmap="viridis")
+
+# %%
+adata.var['highly_variable']
+
+# %%
+adata_hvg = adata[:,adata.var['highly_variable']]
+
+# %%
+adata_hvg
+
+# %%
+# save hvg adata object
+adata_hvg.write('/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/chen_adata_pp_hvg.h5ad')
+
+# %% [markdown]
+# Both highly variable and no highly variable gene selection look seperated by patientIDs. Need to integrate to remove batch effects.
+#
+# ### scVI Integration
+
+# %%
+sc.pp.filter_genes(adata_hvg, min_cells=1)
+
+# %%
+adata_hvg.X = adata_hvg.layers["raw_counts"].copy()
+sc.pp.normalize_total(adata_hvg)
+sc.pp.log1p(adata_hvg)
+adata_hvg.layers["logcounts"] = adata_hvg.X.copy()
+
+# %%
+adata_scvi = adata_hvg.copy()
+
+# %%
+import scvi
+scvi.model.SCVI.setup_anndata(adata_scvi, layer="raw_counts", batch_key="patientID")
+adata_scvi
+
+# %%
+model_scvi = scvi.model.SCVI(adata_scvi)
+model_scvi
+
+# %%
+max_epochs_scvi = np.min([round((20000 / adata_scvi.n_obs) * 400), 400])
+max_epochs_scvi
+
+# %%
+model_scvi.train()
+
+# %%
+adata_scvi.obsm["X_scVI"] = model_scvi.get_latent_representation()
+
+# %%
+adata_scvi.write('/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/chen_adata_pp_scvi.h5ad')
+
+# %%
+sc.pp.neighbors(adata_scvi, use_rep="X_scVI")
+sc.tl.umap(adata_scvi)
+adata_scvi
+
+# %%
+sc.pl.umap(adata_scvi, color=["Layer", "patientID", "stage"], wspace=1)
+
+# %% [markdown]
+# Patient ID is integrated but Layers still seperated. What if I put both layers and patient ID as scVI 
+
+# %% [markdown]
+# ## Data vizualization
+
+# %%
+layer_order = [
+    "Layer 1", "Layer 2", "Layer 3",
+    "Layer 4", "Layer 5", "Layer 6",
+    "White Matter"
+]
+
+# Create summary dataframe
+df = (
+    adata.obs
+    .groupby(["patientID", "Layer"])["nCount_Spatial"]
+    .sum()
+    .reset_index()
+)
+
+# Make layer a categorical with correct order
+df["Layer"] = pd.Categorical(df["Layer"], categories=layer_order, ordered=True)
+
+# Sort values to ensure correct plotting order
+df = df.sort_values(["patientID", "Layer"])
+
+# Plot
+plt.figure(figsize=(10, 6))
+sns.lineplot(
+    data=df,
+    x="Layer",
+    y="nCount_Spatial",
+    hue="patientID",
+    marker="o"
+)
+
+plt.xticks(rotation=45)
+plt.xlabel("Layer")
+plt.ylabel("Total Spatial Counts")
+plt.title("Number of Counts per Layer per Patient")
+plt.tight_layout()
+plt.show()
+
+# %%
