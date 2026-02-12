@@ -51,15 +51,37 @@ else:
     print('unkown')
     CLUSTER = 'unknown'
 
+DATA = "melton25"
+
 # %%
 # path on ICB or LRZ cluster to InterScale_reproducibility folder
 CFG_CLASS = os.path.join(BASE_DIR_REPO, "GT-long-range-niches/src/config_files/Cosmx_pancreas/regr_InterScale.yaml")
-RESULTS_DIR = os.path.join(BASE_DIR_PROJECT, "results/melton25/")
-FIGURE_DIR = os.path.join(BASE_DIR_REPO, "InterScale_reproducibility/figures/melton25")
+RESULTS_DIR = os.path.join(BASE_DIR_PROJECT, f"results/{DATA}/")
+FIGURE_DIR = os.path.join(BASE_DIR_REPO, f"InterScale_reproducibility/figures/{DATA}")
 
 # %%
 path = os.path.join("/home", "user", "documents", "/etc", "config.txt")
 path
+
+# %%
+import sys
+from pathlib import Path
+
+# Add project root to path (go up 2 levels from notebook location)
+project_root = Path(f'{BASE_DIR_REPO}/InterScale_reproducibility')
+sys.path.insert(0, str(project_root))
+
+from src.utils import set_full_reproducibility
+from src.wandb import Wandb_evaluation
+
+# %% [markdown]
+# ## Global parameters
+
+# %% [markdown]
+# Fix the seeds across all imports.
+
+# %%
+set_full_reproducibility()
 
 # %% [markdown]
 # ## Figure settings
@@ -72,7 +94,7 @@ with open(os.path.join(BASE_DIR_REPO, "InterScale_reproducibility/figures/config
     config = yaml.safe_load(f)
 
 PALETTE = config["palettes"]["continuous"]
-CELL_TYPE_COLORS = config["palettes"]["Melton_Jimenez"]
+CELL_TYPE_COLORS = config["palettes"][DATA]
 
 # %%
 CELL_TYPE_KEY = 'cell_type_coarse'
@@ -81,15 +103,84 @@ CELL_TYPE_KEY = 'cell_type_coarse'
 # ## Load config and model
 
 # %%
+adata = sc.read_h5ad(os.path.join(BASE_DIR_PROJECT, "data", f"{DATA}.h5ad"))
+adata
+
+# %% [markdown]
+# ### WandB
+
+# %%
+import wandb
+from yacs.config import CfgNode as CN
+
+WANDB_ENTITY = "francesca-drummer"
+
+
+def load_model(project: str, best_run_id: str, adata = None):
+    """Load best model artifact from WandB according to metric."""
+    
+    # 1. Get best run and associated config
+    api = wandb.Api()
+    best_run = api.run(f"{WANDB_ENTITY}/{project}/{best_run_id}")
+    config_dict = best_run.config
+    
+    cfg = CN(config_dict)
+    # cfg.optim.accelerator = 'cpu'
+    # cfg.model.decoder.dual_decoder = False
+    # cfg.model.global_component.parameters.type_gex_embedding = None
+    # cfg.freeze()  # Optional: make it immutable
+    
+    # 4. Download the model artifact
+    artifact = list(best_run.logged_artifacts())[0]
+    artifact_dir = artifact.download()
+    print(f"Model artifact downloaded to: {artifact_dir}")
+
+    if adata is None:
+        adata = sc.read_h5ad(cfg.dataset.h5ad_data)
+    
+    # 5. Setup AnnData
+    interscale.model.CombinedModel._setup_anndata(
+        adata=adata, 
+        prediction_task=cfg.dataset.prediction_task, 
+        layer_key=cfg.dataset.layer_key, 
+        sample_key_list=cfg.dataset.sample_key, 
+        prediction_obs=cfg.dataset.prediction_obs, 
+        group_key=cfg.dataset.group_label, 
+        view_registry=False
+    )
+    
+    # 6. Load model from the artifact directory
+    combined_model = interscale.model.CombinedModel.load(
+        artifact_dir,
+        adata, 
+        cfg= cfg,
+        model_name = f"{artifact_dir}/model",
+        local_component=True, 
+        global_component=True, 
+        wandb_save=False
+    )
+    
+    print(f"Model loaded successfully from run: {best_run_id}")
+
+    return combined_model, cfg, adata
+
+
+# %%
+PROJECT = "GTLongRange_CosmXPancreas"
+InterScale_best = "pqolkd11"
+
+# %%
+combined_model, cfg, adata = load_model(PROJECT, InterScale_best, adata)
+
+# %% [markdown]
+# ### Local source
+
+# %%
 cfg = load_config(CFG_CLASS)
 
 # %%
 assert BASE_DIR_PROJECT in cfg.model.save 
 assert BASE_DIR_PROJECT in cfg.dataset.h5ad_data
-
-# %%
-adata = sc.read_h5ad(cfg.dataset.h5ad_data)
-adata
 
 # %%
 # assign cell type colors
@@ -119,6 +210,306 @@ sub_adata = adata[adata.obs['slide_fov'].isin(slide_ids)]
 
 # %%
 result = combined_model.get_model_output(sub_adata, prefix = 'combined')
+
+# %%
+result.obs['condition']
+
+# %%
+result_complete = combined_model.get_model_output(adata, prefix = 'combined')
+
+# %%
+#### from InterScale.evaluation.gene_rank_analysis import predict_gene_r2, gene_rank_analysis
+gene_rank_analysis(result_complete[result_complete.obs['condition']=='T1D'],
+                   layers_local_pred = 'combined_y_pred_local',
+                   layers_global_pred = 'combined_y_pred_global',
+                   top_n = 5,
+                   plot_result = True,
+                   return_top_genes = True)
+
+# %%
+import os
+import pandas as pd
+import numpy as np
+from sklearn.metrics import r2_score
+import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy.stats import rankdata
+from anndata import AnnData
+from typing import Literal
+
+def predict_gene_r2(adata: AnnData, layers_pred: str, top_n: int = 5) -> pd.DataFrame:
+    """
+    Predict gene R² scores for a given model layer.
+    
+    Parameters:
+        adata: AnnData object containing the data
+        layers_pred: str, name of the model layer to predict
+        top_n: int, number of top genes to return
+    """
+    # Convert y_true to a dense array
+    y_true = adata.X.toarray().astype(float)
+    
+    # Convert predictions to NumPy arrays
+    y_pred = adata.layers[layers_pred]
+    
+    # Ensure predictions are also NumPy arrays (if they're tensors)
+    if not isinstance(y_pred, np.ndarray):
+        y_pred = np.array(y_pred)
+    
+    # Ensure predictions are also NumPy arrays of type float
+    y_pred = y_pred.astype(float)
+    
+    # Compute R² scores for each gene
+    r2_scores = []
+    for i in range(y_true.shape[1]):
+        # Mask for non-NaN values in both y_true and y_pred for gene i
+        mask = ~np.isnan(y_true[:, i]) & ~np.isnan(y_pred[:, i])
+        if np.sum(mask) > 1:  # Need at least 2 points to compute R²
+            r2 = r2_score(y_true[mask, i], y_pred[mask, i])
+        else:
+            r2 = np.nan  # Not enough data to compute R²
+        r2_scores.append(r2)
+    r2_scores_log = [np.log(r2 + 1) for r2 in r2_scores if not np.isnan(r2)]
+    r2_ranked = rankdata(r2_scores, method="average")
+    
+    # Convert to DataFrame for easy sorting
+    genes = adata.var_names  # Gene names
+    r2_df = pd.DataFrame({'gene': genes, 'r2': r2_scores, 'r2_log': r2_scores_log, 'r2_rank': r2_ranked})
+    
+    # Get top 5 genes for each model
+    top = r2_df.nlargest(top_n, 'r2')
+    
+    print(f"Top {top_n} genes for {layers_pred} model:\n", top)
+    
+    return r2_df
+
+
+def predict_gene_cosine(adata: AnnData, layers_pred: str, top_n: int = 5) -> pd.DataFrame:
+    """
+    Predict gene cosine similarity scores for a given model layer.
+    For each gene, computes cosine similarity between true and predicted expression across cells.
+
+    Parameters:
+        adata: AnnData object containing the data
+        layers_pred: str, name of the model layer to predict
+        top_n: int, number of top genes to return
+    """
+    y_true = adata.X.toarray().astype(float)
+    y_pred = adata.layers[layers_pred]
+    if not isinstance(y_pred, np.ndarray):
+        y_pred = np.array(y_pred)
+    y_pred = y_pred.astype(float)
+
+    cosine_scores = []
+    for i in range(y_true.shape[1]):
+        mask = ~np.isnan(y_true[:, i]) & ~np.isnan(y_pred[:, i])
+        a, b = y_true[mask, i], y_pred[mask, i]
+        n = np.sum(mask)
+        if n > 0:
+            norm_a = np.linalg.norm(a)
+            norm_b = np.linalg.norm(b)
+            if norm_a > 0 and norm_b > 0:
+                cos_sim = np.dot(a, b) / (norm_a * norm_b)
+            else:
+                cos_sim = np.nan
+        else:
+            cos_sim = np.nan
+        cosine_scores.append(cos_sim)
+
+    cosine_ranked = rankdata(cosine_scores, method="average")
+    genes = adata.var_names
+    cosine_df = pd.DataFrame({"gene": genes, "cosine": cosine_scores, "cosine_rank": cosine_ranked})
+
+    top = cosine_df.nlargest(top_n, "cosine")
+    print(f"Top {top_n} genes for {layers_pred} model (cosine):\n", top)
+    return cosine_df
+
+
+def gene_rank_analysis(adata,
+                       layers_local_pred: str = 'layers_local',
+                       layers_global_pred: str = 'layers_global',
+                       top_n: int = 5,
+                       plot_result: bool = True,
+                       return_top_genes: bool = False,
+                       save_dir: str = None,
+                       post_fix: str = None,
+                       score_metric: Literal["r2", "cosine"] = "r2"):
+    """Ranks how well the local and global predictions capture the gene expression.
+    Plots the top N predicted genes for each model and consensus genes.
+
+    Args:
+        adata: AnnData with layers for local and global predictions.
+        layers_local_pred: Layer name for local predictions. Defaults to 'layers_local'.
+        layers_global_pred: Layer name for global predictions. Defaults to 'layers_global'.
+        top_n: Number of top genes to highlight. Defaults to 5.
+        plot_result: Whether to plot. Defaults to True.
+        return_top_genes: Whether to return top gene DataFrames. Defaults to False.
+        save_dir: Directory to save the figure. If None, figure is not saved. Defaults to None.
+        post_fix: Suffix for saved filename. Defaults to None.
+        score_metric: 'r2' for R² score, 'cosine' for cosine similarity. Defaults to 'r2'.
+    """
+    assert layers_local_pred in adata.layers.keys(), f"layers_local_pred {layers_local_pred} not in adata.layers.keys()"
+    assert layers_global_pred in adata.layers.keys(), f"layers_global_pred {layers_global_pred} not in adata.layers.keys()"
+
+    if score_metric == "r2":
+        local_df = predict_gene_r2(adata, layers_local_pred, top_n)
+        global_df = predict_gene_r2(adata, layers_global_pred, top_n)
+        rank_col = "r2_rank"
+    else:
+        local_df = predict_gene_cosine(adata, layers_local_pred, top_n)
+        global_df = predict_gene_cosine(adata, layers_global_pred, top_n)
+        rank_col = "cosine_rank"
+
+    # Select relevant columns and rename for clarity
+    local_df = local_df[["gene", rank_col]].rename(columns={rank_col: "Local Rank"})
+    global_df = global_df[["gene", rank_col]].rename(columns={rank_col: "Global Rank"})
+    
+    # Merge on 'gene'
+    merged_df = pd.merge(local_df, global_df, on='gene', how='inner')
+    
+    # Compute rank difference
+    merged_df['Rank Difference'] = merged_df['Local Rank'] - merged_df['Global Rank']
+    
+    # Compute overall prediction quality (higher avg rank means better prediction)
+    merged_df['Avg Rank'] = (merged_df['Local Rank'] + merged_df['Global Rank']) / 2
+    
+    # Get top_n genes in each category
+    top_local_genes = merged_df.nsmallest(top_n, "Rank Difference")  # More local-driven
+    top_global_genes = merged_df.nlargest(top_n, "Rank Difference")  # More global-driven
+    top_best_genes = merged_df.nlargest(top_n, "Avg Rank")  # Best overall predicted genes
+    
+    # Plot all genes
+    plt.figure(figsize=(8, 8))
+    plt.scatter(merged_df["Local Rank"], merged_df["Global Rank"], alpha=0.6, label="All Genes", color="gray")
+
+    # Plot and label top local genes
+    plt.scatter(top_local_genes["Local Rank"], top_local_genes["Global Rank"], color="blue", label="Top Local")
+    for _, row in top_local_genes.iterrows():
+        plt.text(row["Local Rank"], row["Global Rank"], row["gene"], fontsize=10, color="blue")
+
+    # Plot and label top global genes
+    plt.scatter(top_global_genes["Local Rank"], top_global_genes["Global Rank"], color="red", label="Top Global")
+    for _, row in top_global_genes.iterrows():
+        plt.text(row["Local Rank"], row["Global Rank"], row["gene"], fontsize=10, color="red")
+    
+    # Plot and label best-predicted genes
+    plt.scatter(top_best_genes["Local Rank"], top_best_genes["Global Rank"], color="green", label="Best Predicted")
+    for _, row in top_best_genes.iterrows():
+        plt.text(row["Local Rank"], row["Global Rank"], row["gene"], fontsize=10, color="green")
+
+    # Reference diagonal
+    min_rank, max_rank = merged_df[['Local Rank', 'Global Rank']].values.min(), merged_df[['Local Rank', 'Global Rank']].values.max()
+    plt.plot([min_rank, max_rank], [min_rank, max_rank], 'r--', label="Equal Ranking (y=x)")  
+    
+    # Labels and legend
+    plt.xlabel("Local Model Rank")
+    plt.ylabel("Global Model Rank")
+    plt.title(f"Gene Prediction Rank: Local vs. Global ({score_metric})")
+    
+    # Save figure if save_dir is provided
+    if save_dir is not None:
+        name = f"gene_rank_analysis_{score_metric}" + (f"_{post_fix}" if post_fix else "") + ".png"
+        save_path = os.path.join(save_dir, name)
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')    
+        print(f"Figure saved to: {save_path}")
+    
+    plt.show()
+
+    # Return top genes if requested
+    if return_top_genes:
+        return top_local_genes, top_global_genes, top_best_genes
+    
+    
+
+# %%
+gene_rank_analysis(result_complete[result_complete.obs['condition']=='T1D'],
+                   layers_local_pred = 'combined_y_pred_local',
+                   layers_global_pred = 'combined_y_pred_global',
+                   top_n = 5,
+                   plot_result = True,
+                   return_top_genes = True, 
+                   score_metric = "cosine")
+
+# %% [markdown]
+# ### GEX prediction
+#
+# Check if genes are well predicted for local and global embedding.
+
+# %%
+result
+
+# %%
+sq.pl.spatial_scatter(result, 
+                      color = ['TYK2', 'SERPINA3', 'TTR'],
+                      library_key = 'slide_fov',
+                       ncols=3,
+                    shape = None)
+
+# %%
+sq.pl.spatial_scatter(result, 
+                      layer = 'combined_y_pred_local',
+                      color = ['TYK2', 'SERPINA3', 'TTR', 'cell_type_coarse'],
+                      library_key = 'slide_fov',
+                    shape = None)
+
+# %%
+sq.pl.spatial_scatter(result, 
+                      layer = 'combined_y_pred_global',
+                      color = ['TYK2', 'SERPINA3', 'TTR', 'cell_type_coarse'],
+                      library_key = 'slide_fov',
+                    shape = None)
+
+
+# %%
+def umap_embeddings(embedding_gnn, 
+                    embedding_trans, 
+                    leiden_res: float = 0.1):
+    """
+
+    
+    Input:
+    ------
+        embedding_gnn: numpy.array [N, E_gnn]
+        embedding_trans: numpy.array [N, E_trans]
+
+    Return:
+    -------
+        leiden_gnn: numpy.array [N]
+            Leiden cluster assignments for each cell based on GNN output
+        leiden_trans: numpy.array [N]
+            Leiden cluster assignments for each cell based on Transformer output
+    """
+    scaler = StandardScaler()
+    H_GNN_normalized = scaler.fit_transform(embedding_gnn)
+    H_T_normalized = scaler.fit_transform(embedding_trans)
+    
+    # Apply UMAP
+    umap_model = umap.UMAP(n_neighbors=15, min_dist=0.1, n_components=2, random_state=42)
+    H_GNN_umap = umap_model.fit_transform(H_GNN_normalized)
+    H_T_umap = umap_model.fit_transform(H_T_normalized)
+
+    adata_gnn = AnnData(X=H_GNN_umap)
+    
+    # Build a KNN graph and perform Leiden clustering
+    sc.pp.neighbors(adata_gnn, n_neighbors=40, use_rep='X')
+    sc.tl.leiden(adata_gnn, resolution=leiden_res)
+
+    leiden_gnn = np.array(adata_gnn.obs['leiden'])
+    
+    adata_trans = AnnData(X=H_T_umap)
+    
+    # Build a KNN graph and perform Leiden clustering
+    sc.pp.neighbors(adata_trans, n_neighbors=40, use_rep='X')
+    sc.tl.leiden(adata_trans, resolution=leiden_res)
+    
+    # Extract Leiden clusters
+    leiden_trans = np.array(adata_trans.obs['leiden'])
+    print(f"Nr. of clusters: local = {len(np.unique(leiden_gnn))}, global = {len(np.unique(leiden_trans))}")
+
+    del adata_gnn, adata_trans
+    
+    return leiden_gnn, leiden_trans
+
 
 # %%
 result
