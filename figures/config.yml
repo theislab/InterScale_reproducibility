@@ -72,8 +72,8 @@ palettes:
 
 
   Condition_pancreas: #to change 
-    ND: "#999999"  
-    T1D: "#0b559f"
+    ND: "#F5811F"  
+    T1D: "#86A33C"
   Models:
     GCN: "#88C8B2"
     PCATransformer: "#EE9B00"
