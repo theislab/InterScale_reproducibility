@@ -1,0 +1,33 @@
+wandb:
+  use: True
+  project_name: GTLongRange_Legnini23_Nrec_global
+model:
+  #n_embed: 64
+  global_component:
+    name: self-attn-transformer
+    parameters:
+      max_seq_len: 4299
+      type_gex_embedding: Precomputed #Options: Precomputed,PCA
+    latent_obsm_key: scvi_latent #Options: scvi_latent, X_cellcharter
+  decoder:
+    type: linear
+  save: model/ #Options: local, wandb, None
+optim:
+  lr: 0.001
+  #loss: 'SCE_EntropyATT_Loss'
+  loss: 'SCELoss'
+  seed: 44
+dataset:
+  h5ad_data: data/legnini/adata_legnini_IS.h5ad
+  name: legnini23nrecGSCVI
+  prediction_task: regression
+  prediction_level: node
+  layer_key: log1p_norm
+  sample_key: ['sample']
+  group_label: condition
+  spatial_neigbors_kwargs:
+    radius: 200
+    library_key: sample
+  batch_size: 3
+  pct_mask_nodes: 0.3
+  segmentation_robustness: [0.2, 0.5]
