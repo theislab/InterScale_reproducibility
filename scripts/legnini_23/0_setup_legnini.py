@@ -1,10 +1,10 @@
 # %% [markdown]
-# # Setup and download - IMC Type 1 Diabetes Pancreas data
+# # Setup and download - Molecular cartography data from Legnini et al., 2023 
 #
-# This tutorials shows how to set up an multiple slide spatial proteomics (IMC) dataset used from [Damond et al., 2019](https://doi.org/10.1016/j.cmet.2018.11.014). To follow along with this and the following tutorials, please execute the following steps first:
+# This tutorials shows how to set up an multiple slide molecular cartography dataset used from [Legnini et al., 2023](https://doi.org/10.1038/s41592-023-01986-w). To follow along with this and the following tutorials, please execute the following steps first:
 #
 # - Set up InterScale environment (see instructions in ReadMe)
-# - Download the sample data from the original publication from [Zenodo](https://zenodo.org/records/13907274)
+# - Download the sample data from the original publication from [Zenodo](https://doi.org/10.5281/zenodo.6143560) under the accession no. 6143561
 
 # %%
 import scanpy as sc
@@ -14,63 +14,99 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.sparse import issparse
 import seaborn as sns
+from scipy.sparse import csr_array, csr_matrix, issparse
 
 from pathlib import Path
+
+import warnings
+warnings.filterwarnings('ignore')
 
 # %%
-from pathlib import Path
+import os
 
-# set INTERSCALE_DIR to the current working directory
-INTERSCALE_DIR = Path.cwd()
-print(INTERSCALE_DIR)
+# LRZ home
+if os.path.exists("/dss/dsshome1/05/di93tig"):
+    print('LRZ cluster')
+    CLUSTER = 'LRZ'
+    BASE_DIR_REPO = "/dss/dsshome1/05/di93tig/1_projects" 
+    BASE_DIR_PROJECT = "/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale"
+elif os.path.exists("/home/icb/francesca.drummer/"):
+    print('HPC cluster')
+    CLUSTER = 'HPC'
+    BASE_DIR_REPO = "/home/icb/francesca.drummer/1-Projects/"
+    BASE_DIR_PROJECT = ""
+else:
+    print('unkown')
+    CLUSTER = 'unknown'
+DATA = "legnini23"
+
+# %%
+import yaml
+with open(os.path.join(BASE_DIR_REPO, "InterScale_reproducibility/figures/config.yml"), "r") as f:
+    config = yaml.safe_load(f)
+
+PALETTE = config["palettes"]["continuous"]
+#CELL_TYPE_COLORS = config["palettes"][DATA]
 
 # %% [markdown]
 # <mark>TODO: Change data path</mark>
 
 # %%
-LRZ_IMC_PANCREAS = '/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/spatial_proteomics_pancreas_t1d_IMC.h5ad'  
-HPC_IMC_PANCREAS = '/lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/data/imc_pancreas.h5ad'
+LRZ_LEGNINI23 = f'{BASE_DIR_PROJECT}/data/{DATA}.h5ad'  
 
 # %% [markdown]
 # ## Load data
 
 # %%
-adata_pancreas = sc.read_h5ad(HPC_IMC_PANCREAS)
-adata_pancreas
+adata = sc.read_h5ad(LRZ_LEGNINI23)
+adata
 
 # %%
-print('Nr. of donors: ', len(np.unique(adata_pancreas.obs['case'])))
+print('Zero count cells: ', (adata.X.sum(1) ==0).sum())
 
 # %% [markdown]
 # ## 1. Normalization
 #
-# The data needs to be normalized for InterScale. Check if the data is already normalized: 
+# The data needs to be normalized for InterScale (Ideally, counts should be normalized between 0 to 3). Check if the data is already normalized: 
 
 # %%
-print(f'Min count: {adata_pancreas.X.min()}, Max count: {adata_pancreas.X.max()}')
+scales_counts = sc.pp.normalize_total(adata, target_sum=None, inplace=False)
+# log1p transform
+adata.layers["raw"] = adata.X
+adata.layers["log1p_norm"] = sc.pp.log1p(scales_counts["X"], copy=True)
 
 # %%
-for layer_name in ['MeanIntensity', 'MedianIntensity']:
-    print(f'Min count: {adata_pancreas.layers[layer_name].min()}, Max count: {adata_pancreas.layers[layer_name].max()}')
-
-# %% [markdown]
-# The data is not yet normalized, so normalize like described in the publication: "raw IMC counts were 99th-percentile-normalized and scaled from 0 to 1 (scaled counts)."
-
-# %%
-percentile_99 = np.percentile(adata_pancreas.X, 99, axis=0)
-pct_norm_99 = adata_pancreas.X / percentile_99
-adata_pancreas.layers["pct-norm-99"] = np.clip(pct_norm_99, 0, 1)
+# Freeman-Tukey square root transform
+assert issparse(adata.X)
+sqrt_X = adata.X.sqrt()
+# Create a new sparse matrix for X + 1
+X_plus_1 = adata.X + csr_matrix(np.ones(adata.X.shape))
+# Calculate the square root of (X + 1)
+sqrt_X_plus_1 = X_plus_1.sqrt()
+adata.layers['norm_ftsqrt'] = sqrt_X + sqrt_X_plus_1
 
 # %%
-print(f'Min count: {adata_pancreas.layers["pct-norm-99"].min()}, Max count: {adata_pancreas.layers["pct-norm-99"].max()}')
+# shifted Logarithm
+scales_counts = sc.pp.normalize_total(adata, target_sum=10000, inplace=False)
+# log1p transform
+adata.layers["log1p_norm"] = sc.pp.log1p(scales_counts["X"], copy=True)
 
 # %%
-fig, axes = plt.subplots(1, 2, figsize=(10, 5))
-p1 = sns.histplot(adata_pancreas.X.sum(1), bins=100, kde=False, ax=axes[0])
-axes[0].set_title("Total counts")
-p2 = sns.histplot(adata_pancreas.layers["pct-norm-99"].sum(1), bins=100, kde=False, ax=axes[1])
-axes[1].set_title("Norm to target sum 1")
+import seaborn as sns
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+p0 = sns.histplot(adata.layers["raw"].sum(1), bins=100, kde=False, ax=axes[0])
+axes[0].set_title("Total Counts")
+p1 = sns.histplot(adata.layers["norm_ftsqrt"].sum(1), bins=100, kde=False, ax=axes[1])
+axes[1].set_title("Freeman-Tukey")
+p2 = sns.histplot(adata.layers["log1p_norm"].sum(1), bins=100, kde=False, ax=axes[2])
+axes[2].set_title("Log1p Norm")
 plt.show()
+
+# %%
+print('Raw - Min: ', {adata.layers['raw'].min()}, ', Max: ', {adata.layers['raw'].max()})
+print('Log1pNorm - Min: ', {adata.layers['log1p_norm'].min()}, ', Max: ', {adata.layers['log1p_norm'].max()})
+print('NormTRSqrt - Min: ', {adata.layers['norm_ftsqrt'].min()}, ', Max: ', {adata.layers['norm_ftsqrt'].max()})
 
 # %% [markdown]
 # ## 2. Calculate spatial connectivity matrix
@@ -78,14 +114,49 @@ plt.show()
 # Use [`squidpy.gr.spatial_neighbors()`](https://squidpy.readthedocs.io/en/stable/api/squidpy.gr.spatial_neighbors.html)) to calculate the spatial connectivity. For image-based ST it is important to set `coord_type='generic'`. In Squidpy, you have the option between k-nearest neighbors, delaunay and radius based neighborhood. For InterScale, we use a `radius`-based neighborhood to capture density information. Find the radius for which the number of connected neighbors is approximately 10-30, depending on tissue density. 
 
 # %%
-print('Nr. of images', len(np.unique(adata_pancreas.obs['ImageNumber'])))
+for radi in [0, 200, 300]:
+    print('Radius ', radi)
+    sq.gr.spatial_neighbors(
+        adata,
+        radius=radi,
+        coord_type='generic',
+        library_key = 'sample'
+    )
+    conn = adata.obsp['spatial_connectivities']
+    # Print average number of connections per node
+    avg_connections = conn.nnz / conn.shape[0]  # total connections / number of nodes
+    print(f"Average number of connections per node: {avg_connections:.2f}")
 
 # %%
-adata_pancreas.obs['ImageNumber'] = pd.Categorical(adata_pancreas.obs['ImageNumber'])
+#np.isnan(adata.obsm["spatial"]).sum()
+
+# %% [markdown]
+# Remove all cells that have entry NaN in .obsm['coordinates'].
+# If NaN is in .obsm it leads to error when creating graph. Why is there NaN in obsm?
+# [NaN value when importing Visium datasete](https://github.com/scverse/squidpy/issues/797)
+
+# %%
+# Create a boolean mask for rows without NaN coordinates
+valid_coords = ~np.isnan(adata.obsm["spatial"]).any(axis=1)
+
+# Filter the AnnData object
+adata = adata[valid_coords].copy()
+
+# Verify the removal of NaN values
+print(f"NaN values remaining: {np.isnan(adata.obsm['spatial']).sum()}")
+
+# %% [markdown]
+# Make sure that obs_names are unique and convertable to string. 
+
+# %%
+adata.obs_names_make_unique
+
+# %%
+adata.obs['obs_names'] = adata.obs_names
 
 # %%
 sq.gr.spatial_neighbors(
-    adata_pancreas,
+    adata,
     coord_type = "generic",
     library_key = "ImageNumber",
     radius = 30,
@@ -241,7 +312,7 @@ print(value_counts)
 # Save the prepared adata object such that it can be loaded for the model training. 
 
 # %%
-adata_pancreas.write('/lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/data/imc_pancreas_pp.h5ad')
+adata_pancreas.write(f'{BASE_DIR_PROJECT}/data/{DATA}_pp.h5ad')
 
 # %% [markdown]
 # ## Prepare config file
@@ -257,88 +328,15 @@ adata_pancreas.write('/lustre/groups/ml01/projects/2024_spatial_long_range_GT_fr
 #         max_seq_len: 2418
 #   save: /path/to/save/model/
 # dataset:
-#   h5ad_data: visium_tme_pp.h5ad
-#   name: Visium_breast_cancer_TME
-#   sample_key: ['batch']
+#   h5ad_data: legnini22.h5ad
+#   name: Visium_legnini23
+#   sample_key: ['case']
 #   spatial_neigbors_kwargs:
 #     coord_type: grid
-#     library_key: batch
+#     library_key: sliding_window_assignment
 # ```
 #
 #
 # Save the config file as `.yaml` and proceed to training (either interactively in jupyter notebook or by running a script).
 
-# %% [markdown]
-# ## scVI embeddings
-#
-# Create scVI embeddings to train on. Note: because it is IMC data we do not have raw counts.
-
 # %%
-import scvi
-
-# %%
-adata_pancreas = sc.read_h5ad('/lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/data/imc_pancreas_pp.h5ad')
-
-# %%
-adata_pancreas
-
-# %% [markdown]
-# ### Run scVI
-#
-# Either execute the cells below or use the script in `/scripts/damond19/run_scvi.sh` executing `scvi_damond.py`.
-
-# %%
-np.unique(adata_pancreas.obs['case'])
-
-# %%
-scvi.model.SCVI.setup_anndata(adata_pancreas, layer='pct-norm-99', batch_key="case")
-
-# %%
-model = scvi.model.SCVI(adata_pancreas, n_layers=2, n_latent=30, gene_likelihood="nb")
-
-# %%
-model.train()
-
-# %%
-SCVI_LATENT_KEY = "X_scVI"
-adata_pancreas.obsm[SCVI_LATENT_KEY] = model.get_latent_representation()
-
-# %%
-sc.pp.neighbors(adata_pancreas, use_rep=SCVI_LATENT_KEY, key_added='scvi')
-adata_pancreas
-
-# %%
-sc.tl.leiden(adata_pancreas, key_added='scvi', neighbors_key='scvi')
-
-# %%
-adata_pancreas.write('/lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/data/imc_pancreas_pp.h5ad')
-
-# %% [markdown]
-# ### Visualize scVI 
-#
-# This assumes scVI was run.
-
-# %%
-#adata_pancreas = sc.read_h5ad('/lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/data/imc_pancreas_pp.h5ad')
-
-# %% [markdown]
-# Get an error that `key_added` in `sc.tl.umap()` does not exist. Maybe because of outdated version (scanpy = 1.10.2). That's why manual remapping is the solution.
-
-# %%
-adata_pancreas.uns['scvi']['connectivities_key'] = 'scvi_connectivities'
-adata_pancreas.uns['scvi']['distances_key'] = 'scvi_distances'
-adata_pancreas.uns['scvi']['params']['method'] = 'method'
-
-sc.tl.umap(adata_pancreas, min_dist=0.3, neighbors_key='scvi')
-
-# %%
-adata_pancreas
-
-# %%
-sc.pl.umap(
-    adata_pancreas,
-    color=["case", "CellType"],
-    frameon=False,
-    ncols=1,
-    neighbors_key = 'scvi'
-)

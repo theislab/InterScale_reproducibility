@@ -15,7 +15,7 @@ import scanpy as sc
 import InterScale as interscale
 from yacs.config import CfgNode as CN
 
-from InterScale.config import load_config_from_yaml, config_from_wandb_run
+from InterScale.config import load_config, config_from_wandb_run
 
 
 class Wandb_evaluation():
@@ -77,7 +77,8 @@ class Wandb_evaluation():
                     num_classes = run.config['dataset']['num_classes']
                     run_data.update({
                         "test_acc": run.summary.get("test_accuracy", None),
-                        "test_f1_micro/avg": run.summary.get("test_f1_micro/avg", None)
+                        "test_f1_micro": run.summary.get("test_f1_micro", None),
+                        "test_f1_macro": run.summary.get("test_f1_macro", None)
                     })
                     for class_idx in classes:
                         run_data[f'test_f1_class_{class_idx}'] = run.summary.get(f"test_f1_{class_idx}", None)

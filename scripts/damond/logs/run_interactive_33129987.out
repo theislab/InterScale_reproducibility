@@ -1,4 +1,0 @@
-  File "/ictstr01/home/icb/francesca.drummer/1-Projects/InterScale_reproducibility/scripts/damond/scvi.py", line 30
-    print("Wrote scvi results to: /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/data/imc_pancreas_pp.h5ad')
-          ^
-SyntaxError: unterminated string literal (detected at line 30)

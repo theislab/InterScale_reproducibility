@@ -90,4 +90,13 @@ plt.tight_layout()
 plt.savefig(f"{project_root}/figures/{DATA}/data_visualization/cell_type_relative_abundance_per_condition.png", format="png", bbox_inches="tight", dpi=1200)
 plt.show()
 
+# %% [markdown]
+# ## Connectivity on spatial slide
+#
+# Analyze the influence of the radius on the connectivity in the spatial slide.
+#
+# For selected radii:
+# - Plot nr. avg. connected cells (cell type specific)
+# - Plot nr. avg. connected cells on spatial slide
+
 # %%

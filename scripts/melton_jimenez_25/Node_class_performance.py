@@ -55,7 +55,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from src.wandb import Wandb_evaluation, plot_f1_across_seeds, plot_class_f1_comparison, set_plot_configs
-from InterScale.config import load_config_from_yaml, config_from_wandb_run
+from InterScale.config import load_config, config_from_wandb_run
 
 # %%
 import yaml
@@ -74,7 +74,7 @@ CELL_TYPE_COLORS = config["palettes"][DATA]
 # Evaluation of node-classification (Cell type) hyperparameter sweep.
 
 # %%
-CLASSES = ['Alpha', 'Acinar', 'Beta', 'Ductal', 'Endocrine', 'Immune', 'Mast', 'Beta', 'Endothelial']
+CLASSES = ['Alpha', 'Acinar', 'Beta', 'Ductal', 'Endocrine', 'Immune', 'Mast', 'Beta', 'Endothelial', 'Fibroblasts']
 
 # %% [markdown]
 # ### Load WandB IDs

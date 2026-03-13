@@ -34,10 +34,14 @@ plot_configs:
 palettes:
   continuous: viridis
   divergent: bwr
-  Legnini: #to change  
+  legnini23: #to change  
     Immune Cell: "#4363d8"  
     Epithelial Cell: "#e6194B"
     Stromal Cell: "#25e907"
+    ring_1: "#EE9B00" # furthest from SHH source
+    ring_2: "#AE2012"
+    ring_3: "#88C8B2"
+    ring_4: "#005F73" # closest to SHH source
   melton25: #to change 
     Acinar: "#028E95"
     Alpha: "#f56d18"
@@ -69,6 +73,14 @@ palettes:
     otherimmune: "#999999" # Other immune - gray
     stromal: "#D2B48C"     # Stromal cells - tan
     unknown: "#CCCCCC"     # Unknown - light gray
+  chen22: 
+    Layer 1: "#B56576"
+    Layer 2: "#6D597A"
+    Layer 3: "#E56B6F"
+    Layer 4: "#355171"
+    Layer 5: "#E9AD8B"
+    Layer 6: "#2B9D90"
+    White Matter: "#D1D1D1"
 
 
   Condition_pancreas: #to change 
@@ -80,9 +92,9 @@ palettes:
     InterScale: "#005F73"
     DualInterScale: "#005F73"
 slide_examples: # example slides/fov we use in the publication
-  Legnini: 
-    Ctrl: ""
-    SSH: ""
+  legnini23: 
+    Ctrl: "slide4_A2-3"
+    SSH: "slide4_B2-2"
   Melton_Jimenez:
     Ctrl: "1_12"
     T1D: "1_10"

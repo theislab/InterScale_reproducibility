@@ -4,6 +4,10 @@
 # Evaluate attention matrix from trained regression model.
 
 # %%
+import warnings
+warnings.filterwarnings('ignore')
+
+# %%
 import scanpy as sc
 import squidpy as sq
 import numpy as np
