@@ -156,7 +156,7 @@ class Wandb_evaluation():
     def get_mean_and_std(self):
         # Compute mean and standard deviation
         if self.prediction_task == 'regression':
-            return self.df.groupby(["pct_mask_nodes", "radius"]).agg(
+            return self.df.groupby(["pct_mask_nodes", "radius"],  dropna=False).agg(
                 mean_test_r2=("test_r2", "mean"),
                 std_test_r2=("test_r2", "std"),
                 mean_test_pearson=("test_pearson_corr", "mean"),
@@ -165,7 +165,7 @@ class Wandb_evaluation():
                 std_run_time=("runtime_seconds", "std"),
             ).reset_index()
         elif self.prediction_task == 'classification':
-            return self.df.groupby(["pct_mask_nodes", "radius"]).agg(
+            return self.df.groupby(["pct_mask_nodes", "radius"],  dropna=False).agg(
                 mean_test_acc=("test_acc", "mean"),
                 std_test_acc=("test_acc", "std"),
                 mean_test_f1_class_0=(f"test_f1_class_{self.classes[0]}", "mean"),
@@ -241,7 +241,7 @@ class Wandb_evaluation():
         print(decoder_summary_df)
         return decoder_summary_df
     
-    def plot_robustness(self, metric="test_r2", save_path = None):
+    def plot_robustness(self, metric="test_r2", save_path = None, dropna=True):
         """
         Plots the robustness of a model's performance across different radii and 
         percentages of masked nodes.
@@ -266,15 +266,17 @@ class Wandb_evaluation():
         - If metric is "runtime_seconds", the y-axis is limited to [0, 1500] and labeled "Mean runtime in seconds".
         - The standard deviation is shown as a shaded region.
         """
+        df = self.df.dropna(subset=["radius", "pct_mask_nodes"]) if dropna else self.df
+    
         plt.figure(figsize=(4, 6))
         sns.lineplot(
-            data=self.df,
+            data=df,
             x="radius",
             y=metric,
             hue="pct_mask_nodes",
             marker="o",
             palette="coolwarm",
-            errorbar=("sd")  # Adds standard deviation as shaded region
+            errorbar=("sd")
         )
         
         # Formatting
@@ -433,7 +435,7 @@ class Wandb_evaluation():
 
 def set_plot_configs(BASE_DIR_REPO):
     # Load config
-    with open(os.path.join(BASE_DIR_REPO, "InterScale_reproducibility/figures/config.yml"), "r") as f:
+    with open(os.path.join(BASE_DIR_REPO, "figures/config.yml"), "r") as f:
         config = yaml.safe_load(f)
     
     general_config = config['plot_configs']['general']
@@ -615,7 +617,7 @@ def plot_f1_across_seeds(wandb_evaluations,
 
     if save_path is not None:
         plt.savefig(
-            os.path.join(BASE_DIR_REPO, 'InterScale_reproducibility/figures/', f'{save_path}.jpg'),
+            os.path.join(BASE_DIR_REPO, 'figures/', f'{save_path}.jpg'),
             dpi=300, bbox_inches='tight'
         )
     

@@ -1,0 +1,66 @@
+wandb:
+  use: true
+  project_name: GTLongRange_Chen22
+model:
+  n_embed: 128
+  local_component:
+    name: GCN
+    parameters:
+      hidden_dim: 32
+      num_layers: 2
+      dropout_local: 0.0
+  global_component:
+    name: self-attn-transformer
+    parameters:
+      n_heads: 2
+      dim_feedforward: 256
+      dropout_global: 0.3
+      activation_func: relu
+      num_layers: 4
+      max_seq_len: 2418
+      long_range_attention: false
+      type_gex_embedding: null
+    latent_obsm_key: null
+  save: /dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/results/chen_22/
+  decoder:
+    type: linear
+    hidden_dims: [256, 128]
+    dropout_decoder: 0.1
+    dual_decoder: false
+optim:
+  accelerator: auto
+  lr: 0.0001
+  lr_scheduler: CosineWarmupScheduler
+  lr_warmup: 20
+  lr_max_epochs: 100
+  wd: 1.0e-05
+  loss: WeightedCE
+  seed: 40
+  cross_corr: cell
+  n_epochs: 100
+  early_stopping: true
+dataset:
+  h5ad_data: /dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale/data/chen_adata_pp_scvi.h5ad
+  name: Chen22
+  description: ''
+  prediction_task: classification
+  prediction_obs: stage
+  prediction_level: graph
+  layer_key: log1p_norm
+  sample_key: [patientID_layer, sliding_window_assignment]
+  group_label: stage
+  split_key: split
+  spatial_neigbors_kwargs:
+    radius: 50
+    coord_type: grid
+    library_key: patient_id
+    n_neighs: 6
+  batch_size: 32
+  train_size: 0.7
+  val_size: 0.2
+  test_size: 0.1
+  num_features: -1
+  num_classes: -1
+  stratify_group: null
+  pct_mask_nodes: 0.8
+  segmentation_robustness: null

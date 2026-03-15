@@ -231,18 +231,6 @@ result.obs['condition']
 result_complete = combined_model.get_model_output(adata, prefix = 'combined')
 
 # %%
-#### from InterScale.evaluation.gene_rank_analysis import predict_gene_r2, gene_rank_analysis
-gene_rank_analysis(result_complete[result_complete.obs['condition']=='T1D'],
-                   layers_local_pred = 'combined_y_pred_local',
-                   layers_global_pred = 'combined_y_pred_global',
-                   top_n = 5,
-                   plot_result = True,
-                   return_top_genes = True)
-
-# %% [markdown]
-# ### Highly variable genes
-
-# %%
 assert result_complete.X[:10, :10].dtype == np.float32
 
 # %%
@@ -915,20 +903,27 @@ result_nd = result[result.obs['condition'] == 'ND']
 scale_cls_by_sample(result_nd, "slide_fov")
 
 # %%
+result_t1d
 
 # %%
-data_t1d = result_t1d.obs.groupby('cell_type_coarse').agg(
+
+# %%
+
+# %%
+library_key = "cell_type_coarse"
+
+data_t1d = result_t1d.obs.groupby(library_key).agg(
     mean_cls_horizontal=('combined_cls_horizontal_scaled', 'mean'),
     mean_cls_vertical=('combined_cls_vertical_scaled', 'mean')
 )
 
-data_nd = result_nd.obs.groupby('cell_type_coarse').agg(
+data_nd = result_nd.obs.groupby(library_key).agg(
     mean_cls_horizontal=('combined_cls_horizontal_scaled', 'mean'),
     mean_cls_vertical=('combined_cls_vertical_scaled', 'mean')
 )
 
 # Create figure with two subplots
-fig, axes = plt.subplots(1, 2, figsize=(5, 6))
+fig, axes = plt.subplots(1, 2, figsize=(6, 6))
 
 # Get min/max for shared color scale
 vmin = min(data_t1d.values.min(), data_nd.values.min())
@@ -944,11 +939,8 @@ sns.heatmap(data_nd, annot=True, linewidth=.5, fmt='.2f',
 axes[1].set_title('ND')
 
 plt.tight_layout()
+fig.savefig(os.path.join(FIGURE_DIR, f"heatmap_{library_key}.png"), dpi=300, bbox_inches='tight')
 plt.show()
-
-# %%
-
-# %%
 
 # %%
 slide_nr = np.unique(result_nd.obs['slide_fov'])[0]
@@ -957,13 +949,13 @@ sq.pl.spatial_scatter(result_nd,
                     cmap = PALETTE,
                     shape= None,
                       ncols = 3,
-                      save = os.path.join(FIGURE_DIR, f"spatial_cls_t1d_{slide_nr}.png")
+                      save = os.path.join(FIGURE_DIR, f"spatial_cls_nd_{slide_nr}.png")
 )
 
 # %%
 # assign cell type colors
 color_list = [CELL_TYPE_COLORS[ct] for ct in result_nd.obs[CELL_TYPE_KEY].cat.categories]
-result_nd.uns[f'{CELL_TYPE_KEY}_colors'] = color_list
+result_t1d.uns[f'{CELL_TYPE_KEY}_colors'] = color_list
 
 # %%
 slide_nr = np.unique(result_t1d.obs['slide_fov'])[0]
