@@ -7,6 +7,7 @@ plot_configs:
     title_fontsize: 14
     title_fontweight: bold
     font_family: "DejaVu Sans"
+    cmap: viridis
   embeddings_plots:
     alpha: 0.75
     frameon: false
@@ -42,6 +43,9 @@ palettes:
     ring_2: "#AE2012"
     ring_3: "#88C8B2"
     ring_4: "#005F73" # closest to SHH source
+    condition:
+        Ctrl: "#005F73"
+        SHH: "#EE9B00" # closest to SHH source
   melton25: #to change 
     Acinar: "#028E95"
     Alpha: "#f56d18"

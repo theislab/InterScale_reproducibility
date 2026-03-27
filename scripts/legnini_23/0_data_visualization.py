@@ -42,7 +42,7 @@ DATA = "legnini23"
 
 # %%
 import yaml
-with open(os.path.join(BASE_DIR_REPO, "InterScale_reproducibility/figures/config.yml"), "r") as f:
+with open(os.path.join(BASE_DIR_REPO, "figures/config.yml"), "r") as f:
     config = yaml.safe_load(f)
 
 PALETTE = config["palettes"]["continuous"]
@@ -165,5 +165,8 @@ sq.pl.spatial_scatter(
         shape= None,
         save=f"{BASE_DIR_REPO}/figures/{DATA}/data_visualization/shh_rings_{slide_ids[0]}_{slide_ids[1]}.png",
         dpi = 300)
+
+# %%
+adata.write(LRZ_LEGNINI23)
 
 # %%

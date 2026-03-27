@@ -46,6 +46,12 @@ CELL_TYPE_COLORS = config["palettes"][DATA]
 import scanpy as sc
 import squidpy as sq
 
+import pandas as pd
+import numpy as np
+
+import warnings
+warnings.filterwarnings('ignore')
+
 # %% [markdown]
 # ## Figure setting
 
@@ -98,5 +104,93 @@ plt.show()
 # For selected radii:
 # - Plot nr. avg. connected cells (cell type specific)
 # - Plot nr. avg. connected cells on spatial slide
+
+# %%
+radii = [60, 110, 150]
+
+# %%
+color_list = [CELL_TYPE_COLORS[ct] for ct in adata.obs["cell_type_coarse"].cat.categories]
+adata.uns[f'{"cell_type_coarse"}_colors'] = color_list
+
+# %%
+for radius in radii:
+    sq.gr.spatial_neighbors(
+        adata,
+        coord_type = "generic",
+        library_key = "slide_fov",
+        radius = radius,
+    )
+    sq.pl.spatial_scatter(
+        adata,
+        library_key='slide_fov',
+        library_id = '1_12',
+        img=False,
+        shape= None,
+        color=["cell_type_coarse"],
+        connectivity_key = "spatial_connectivities",
+        figsize=(10,10),
+        save = f"{project_root}/figures/{DATA}/data_visualization/spatial_conn_{radius}.png",
+        dpi = 300
+    )
+
+# %%
+library_id = "1_12"
+sq.pl.spatial_scatter(
+    adata,
+    library_key='slide_fov',
+    library_id = library_id,
+    img=False,
+    shape= None,
+    color=["cell_type_coarse"],
+    figsize=(10,10),
+    save = f"{project_root}/figures/{DATA}/data_visualization/{library_id}.png",
+    dpi = 300,
+    size = 50
+)
+
+# %%
+for radius in radii:
+    sq.gr.spatial_neighbors(
+        adata,
+        coord_type="generic",
+        library_key="slide_fov",
+        radius=radius,
+    )
+    
+    # Number of neighbors per cell (row-wise non-zero counts)
+    conn = adata.obsp["spatial_connectivities"]
+    n_neighbors_per_cell = np.diff(conn.indptr)  # works for CSR matrix
+    avg_neighbors = n_neighbors_per_cell.mean()
+    print(f"Radius {radius}: avg connected nodes = {avg_neighbors:.2f}")
+
+# %%
+# Collect per-cell data across radii
+records = []
+for radius in radii:
+    sq.gr.spatial_neighbors(adata, coord_type="generic", library_key="slide_fov", radius=radius)
+    adata.obs["n_neighbors"] = np.diff(adata.obsp["spatial_connectivities"].tocsr().indptr)
+    df = adata.obs[["cell_type_coarse", "n_neighbors"]].copy()
+    df["radius"] = radius
+    records.append(df)
+
+df_long = pd.concat(records)
+
+# Plot
+fig, ax = plt.subplots(figsize=(14, 6))
+sns.boxplot(
+    data=df_long,
+    x="cell_type_coarse",
+    y="n_neighbors",
+    hue="radius",
+    ax=ax,
+    palette="YlOrRd",
+    flierprops={"marker": ".", "markersize": 2}  # shrink outlier dots
+)
+ax.set_xlabel("Cell type")
+ax.set_ylabel("N neighbors")
+ax.set_title("Neighbor connectivity per cell type across radii")
+ax.tick_params(axis="x", rotation=45)
+ax.legend(title="Radius", bbox_to_anchor=(1.05, 1), loc="upper left")
+plt.tight_layout()
 
 # %%

@@ -122,7 +122,7 @@ adata = sc.read_h5ad(os.path.join(BASE_DIR_PROJECT, "data/melton25.h5ad"))
 # %%
 GNN_sweep = "39pecmnt"
 InterScale_sweep = "3pfj292b"
-#PCATrans_sweep = "0vn9y1n5"
+PCATrans_sweep = "tohmr60x"
 
 # %% [markdown]
 # ## Graph Classification performance
@@ -136,7 +136,7 @@ CLASSES = ["control", "Mid-AD"]
 
 # %%
 GNN_wandb = Wandb_evaluation("GCN", GNN_sweep, True, False, SWEEP_GOAL, CLASSES)
-#PCATrans_wandb = Wandb_evaluation("PCATransformer", PCATrans_sweep, False, True, SWEEP_GOAL, CLASSES)
+PCATrans_wandb = Wandb_evaluation("PCATransformer", PCATrans_sweep, False, True, SWEEP_GOAL, CLASSES)
 InterScale_wandb = Wandb_evaluation("InterScale", InterScale_sweep, True, True, SWEEP_GOAL, CLASSES)
 
 # %%
@@ -154,15 +154,12 @@ InterScale_wandb.plot_robustness(metric="test_acc", save_path =  f"{BASE_DIR_REP
 # %%
 PCATrans_wandb.plot_robustness(metric="test_acc", save_path =  f"{BASE_DIR_REPO}/InterScale_reproducibility/figures/{DATA}/node_class")
 
-# %%
-DualInterScale_wandb.plot_robustness(metric="test_acc", save_path =  f"{BASE_DIR_REPO}/InterScale_reproducibility/figures/{DATA}/node_class")
-
 # %% [markdown]
 # ## F1 score performance
 
 # %%
 #wandb_evals = [GNN_wandb, PCATrans_wandb, DualInterScale_wandb]  # Your list of dataframes, PCATrans_wandb, InterScale_wandb
-wandb_evals = [GNN_wandb, InterScale_wandb] 
+wandb_evals = [GNN_wandb, InterScale_wandb, PCATrans_wandb] 
 
 
 # %%
@@ -361,7 +358,7 @@ def plot_f1_across_seeds(wandb_evaluations,
 
 # %%
 r = None
-pct_mask = 0.8
+pct_mask = 0.5
 
 g, stats, plot_data = plot_f1_across_seeds(
     wandb_evaluations=wandb_evals,
@@ -465,7 +462,7 @@ def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_m
     colors = [palette.get(m, None) for m in models]
     
     x = np.arange(len(models))
-    bar_width = 0.4
+    bar_width = 0.6
     ax.set_xlim(-0.4, len(models) - 0.4)
     
     ax.bar(x, means, yerr=stds, width=bar_width, color=colors,
@@ -511,7 +508,7 @@ fig, ax, stats = plot_overall_metric_comparison(
     pct_mask_nodes=0.5,
     BASE_DIR_REPO=BASE_DIR_REPO,
     save_path=f'{DATA}/graph_class/overall_f1_comparison_models_{r}_{pct_mask}',
-    figsize=(5, 5), 
+    figsize=(3, 5), 
    dropna=False
 )
 
