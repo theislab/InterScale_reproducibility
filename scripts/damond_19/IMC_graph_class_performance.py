@@ -14,7 +14,7 @@ import os
 if os.path.exists("/dss/dsshome1/05/di93tig"):
     print('LRZ cluster')
     CLUSTER = 'LRZ'
-    BASE_DIR_REPO = "/dss/dsshome1/05/di93tig/1_projects" 
+    BASE_DIR_REPO = "/dss/dsshome1/05/di93tig/1_projects/InterScale_reproducibility" 
     BASE_DIR_PROJECT = "/dss/dssfs03/tumdss/pn36po/pn36po-dss-0002/di93tig/Projects/A3_InterScale"
 elif os.path.exists("/home/icb/francesca.drummer/"):
     print('HPC cluster')
@@ -25,6 +25,10 @@ else:
     print('unkown')
     CLUSTER = 'unknown'
 DATA = "damond19"
+
+# %%
+import warnings
+warnings.filterwarnings('ignore')
 
 # %%
 import sys
@@ -63,7 +67,7 @@ CELL_TYPE_COLORS = config["palettes"][DATA]
 # %%
 GNN_sweep = "pzz25qfw"
 InterScale_sweep = "463vbe99"
-PCATrans_sweep = "w9ehk5de"
+PCATrans_sweep = "8jvwjnba"
 
 # %% [markdown]
 # ## Graph Classification performance
@@ -93,7 +97,7 @@ InterScale_wandb.plot_robustness(metric="test_acc", save_path = f"{BASE_DIR_REPO
 PCATrans_wandb.plot_robustness(metric="test_acc", save_path = f"{BASE_DIR_REPO}/InterScale_reproducibility/figures/{DATA}/graph_class")
 
 # %%
-wandb_evals = [GNN_wandb, InterScale_wandb]  # Your list of dataframes
+wandb_evals = [GNN_wandb, InterScale_wandb, PCATrans_wandb]  # Your list of dataframes
 
 g, stats, plot_data = plot_f1_across_seeds(
     wandb_evaluations=wandb_evals,

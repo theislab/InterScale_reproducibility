@@ -1,20 +1,11 @@
 # %% [markdown]
-# # Node classification sweep performance - Cell type prediction
+# # Melton et al., 2025: Hyperparamter sweep analysis - Cell type prediction
 #
-# CosMx Pancrease data with cell types.
+# Analyse how performance relates to hyperparameters..
 #
 # **Part 1: Hyperparmeter sweep**
 #
 # Run hyperparameter sweep with script `hyperparameter.yaml` and config file: 
-#
-# **Part 2: Robustness sweep**
-#
-# Plots showing the performance for the graph classification on the CosMx Pancrease data with no diabetes and Type 1 Diabetes conditions.
-#
-# - InterScale (GCN + Transformer)
-# - GCN
-# - PCATransformer
-#
 #
 
 # %%
@@ -335,11 +326,6 @@ adata = sc.read_h5ad(os.path.join(BASE_DIR_PROJECT, "data/melton25.h5ad"))
 Dual_wandb.export_config_to_yaml(best_run_id="jaokfets", save_path=f"{BASE_DIR_REPO}/InterScale_reproducibility/best_config.yaml")
 
 # %% [markdown]
-# ## 2. Robustness sweep
-#
-# Run robustness sweep with config.yaml from best model. 
-
-# %% [markdown]
 # ### Load WandB IDs
 
 # %%
@@ -347,9 +333,6 @@ GNN_sweep = "l0jetvrz"
 InterScale_sweep = "yqvyut7l"
 DualInterScale_sweep = "1nm8ndul"
 PCATrans_sweep = "8govw06t"
-
-# %% [markdown]
-# ## Graph Classification performance
 
 # %%
 SWEEP_GOAL = 'robustness'
@@ -379,14 +362,8 @@ PCATrans_wandb.plot_robustness(metric="test_acc", save_path =  f"{BASE_DIR_REPO}
 # %%
 InterScale_wandb.plot_robustness(metric="test_acc", save_path =  f"{BASE_DIR_REPO}/figures/{DATA}/node_class")
 
-# %% [markdown]
-# ## F1 score performance
-
 # %%
 wandb_evals = [GNN_wandb, PCATrans_wandb, DualInterScale_wandb]  # Your list of dataframes, PCATrans_wandb, InterScale_wandb
-
-# %% [markdown]
-# ## Class robustness
 
 # %%
 g, stats, plot_data = plot_f1_across_seeds(
