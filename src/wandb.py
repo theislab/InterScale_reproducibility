@@ -12,19 +12,20 @@ import os
 import yaml
 import scanpy as sc
 
-import InterScale as interscale
+import interscale 
 from yacs.config import CfgNode as CN
 
-from InterScale.config import load_config, config_from_wandb_run
+from interscale.config import load_config
 
 
 class Wandb_evaluation():
     
-    def __init__(self, model, sweep_id, local_component: bool, global_component: bool, sweep_goal: str, classes: list):
+    def __init__(self, model, sweep_id, local_component: bool, global_component: bool, sweep_goal: str, classes: list,
+                 entity: str = "francesca-drummer", project: str = "InterScale_hyperparameter_sweep"):
         """
         model: str
             Model name, e.i. InterScale, GCN, ...
-        sweep_id: str 
+        sweep_id: str
             ID from WandB run
         local_component: bool
             Whether local component is used or not
@@ -32,15 +33,17 @@ class Wandb_evaluation():
             Whether global component is used or not
         sweep_goal: robustenss, parameter
         calsses: list of class names
+        entity, project: str
+            WandB entity/project the sweep belongs to
         """
         self.model = model
         self.sweep_id = sweep_id
         self.sweep_goal = sweep_goal
         self.classes = classes
-        
+
         api = wandb.Api()
-        self.entity, self.project = "francesca-drummer", "InterScale_hyperparameter_sweep"  
-    
+        self.entity, self.project = entity, project
+
         # Get all runs associated with the sweep
         sweep_runs = api.sweep(f"{self.entity}/{self.project}/{self.sweep_id}").runs
 
@@ -117,6 +120,26 @@ class Wandb_evaluation():
                 
                 data.append(run_data)
         self.df = pd.DataFrame(data)
+
+    @classmethod
+    def from_dataframe(cls, df, model, sweep_id, sweep_goal, classes,
+                       model_name="", prediction_task=None, prediction_level=None):
+        """
+        Rebuild an evaluation from an already downloaded run table, without
+        contacting WandB. Used by the figure scripts to regenerate plots offline
+        from the cached CSVs (see scripts/graph_classification/).
+        """
+        obj = cls.__new__(cls)  # bypass __init__, which queries the WandB API
+        obj.model = model
+        obj.sweep_id = sweep_id
+        obj.sweep_goal = sweep_goal
+        obj.classes = classes
+        obj.model_name = model_name
+        obj.prediction_task = prediction_task
+        obj.prediction_level = prediction_level
+        obj.entity = obj.project = None
+        obj.df = df
+        return obj
 
     def filter_runs(self, df=None, exclude_parameters=None):
         """
@@ -454,21 +477,26 @@ def plot_f1_across_seeds(wandb_evaluations,
                          radius, 
                          pct_mask_nodes, 
                          BASE_DIR_REPO, 
-                         height=4, 
+                         height=4,
                          aspect=0.7,
-                        save_path = None):
+                        save_path = None,
+                        dropna=True):
     """
     Plot mean and standard deviation of per-class F1 scores across seeds.
     Uses seaborn catplot with one facet per class and one bar per model.
-    
+
     Parameters:
     -----------
     wandb_evaluations : list of Wandb_evaluation
         List of Wandb_evaluation instances, one per model
-    radius : float or int
-        Radius value to filter by
-    pct_mask_nodes : float or int
-        Percentage of masked nodes to filter by
+    radius : float or int or None
+        Radius value to filter by. None matches the runs that have no radius
+        (NaN), as in the graph-level sweeps.
+    pct_mask_nodes : float or int or None
+        Percentage of masked nodes to filter by; None matches NaN.
+    dropna : bool, optional
+        Drop runs with NaN radius/pct_mask_nodes before filtering (default True).
+        Set False when radius or pct_mask_nodes is None.
     config_path : str, optional
         Path to config.yml file (default: 'config.yml')
     height : float, optional
@@ -495,17 +523,18 @@ def plot_f1_across_seeds(wandb_evaluations,
     
     for wandb_eval in wandb_evaluations:
         model_name = wandb_eval.model
-        df = wandb_eval.df
+        df = wandb_eval.df.dropna(subset=["radius", "pct_mask_nodes"]) if dropna else wandb_eval.df
         classes = wandb_eval.classes
-        
+
         model_names.append(model_name)
-        
-        # Filter by specified parameters
-        df_filtered = df[
-            (df['radius'] == radius) &
-            (df['pct_mask_nodes'] == pct_mask_nodes)
-        ].copy()
-        
+
+        # Filter by specified parameters; None means "the runs without this
+        # parameter" (NaN), which is how the graph-level sweeps store radius.
+        mask_radius = df['radius'].isna() if radius is None else df['radius'] == radius
+        mask_pct = (df['pct_mask_nodes'].isna() if pct_mask_nodes is None
+                    else df['pct_mask_nodes'] == pct_mask_nodes)
+        df_filtered = df[mask_radius & mask_pct].copy()
+
         if df_filtered.empty:
             print(f"Warning: No data found for {model_name} with radius={radius}, pct_mask_nodes={pct_mask_nodes}")
             continue
@@ -859,10 +888,116 @@ def plot_class_f1_robustness(wandb_evaluations, class_idx, pct_mask_nodes=None, 
             os.path.join(save_path, f'f1_robustness_class_{class_idx}_{pct_mask_nodes}.jpg'),
             dpi=300, bbox_inches='tight'
         )
-    
+
     plt.show()
-    
+
     print("\nStatistics Summary:")
     print(stats_df.to_string(index=False))
-    
+
+    return fig, ax, stats_df
+
+
+def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_mask_nodes=None,
+                                   BASE_DIR_REPO=None, save_path=None, figsize=(8, 5), dropna=True):
+    """
+    Plot overall performance for a specific metric across models (aggregated across seeds).
+
+    Parameters:
+    -----------
+    wandb_evaluations : list of Wandb_evaluation
+    metric : str
+        Column name of the metric to plot (e.g., 'test_f1_macro', 'test_acc', 'test_loss')
+    radius, pct_mask_nodes : filter values (optional, use None to match NaN rows)
+    BASE_DIR_REPO : str
+        Repository root, used to read figures/config.yml
+    save_path : str, optional
+        Full path of the file to write, including extension
+    figsize : tuple
+    dropna : bool, optional
+        Whether to drop rows with NaN in 'radius' or 'pct_mask_nodes' (default: True).
+        Set to False if radius or pct_mask_nodes is None.
+
+    Returns:
+    --------
+    fig, ax, stats_df
+    """
+    general_config, model_palette = set_plot_configs(BASE_DIR_REPO)
+
+    all_data = []
+
+    for wandb_eval in wandb_evaluations:
+        model_name = wandb_eval.model
+        df = wandb_eval.df.dropna(subset=["radius", "pct_mask_nodes"]) if dropna else wandb_eval.df.copy()
+
+        if radius is None:
+            df = df[df['radius'].isna()]
+        else:
+            df = df[df['radius'] == radius]
+
+        if pct_mask_nodes is None:
+            df = df[df['pct_mask_nodes'].isna()]
+        else:
+            df = df[df['pct_mask_nodes'] == pct_mask_nodes]
+
+        if df.empty:
+            print(f"Warning: No data for {model_name} with specified filters")
+            continue
+
+        if metric not in df.columns:
+            print(f"Warning: Metric '{metric}' not found for {model_name}")
+            continue
+
+        plot_df = df[['seed', metric]].copy() if 'seed' in df.columns else df[[metric]].copy()
+        plot_df['model'] = model_name
+        all_data.append(plot_df)
+
+    if not all_data:
+        raise ValueError("No valid data found for any model")
+
+    combined_df = pd.concat(all_data, ignore_index=True)
+
+    stats_df = combined_df.groupby('model')[metric].agg([
+        ('mean', 'mean'),
+        ('std', 'std'),
+        ('n_seeds', 'count')
+    ]).reset_index()
+
+    palette = {m: model_palette[m] for m in combined_df['model'].unique() if m in model_palette}
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    models = stats_df['model'].tolist()
+    means = stats_df['mean'].tolist()
+    stds = stats_df['std'].tolist()
+    colors = [palette.get(m, None) for m in models]
+
+    x = np.arange(len(models))
+    bar_width = 0.6
+    ax.set_xlim(-0.4, len(models) - 0.4)
+
+    ax.bar(x, means, yerr=stds, width=bar_width, color=colors,
+           edgecolor='black', linewidth=1.0, alpha=0.8, capsize=4)
+    ax.set_xticks(x)
+    ax.set_xticklabels(models)
+    metric_label = metric.replace('_', ' ').replace('test ', '').title()
+    ax.set_xlabel('Model', fontsize=general_config['legend_fontsize'],
+                  fontweight=general_config['legend_fontweight'])
+    ax.set_ylabel(metric_label, fontsize=general_config['legend_fontsize'],
+                  fontweight=general_config['legend_fontweight'])
+    ax.set_title(f'{metric_label} Across Seeds (radius={radius}, pct_mask={pct_mask_nodes})',
+                 fontsize=general_config['title_fontsize'],
+                 fontweight=general_config['title_fontweight'])
+
+    ax.set_ylim([0, 1.05])
+    ax.grid(axis='y', alpha=0.3, linestyle='--')
+    ax.set_axisbelow(True)
+    ax.tick_params(axis='x', rotation=45)
+    for label in ax.get_xticklabels():
+        label.set_ha('right')
+
+    plt.tight_layout()
+
+    if save_path is not None:
+        fig.savefig(save_path, dpi=300, bbox_inches='tight')
+
     return fig, ax, stats_df
