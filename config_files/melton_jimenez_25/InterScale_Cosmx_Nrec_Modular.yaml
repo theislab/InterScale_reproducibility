@@ -1,24 +1,24 @@
 wandb:
-  use: True
-  project_name: GTLongRange_Cosmx_Nrec_global
+  use: False
+  project_name: GTLongRange_Cosmx_Nrec_Modular
 model:
-  #n_embed: 64
+  local_component:
+    name: GCN
   global_component:
     name: self-attn-transformer
     parameters:
       max_seq_len: 1436
-      long_range_attention: False
-      type_gex_embedding: PCA
-    latent_obsm_key: X_cellcharter #Options: scvi_latent, X_cellcharter
+      #long_range_attention: True
   decoder:
     type: linear
+    dual_decoder: True
   save: model/ #Options: local, wandb, None
 optim:
   lr: 0.001
   loss: 'SCELoss'
   seed: 44
 dataset:
-  h5ad_data: data/cosmx/adata_cosmx_IS.h5ad
+  h5ad_data: data/melton_jimenez_25/adata_cosmx_IS.h5ad
   name: cosmxnrecGPCA
   prediction_task: regression
   prediction_level: node
@@ -27,7 +27,7 @@ dataset:
   group_label: condition
   spatial_neigbors_kwargs:
     radius: 200
-    library_key: sample
-  batch_size: 32
+    library_key: 'sliding_window_assignment'
+  batch_size: 3
   pct_mask_nodes: 0.3
   segmentation_robustness: [0.2, 0.5]
