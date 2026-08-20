@@ -1,6 +1,7 @@
 import wandb
 import pandas as pd
 import numpy as np
+from scipy import stats as scipy_stats
 
 # plotting libraries
 import seaborn as sns
@@ -471,16 +472,137 @@ def set_plot_configs(BASE_DIR_REPO):
     plt.rcParams['font.size'] = 10
 
     return general_config, model_palette
-    
 
-def plot_f1_across_seeds(wandb_evaluations, 
-                         radius, 
-                         pct_mask_nodes, 
-                         BASE_DIR_REPO, 
+
+# --------------------------------------------------------------------------- #
+# statistical comparison across seeds
+#
+# Same approach as InterScale's "Evaluation comparison" (mirroring
+# https://github.com/theislab/tissue): for each scenario (here, each x-group
+# — a class or a filter panel) the best-performing model is the one with the
+# highest mean score across repeated runs (seeds); every other model is then
+# compared against it with a two-sided t-test, p < 0.05 counts as
+# statistically significant.
+# --------------------------------------------------------------------------- #
+def _stars(p_value):
+    """Two-sided-t-test p-value -> significance label. Every comparison gets a
+    bracket, significant or not — 'ns' when p >= 0.05 — so a missing bracket
+    never has to be read as "wasn't tested"."""
+    if p_value < 0.001:
+        return "***"
+    if p_value < 0.01:
+        return "**"
+    if p_value < 0.05:
+        return "*"
+    return "ns"
+
+
+def _best_vs_rest_ttest(groups: dict) -> tuple:
+    """Two-sided t-test between the best-performing group and every other group.
+
+    Parameters
+    ----------
+    groups : dict[str, array-like]
+        Raw per-seed scores for each group (model).
+
+    Returns
+    -------
+    best : str
+        Key of the group with the highest mean.
+    results : dict[str, dict]
+        For every non-best group with >=2 seeds: {'p_value': float, 'significant': bool}.
+    """
+    groups = {k: np.asarray(v, dtype=float) for k, v in groups.items() if len(v) > 0}
+    groups = {k: v[~np.isnan(v)] for k, v in groups.items()}
+    groups = {k: v for k, v in groups.items() if len(v) > 0}
+    if len(groups) < 2:
+        return None, {}
+
+    means = {k: v.mean() for k, v in groups.items()}
+    best = max(means, key=means.get)
+
+    results = {}
+    if len(groups[best]) >= 2:
+        for k, v in groups.items():
+            if k == best or len(v) < 2:
+                continue
+            _, p_value = scipy_stats.ttest_ind(groups[best], v, equal_var=False, nan_policy="omit")
+            results[k] = {"p_value": p_value, "significant": bool(p_value < 0.05)}
+    return best, results
+
+
+def _ttest_long_table(ttest_by_group: dict, group_col: str) -> pd.DataFrame:
+    """Flatten {group_key: (best, results)} into a long table for the stats CSV."""
+    rows = []
+    for group_key, (best, results) in ttest_by_group.items():
+        if best is None:
+            continue
+        rows.append({group_col: group_key, "model": best, "best_model": best,
+                     "p_value_vs_best": np.nan, "significant": False})
+        for model, res in results.items():
+            rows.append({group_col: group_key, "model": model, "best_model": best,
+                         "p_value_vs_best": res["p_value"], "significant": res["significant"]})
+    return pd.DataFrame(rows)
+
+
+def _draw_significance_bracket(ax, x1, x2, y, label):
+    h = (ax.get_ylim()[1] - ax.get_ylim()[0]) * 0.015
+    ax.plot([x1, x1, x2, x2], [y, y + h, y + h, y], lw=1.0, color="black", clip_on=False)
+    ax.text((x1 + x2) / 2, y + h, label, ha="center", va="bottom", fontsize=9, clip_on=False)
+
+
+def _annotate_ttest_grouped(ax, df, x, y, hue, order, hue_order) -> dict:
+    """Annotate a dodged/grouped bar plot: within each x-group, draw a bracket
+    from the best-performing hue level to every other hue level (two-sided
+    t-test). Every non-best hue level gets a bracket, labeled with stars when
+    p < 0.05 and 'ns' otherwise — comparisons are never silently omitted.
+
+    Assumes one bar container per hue level in `hue_order` (as produced by
+    seaborn's bar/catplot with `order=` and `hue_order=` set to the same
+    values passed here), and expands the y-limits to fit the brackets.
+
+    Returns {x_group: (best_model, {other_model: {'p_value', 'significant'}})}.
+    """
+    if len(ax.containers) < len(hue_order):
+        return {}  # nothing was drawn on this axis (e.g. an empty facet)
+
+    containers = dict(zip(hue_order, ax.containers))
+    ymin, ymax = ax.get_ylim()
+    step = (ymax - ymin) * 0.09
+    top = ymax
+    ttest_by_group = {}
+
+    for xi_idx, xi in enumerate(order):
+        groups = {h: df.loc[(df[x] == xi) & (df[hue] == h), y].dropna().to_numpy() for h in hue_order}
+        groups = {h: v for h, v in groups.items() if len(v) > 0}
+        best, results = _best_vs_rest_ttest(groups)
+        ttest_by_group[xi] = (best, results)
+        if not results:
+            continue
+
+        bar_x = {h: containers[h].patches[xi_idx].get_x() + containers[h].patches[xi_idx].get_width() / 2
+                 for h in groups}
+        bar_h = {h: containers[h].patches[xi_idx].get_height() for h in groups}
+
+        for level, (model, res) in enumerate(results.items()):
+            label = _stars(res["p_value"])  # always drawn — 'ns' when not significant
+            bracket_y = max(bar_h[best], bar_h[model]) + step * 0.3 + level * step
+            _draw_significance_bracket(ax, bar_x[best], bar_x[model], bracket_y, label)
+            top = max(top, bracket_y + step)
+
+    ax.set_ylim(ymin, top + step * 0.3 if top > ymax else ymax)
+    return ttest_by_group
+
+
+def plot_f1_across_seeds(wandb_evaluations,
+                         radius,
+                         pct_mask_nodes,
+                         BASE_DIR_REPO,
                          height=4,
                          aspect=0.7,
                         save_path = None,
-                        dropna=True):
+                        dropna=True,
+                        ttest=False):
     """
     Plot mean and standard deviation of per-class F1 scores across seeds.
     Uses seaborn catplot with one facet per class and one bar per model.
@@ -504,8 +626,14 @@ def plot_f1_across_seeds(wandb_evaluations,
     aspect : float, optional
         Aspect ratio of each facet (default: 0.7)
     save_path: str
-        Path name from repo to save the plot. 
-    
+        Path name from repo to save the plot.
+    ttest : bool, optional (default: False)
+        If True, identify the best-performing model per class (highest mean
+        F1 across seeds) and annotate every other model with the result of a
+        two-sided t-test against it (p < 0.05 = significant), same approach
+        as InterScale's evaluation comparison. Adds 'best_model',
+        'p_value_vs_best' and 'significant' columns to stats_df.
+
     Returns:
     --------
     g : seaborn FacetGrid
@@ -591,7 +719,11 @@ def plot_f1_across_seeds(wandb_evaluations,
     
     # If all models are in config, use the palette; otherwise let seaborn handle it
     use_palette = palette if all(c is not None for c in palette) else None
-    
+
+    # Fix the class/model order explicitly so it matches the bar containers
+    # `_annotate_ttest_grouped` reads back off the axis below.
+    class_order = sorted(plot_data['class'].unique())
+
     # Create the catplot
     g = sns.catplot(
         data=plot_data,
@@ -599,6 +731,8 @@ def plot_f1_across_seeds(wandb_evaluations,
         x="class",
         y="f1_score",
         hue="model",
+        order=class_order,
+        hue_order=model_names,
         height=height,
         aspect=aspect,
         errorbar="sd",  # Standard deviation error bars
@@ -607,9 +741,12 @@ def plot_f1_across_seeds(wandb_evaluations,
         linewidth=1.0,
         alpha=0.8,
         palette=use_palette,
-        legend=False
+        legend=True,
     )
-    
+    # Legend outside the plot, to the right — not overlapping the bars.
+    sns.move_legend(g, "center left", bbox_to_anchor=(1.02, 0.5), title="Model",
+                     frameon=True)
+
     # Customize the plot with config settings
     g.set_axis_labels(
         "Model", 
@@ -634,10 +771,26 @@ def plot_f1_across_seeds(wandb_evaluations,
         ax.tick_params(axis='x', rotation=45)
         for label in ax.get_xticklabels():
             label.set_ha('right')
-    
+
+    # Two-sided t-test of every model against the best-performing model per
+    # class (see the module-level docstring above `_stars`).
+    if ttest:
+        ttest_by_group = {}
+        for ax in g.axes.flat:
+            ttest_by_group.update(_annotate_ttest_grouped(
+                ax, plot_data, x="class", y="f1_score", hue="model",
+                order=class_order, hue_order=model_names,
+            ))
+        ttest_df = _ttest_long_table(ttest_by_group, group_col="class")
+        if len(ttest_df):
+            stats_df = stats_df.merge(ttest_df, on=["class", "model"], how="left")
+
     # Overall title
+    title = f'F1 Scores Across Seeds (radius={radius}, pct_mask={pct_mask_nodes})'
+    if ttest:
+        title += ' — vs. best model: * p<0.05, ** p<0.01, *** p<0.001, ns = not significant'
     g.fig.suptitle(
-        f'F1 Scores Across Seeds (radius={radius}, pct_mask={pct_mask_nodes})',
+        title,
         fontsize=general_config['title_fontsize'],
         fontweight=general_config['title_fontweight'],
         y=1.02
@@ -649,16 +802,16 @@ def plot_f1_across_seeds(wandb_evaluations,
             os.path.join(BASE_DIR_REPO, 'figures/', f'{save_path}.jpg'),
             dpi=300, bbox_inches='tight'
         )
-    
+
     plt.show()
     
     return g, stats_df, plot_data
 
 def plot_class_f1_comparison(wandb_evaluations, radius=None, pct_mask_nodes=None, BASE_DIR_REPO=None,
-                              save_path=None, figsize=(10, 6)):
+                              save_path=None, figsize=(10, 6), ttest=False):
     """
     Plot class-specific F1 scores as grouped barplot comparing multiple models across seeds.
-    
+
     Parameters:
     -----------
     wandb_evaluations : list of Wandb_evaluation
@@ -673,17 +826,25 @@ def plot_class_f1_comparison(wandb_evaluations, radius=None, pct_mask_nodes=None
         Figure size (default: (10, 6))
     palette : dict or list, optional
         Color palette for models
-    
+    ttest : bool, optional (default: False)
+        If True, identify the best-performing model per class (highest mean
+        F1 across seeds) and annotate every other model with the result of a
+        two-sided t-test against it (p < 0.05 = significant), same approach
+        as InterScale's evaluation comparison. Adds 'best_model',
+        'p_value_vs_best' and 'significant' columns to stats_df.
+
     Returns:
     --------
     fig, ax : matplotlib figure and axes
     stats_df : pd.DataFrame with mean and std for each class and model
     """
     general_config, model_palette = set_plot_configs(BASE_DIR_REPO)
-    
+
     all_data = []
-    
+    model_names = []
+
     for wandb_eval in wandb_evaluations:
+        model_names.append(wandb_eval.model)
         df = wandb_eval.df.copy()
         classes = wandb_eval.classes
         model_name = wandb_eval.model
@@ -729,14 +890,20 @@ def plot_class_f1_comparison(wandb_evaluations, radius=None, pct_mask_nodes=None
         ('n_seeds', 'count')
     ]).reset_index()
     
+    # Fix the class/model order explicitly so it matches the bar containers
+    # `_annotate_ttest_grouped` reads back off the axis below.
+    class_order = sorted(combined_df['class'].unique())
+
     # Create plot
     fig, ax = plt.subplots(figsize=figsize)
-    
+
     sns.barplot(
         data=combined_df,
         x='class',
         y='f1_score',
         hue='model',
+        order=class_order,
+        hue_order=model_names,
         errorbar='sd',
         capsize=0.1,
         edgecolor='black',
@@ -745,10 +912,10 @@ def plot_class_f1_comparison(wandb_evaluations, radius=None, pct_mask_nodes=None
         palette=model_palette,
         ax=ax
     )
-    
+
     ax.set_xlabel('Class', fontsize=12, fontweight='bold')
     ax.set_ylabel('F1 Score', fontsize=12, fontweight='bold')
-    
+
     title = 'Class F1 Scores Comparison Across Seeds'
     if radius is not None or pct_mask_nodes is not None:
         filters = []
@@ -757,17 +924,31 @@ def plot_class_f1_comparison(wandb_evaluations, radius=None, pct_mask_nodes=None
         if pct_mask_nodes is not None:
             filters.append(f'pct_mask={pct_mask_nodes}')
         title += f' ({", ".join(filters)})'
-    
+    if ttest:
+        title += ' — vs. best model: * p<0.05, ** p<0.01, *** p<0.001, ns = not significant'
+
     ax.set_title(title, fontsize=14, fontweight='bold')
     ax.set_ylim(0, 1.1)
     ax.grid(axis='y', alpha=0.3, linestyle='--')
     ax.set_axisbelow(True)
-    ax.legend(title='Model', loc='upper right', framealpha=0.9)
-    
+    # Legend outside the plot, to the right — not overlapping the bars.
+    ax.legend(title='Model', loc='center left', bbox_to_anchor=(1.02, 0.5), framealpha=0.9)
+
+    # Two-sided t-test of every model against the best-performing model per
+    # class (see the module-level docstring above `_stars`).
+    if ttest:
+        ttest_by_group = _annotate_ttest_grouped(
+            ax, combined_df, x="class", y="f1_score", hue="model",
+            order=class_order, hue_order=model_names,
+        )
+        ttest_df = _ttest_long_table(ttest_by_group, group_col="class")
+        if len(ttest_df):
+            stats_df = stats_df.merge(ttest_df, on=["class", "model"], how="left")
+
     # Rotate x labels if many classes
     if len(combined_df['class'].unique()) > 5:
         plt.xticks(rotation=45, ha='right')
-    
+
     plt.tight_layout()
     
     if save_path is not None:
@@ -898,7 +1079,8 @@ def plot_class_f1_robustness(wandb_evaluations, class_idx, pct_mask_nodes=None, 
 
 
 def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_mask_nodes=None,
-                                   BASE_DIR_REPO=None, save_path=None, figsize=(8, 5), dropna=True):
+                                   BASE_DIR_REPO=None, save_path=None, figsize=(8, 5), dropna=True,
+                                   ttest=False):
     """
     Plot overall performance for a specific metric across models (aggregated across seeds).
 
@@ -916,6 +1098,12 @@ def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_m
     dropna : bool, optional
         Whether to drop rows with NaN in 'radius' or 'pct_mask_nodes' (default: True).
         Set to False if radius or pct_mask_nodes is None.
+    ttest : bool, optional (default: False)
+        If True, identify the best-performing model (highest mean metric
+        across seeds) and annotate every other model with the result of a
+        two-sided t-test against it (p < 0.05 = significant), same approach
+        as InterScale's evaluation comparison. Adds 'best_model',
+        'p_value_vs_best' and 'significant' columns to stats_df.
 
     Returns:
     --------
@@ -924,6 +1112,7 @@ def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_m
     general_config, model_palette = set_plot_configs(BASE_DIR_REPO)
 
     all_data = []
+    model_order = []  # preserves the order models are passed in (config sweep order)
 
     for wandb_eval in wandb_evaluations:
         model_name = wandb_eval.model
@@ -950,17 +1139,21 @@ def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_m
         plot_df = df[['seed', metric]].copy() if 'seed' in df.columns else df[[metric]].copy()
         plot_df['model'] = model_name
         all_data.append(plot_df)
+        model_order.append(model_name)
 
     if not all_data:
         raise ValueError("No valid data found for any model")
 
     combined_df = pd.concat(all_data, ignore_index=True)
 
+    # groupby() would sort models alphabetically; reindex to the order they
+    # were passed in instead (e.g. GCN, PCATransformer, InterScale), matching
+    # plot_f1_across_seeds / plot_class_f1_comparison.
     stats_df = combined_df.groupby('model')[metric].agg([
         ('mean', 'mean'),
         ('std', 'std'),
         ('n_seeds', 'count')
-    ]).reset_index()
+    ]).reindex(model_order).reset_index()
 
     palette = {m: model_palette[m] for m in combined_df['model'].unique() if m in model_palette}
 
@@ -984,8 +1177,10 @@ def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_m
                   fontweight=general_config['legend_fontweight'])
     ax.set_ylabel(metric_label, fontsize=general_config['legend_fontsize'],
                   fontweight=general_config['legend_fontweight'])
-    ax.set_title(f'{metric_label} Across Seeds (radius={radius}, pct_mask={pct_mask_nodes})',
-                 fontsize=general_config['title_fontsize'],
+    title = f'{metric_label} Across Seeds (radius={radius}, pct_mask={pct_mask_nodes})'
+    if ttest:
+        title += ' — vs. best model: * p<0.05, ** p<0.01, *** p<0.001, ns = not significant'
+    ax.set_title(title, fontsize=general_config['title_fontsize'],
                  fontweight=general_config['title_fontweight'])
 
     ax.set_ylim([0, 1.05])
@@ -994,6 +1189,29 @@ def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_m
     ax.tick_params(axis='x', rotation=45)
     for label in ax.get_xticklabels():
         label.set_ha('right')
+
+    # Two-sided t-test of every model against the overall best-performing
+    # model (see the module-level docstring above `_stars`).
+    if ttest:
+        groups = {m: combined_df.loc[combined_df['model'] == m, metric].dropna().to_numpy()
+                  for m in models}
+        best, results = _best_vs_rest_ttest(groups)
+        if results:
+            best_idx = models.index(best)
+            for level, (model, res) in enumerate(results.items()):
+                label = _stars(res["p_value"])  # always drawn — 'ns' when not significant
+                i = models.index(model)
+                bar_top = max(means[best_idx] + (stds[best_idx] or 0), means[i] + (stds[i] or 0))
+                ymin, ymax = ax.get_ylim()
+                step = (ymax - ymin) * 0.09
+                bracket_y = bar_top + step * 0.3 + level * step
+                if bracket_y + step > ymax:
+                    ax.set_ylim(ymin, bracket_y + step)
+                _draw_significance_bracket(ax, x[best_idx], x[i], bracket_y, label)
+
+        ttest_df = _ttest_long_table({"overall": (best, results)}, group_col="_group")
+        if len(ttest_df):
+            stats_df = stats_df.merge(ttest_df.drop(columns="_group"), on="model", how="left")
 
     plt.tight_layout()
 

@@ -1,0 +1,81 @@
+# Melton/Jimenez et al. 2025 — node-level classification.
+# Cell-type label prediction on the CosMx pancreas data.
+# Source: notebooks/melton_jimenez_25/Node_class_performance.ipynb
+# Output: figures/node_classification/melton25/
+#
+# The notebook runs two separate sweeps: an earlier "hyperparameter" sweep
+# (GNN=tixesx9b, InterScale(dual)=d9lf50og, used only for the parameter-space
+# / hyperparameter-importance plots, not ported here) and the "robustness"
+# sweep below, whose three evaluations (GCN, PCATransformer, DualInterScale)
+# are what actually goes into plot_f1_across_seeds. A fourth sweep,
+# InterScale=yqvyut7l, is loaded in the notebook but never used in the final
+# comparison, so it is intentionally left out here.
+
+dataset: melton25
+prediction_level: node          # selects figures/node_classification/
+sweep_goal: robustness
+
+# The notebook's CLASSES list has 'Beta' twice (copy-paste typo); listed once
+# here since a repeated class name adds nothing but noise.
+classes:
+  - Alpha
+  - Acinar
+  - Beta
+  - Ductal
+  - Endocrine
+  - Immune
+  - Mast
+  - Endothelial
+  - Fibroblasts
+
+wandb:
+  entity: francesca-drummer
+  project: InterScale_hyperparameter_sweep
+  sweeps:
+    # local component only
+    GCN:
+      id: l0jetvrz
+      local: true
+      global: false
+    # global component only
+    PCATransformer:
+      id: 8govw06t
+      local: false
+      global: true
+    # local + global (combined) — the notebook calls this "DualInterScale",
+    # same naming as chen22_node's combined model.
+    DualInterScale:
+      id: 1nm8ndul
+      local: true
+      global: true
+
+# Panel shown in the notebook's plot_f1_across_seeds call: radius=60,
+# pct_mask_nodes=0.0. Unlike chen22_node (radius stored as the string
+# "None"), this dataset's node-level runs report a real radius, so the
+# default dropna: true applies.
+filters:
+  radius: 60
+  pct_mask_nodes: 0.0
+
+figures:
+  - name: robustness_test_acc
+    fn: plot_robustness
+    metric: test_acc
+    per_model: true          # one panel per model in wandb.sweeps
+
+  - name: f1_across_seeds
+    fn: plot_f1_across_seeds
+    height: 10
+    aspect: 0.9
+
+  # Not in the original notebook (which instead loops plot_class_f1_robustness
+  # per class at pct_mask_nodes=0.25 — not yet wired into this runner).
+  # Added for parity with chen22_node.
+  - name: class_f1_comparison
+    fn: plot_class_f1_comparison
+
+  # Not in the original notebook; added for parity with chen22_node.
+  - name: overall_test_acc
+    fn: plot_overall_metric_comparison
+    metric: test_acc
+    figsize: [5, 5]

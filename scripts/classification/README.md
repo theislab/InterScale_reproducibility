@@ -40,6 +40,7 @@ scripts/classification/
 ├── run.py                      # the only entry point; --config picks the work
 ├── run_all.py                  # loops over every config, keeps going on failure
 ├── _common.py                  # shared helpers: CLI, paths, W&B loading, figure saving
+├── model_parameters.csv        # every parameter interscale.config.load_config() accepts (see below)
 └── configs/
     ├── chen22_node.yaml        # -> figures/node_classification/chen22/
     ├── chen22_graph.yaml       # -> figures/graph_classification/chen22/
@@ -47,6 +48,17 @@ scripts/classification/
     ├── legnini23_graph.yaml
     └── melton25_{node,graph}.yaml
 ```
+
+`model_parameters.csv` documents the InterScale training-config schema
+(`interscale.config.get_cfg_defaults()` / `load_config()`, i.e. what a
+`config_files/**/*.yaml` training config can set) — one row per parameter,
+with its section (`wandb` / `model` / `local_component.parameters` /
+`global_component.parameters` / `optim` / `dataset` /
+`dataset.spatial_neigbors_kwargs`), default value, when it applies (e.g.
+`local_component.name == GCN`, or `always`), and a description. This is
+config-schema documentation, not sweep/run data — it does not need W&B
+access and won't change unless `interscale/src/interscale/config/*.py`
+changes.
 
 Config names are `<dataset><year>_<level>`; one file per dataset × level, since
 the two levels are different sweeps with different class labels.
@@ -117,14 +129,39 @@ string `"None"`, hence `radius: "None"` with the default `dropna: true`.
 
 ```
 figures/{node,graph}_classification/<dataset>/
-├── <figure_name>.pdf / .png    # names come from the config
-├── <figure_name>.csv           # the numbers behind the figure, when available
+├── <figure_name>.pdf / .png            # names come from the config
+├── <figure_name>.csv                   # the numbers behind the figure, when available
+├── <figure_name>_t-test.pdf / .png     # same figure, t-test-annotated (see below)
+├── <figure_name>_t-test.csv
 └── _cache/<model>_<sweep_id>.{csv,json}
 ```
 
 - Both `pdf` (paper) and `png` (quick viewing) by default, at `dpi_save` from
   [figures/config.yml](../../figures/config.yml).
 - Colors, fonts and palettes come from `figures/config.yml` only.
+- Legends are placed outside the axes, never overlapping the bars.
+
+### Statistical comparison (`_t-test` figures)
+
+For `f1_across_seeds`, `class_f1_comparison` and `overall_test_acc` (any figure
+using `plot_f1_across_seeds` / `plot_class_f1_comparison` /
+`plot_overall_metric_comparison`), the runner writes each figure twice:
+
+- `<name>.{pdf,png,csv}` — unchanged, no significance annotation.
+- `<name>_t-test.{pdf,png,csv}` — per scenario (class, or the whole panel for
+  `overall_test_acc`), the best-performing model is the one with the highest
+  mean score across seeds; every other model is compared against it with a
+  **two-sided t-test** and gets a bracket, always — `*` p<0.05, `**` p<0.01,
+  `***` p<0.001, `ns` when not significant, so a missing bracket is never
+  mistaken for "not tested". The `_t-test.csv` adds `best_model`,
+  `p_value_vs_best` and `significant` columns to the usual mean/std/n_seeds
+  table. Models are always ordered as passed in `wandb.sweeps` (e.g. GCN,
+  PCATransformer, InterScale), never resorted alphabetically. This mirrors
+  the "Evaluation comparison"
+  methodology used across the InterScale benchmarks (cf.
+  [theislab/tissue](https://github.com/theislab/tissue)), implemented
+  natively with `scipy.stats.ttest_ind` in `src/wandb.py` rather than the
+  unmaintained `statannot` package.
 
 ## W&B access and caching
 
@@ -141,10 +178,10 @@ figures/{node,graph}_classification/<dataset>/
 | --- | --- | --- |
 | `chen_2022/2_Chen22_node_class_performance.ipynb` | `chen22_node` | runs; output not yet compared |
 | `chen_2022/1_ Chen22_graph_class_performance.ipynb` | `chen22_graph` | config written, never run |
-| `damond_19/IMC_graph_class_performance.ipynb` | `damond19_graph` | ☐ |
-| `legnini_23/Graph_class_performance.ipynb` | `legnini23_graph` | ☐ |
-| `melton_jimenez_25/Melton_graph_class_performance.ipynb` | `melton25_graph` | ☐ |
-| `melton_jimenez_25/Node_class_performance.ipynb` | `melton25_node` | ☐ |
+| `damond_19/IMC_graph_class_performance.ipynb` | `damond19_graph` | config written, never run |
+| `legnini_23/Graph_class_performance.ipynb` | `legnini23_graph` | config written, never run |
+| `melton_jimenez_25/Melton_graph_class_performance.ipynb` | `melton25_graph` | config written, never run |
+| `melton_jimenez_25/Node_class_performance.ipynb` | `melton25_node` | config written, never run |
 
 Figure types and where they come from:
 

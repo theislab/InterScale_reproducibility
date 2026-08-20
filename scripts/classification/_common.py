@@ -272,44 +272,64 @@ def _fig_robustness(spec, evals, cfg, out_dir, args):
     return written
 
 
+def _ttest_variants():
+    """(ttest flag, name suffix) for the plain figure and its t-test twin.
+
+    Every stats-comparison figure is written twice: once exactly as before
+    (no t-test indication), and once with the same name plus "_t-test",
+    annotated with a two-sided t-test of every model against the
+    best-performing one (see the docstring above `_stars` in src/wandb.py).
+    """
+    return ((False, ""), (True, "_t-test"))
+
+
 def _fig_f1_across_seeds(spec, evals, cfg, out_dir, args):
     from src.wandb import plot_f1_across_seeds
 
     flt = _filters(spec, cfg)
-    g, stats, _ = plot_f1_across_seeds(
-        wandb_evaluations=evals,
-        radius=flt["radius"], pct_mask_nodes=flt["pct_mask_nodes"],
-        BASE_DIR_REPO=str(REPO_ROOT),
-        height=spec.get("height", 4), aspect=spec.get("aspect", 0.7),
-        save_path=None, dropna=_dropna(spec, cfg),
-    )
-    return save(_figure_of(g), out_dir, spec["name"], args.format, stats)
+    written = []
+    for ttest, suffix in _ttest_variants():
+        g, stats, _ = plot_f1_across_seeds(
+            wandb_evaluations=evals,
+            radius=flt["radius"], pct_mask_nodes=flt["pct_mask_nodes"],
+            BASE_DIR_REPO=str(REPO_ROOT),
+            height=spec.get("height", 4), aspect=spec.get("aspect", 0.7),
+            save_path=None, dropna=_dropna(spec, cfg), ttest=ttest,
+        )
+        written += save(_figure_of(g), out_dir, f"{spec['name']}{suffix}", args.format, stats)
+    return written
 
 
 def _fig_class_f1_comparison(spec, evals, cfg, out_dir, args):
     from src.wandb import plot_class_f1_comparison
 
     flt = _filters(spec, cfg)
-    fig, _, stats = plot_class_f1_comparison(
-        wandb_evaluations=evals,
-        radius=flt["radius"], pct_mask_nodes=flt["pct_mask_nodes"],
-        BASE_DIR_REPO=str(REPO_ROOT), save_path=None,
-        figsize=tuple(spec.get("figsize", (10, 6))),
-    )
-    return save(_figure_of(fig), out_dir, spec["name"], args.format, stats)
+    written = []
+    for ttest, suffix in _ttest_variants():
+        fig, _, stats = plot_class_f1_comparison(
+            wandb_evaluations=evals,
+            radius=flt["radius"], pct_mask_nodes=flt["pct_mask_nodes"],
+            BASE_DIR_REPO=str(REPO_ROOT), save_path=None,
+            figsize=tuple(spec.get("figsize", (10, 6))), ttest=ttest,
+        )
+        written += save(_figure_of(fig), out_dir, f"{spec['name']}{suffix}", args.format, stats)
+    return written
 
 
 def _fig_overall_metric(spec, evals, cfg, out_dir, args):
     from src.wandb import plot_overall_metric_comparison
 
     flt = _filters(spec, cfg)
-    fig, _, stats = plot_overall_metric_comparison(
-        evals, metric=spec.get("metric", "test_acc"),
-        radius=flt["radius"], pct_mask_nodes=flt["pct_mask_nodes"],
-        BASE_DIR_REPO=str(REPO_ROOT), save_path=None,
-        figsize=tuple(spec.get("figsize", (8, 5))), dropna=_dropna(spec, cfg),
-    )
-    return save(_figure_of(fig), out_dir, spec["name"], args.format, stats)
+    written = []
+    for ttest, suffix in _ttest_variants():
+        fig, _, stats = plot_overall_metric_comparison(
+            evals, metric=spec.get("metric", "test_acc"),
+            radius=flt["radius"], pct_mask_nodes=flt["pct_mask_nodes"],
+            BASE_DIR_REPO=str(REPO_ROOT), save_path=None,
+            figsize=tuple(spec.get("figsize", (8, 5))), dropna=_dropna(spec, cfg), ttest=ttest,
+        )
+        written += save(_figure_of(fig), out_dir, f"{spec['name']}{suffix}", args.format, stats)
+    return written
 
 
 HANDLERS = {
@@ -318,6 +338,10 @@ HANDLERS = {
     "plot_class_f1_comparison": _fig_class_f1_comparison,
     "plot_overall_metric_comparison": _fig_overall_metric,
 }
+
+# fn values whose handler writes a plain figure plus a "_t-test" twin (see
+# _ttest_variants above) — used only to make --dry-run's listing accurate.
+TTEST_FNS = {"plot_f1_across_seeds", "plot_class_f1_comparison", "plot_overall_metric_comparison"}
 
 
 def _filters(spec: dict, cfg: dict) -> dict:
@@ -378,6 +402,8 @@ def run(default_config: Path | None = None, argv=None) -> int:
             suffix = "_<model> (one per model)" if s.get("per_model") else ""
             exts = "/".join(_formats(args.format))
             print(f"  {mark} {s['name']}{suffix}.{exts}  [{fn}]")
+            if fn in TTEST_FNS:
+                print(f"    + {s['name']}_t-test{suffix}.{exts}  (same figure, t-test annotated)")
         missing = [s["fn"] for s in specs if s["fn"] not in HANDLERS]
         if missing:
             print(f"\n! no handler yet for: {', '.join(sorted(set(missing)))}")

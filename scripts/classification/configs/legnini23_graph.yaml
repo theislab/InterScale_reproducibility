@@ -1,0 +1,61 @@
+# Legnini et al. 2023 — graph-level classification.
+# Condition label prediction (Ctrl vs. SHH) per graph.
+# Source: notebooks/legnini_23/Graph_class_performance.ipynb
+# Output: figures/graph_classification/legnini23/
+
+dataset: legnini23
+prediction_level: graph          # selects figures/graph_classification/
+sweep_goal: robustness
+
+classes:
+  - Ctrl
+  - SHH
+
+wandb:
+  entity: francesca-drummer
+  project: InterScale_hyperparameter_sweep
+  sweeps:
+    # local component only
+    GCN:
+      id: kxr7hwgq
+      local: true
+      global: false
+    # global component only
+    PCATransformer:
+      id: ih7ktcdt
+      local: false
+      global: true
+    # local + global (combined)
+    InterScale:
+      id: bjz79kcp
+      local: true
+      global: true
+
+# Panel shown in the notebook's plot_f1_across_seeds call: radius=300,
+# pct_mask_nodes=0.1. This dataset's graph-level runs report a real radius
+# (like damond19, unlike chen22's graph sweeps which have none), so the
+# default dropna: true applies.
+filters:
+  radius: 300
+  pct_mask_nodes: 0.1
+
+figures:
+  - name: robustness_test_acc
+    fn: plot_robustness
+    metric: test_acc
+    per_model: true          # one panel per model in wandb.sweeps
+
+  - name: f1_across_seeds
+    fn: plot_f1_across_seeds
+    height: 6
+    aspect: 0.9
+
+  - name: overall_test_acc
+    fn: plot_overall_metric_comparison
+    metric: test_acc
+    figsize: [3, 5]
+
+  # Not in the original notebook; with two classes it is close to the plot
+  # above, same as chen22_graph. Drop this entry if it does not earn a panel.
+  - name: class_f1_comparison
+    fn: plot_class_f1_comparison

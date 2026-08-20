@@ -1,0 +1,62 @@
+# Melton/Jimenez et al. 2025 — graph-level classification.
+# Condition label prediction (ND vs. T1D) per graph, on the CosMx pancreas data.
+# Source: notebooks/melton_jimenez_25/Melton_graph_class_performance.ipynb
+# Output: figures/graph_classification/melton25/
+
+dataset: melton25
+prediction_level: graph          # selects figures/graph_classification/
+sweep_goal: robustness
+
+classes:
+  - ND
+  - T1D
+
+wandb:
+  entity: francesca-drummer
+  project: InterScale_hyperparameter_sweep
+  sweeps:
+    # local component only
+    GCN:
+      id: 6qip4qz4
+      local: true
+      global: false
+    # global component only
+    PCATransformer:
+      id: 8v6uc6k4
+      local: false
+      global: true
+    # local + global (combined)
+    InterScale:
+      id: 8a7ycqw7
+      local: true
+      global: true
+
+# Panel shown in the notebook's plot_f1_across_seeds call: radius=150,
+# pct_mask_nodes=0.0. This dataset's graph-level runs report a real radius
+# (like damond19/legnini23, unlike chen22's graph sweeps which have none),
+# so the default dropna: true applies.
+filters:
+  radius: 150
+  pct_mask_nodes: 0.0
+
+figures:
+  - name: robustness_test_acc
+    fn: plot_robustness
+    metric: test_acc
+    per_model: true          # one panel per model in wandb.sweeps
+
+  - name: f1_across_seeds
+    fn: plot_f1_across_seeds
+    height: 6
+    aspect: 0.9
+
+  - name: overall_test_acc
+    fn: plot_overall_metric_comparison
+    metric: test_acc
+    figsize: [3, 5]
+
+  # Not in the original notebook; with two classes it is close to the plot
+  # above, same as chen22_graph/legnini23_graph. Drop this entry if it does
+  # not earn a panel.
+  - name: class_f1_comparison
+    fn: plot_class_f1_comparison
