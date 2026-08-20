@@ -1,0 +1,67 @@
+# Chen et al. 2022 — node-level classification.
+# Region label prediction (cortical layers / white matter) per cell.
+# Confirmed against W&B: these three sweeps report prediction_level "node".
+# Output: figures/node_classification/chen22/
+
+dataset: chen22
+sweep_goal: robustness
+
+# Selects figures/node_classification/ and is checked against what the runs
+# report, so a wrong sweep ID fails instead of filing figures in the wrong place.
+prediction_level: node
+
+classes:
+  - Layer 1
+  - Layer 2
+  - Layer 3
+  - Layer 4
+  - Layer 5
+  - Layer 6
+  - White Matter
+
+wandb:
+  entity: francesca-drummer
+  project: InterScale_hyperparameter_sweep
+  sweeps:
+    # local component only
+    GCN:
+      id: 8zpa634k
+      local: true
+      global: false
+    # global component only
+    PCATransformer:
+      id: 0vn9y1n5
+      local: false
+      global: true
+    # local + global (combined)
+    DualInterScale:
+      id: mg6bc24j
+      local: true
+      global: true
+
+# Panel shown in the paper; individual figures may override below.
+filters:
+  radius: "None"
+  pct_mask_nodes: 0.5
+
+figures:
+  - name: robustness_test_acc
+    fn: plot_robustness
+    metric: test_acc
+    per_model: true          # one panel per model in wandb.sweeps
+
+  - name: f1_across_seeds
+    fn: plot_f1_across_seeds
+    height: 10
+    aspect: 0.9
+
+  - name: class_f1_comparison
+    fn: plot_class_f1_comparison
+
+  - name: overall_test_acc
+    fn: plot_overall_metric_comparison
+    metric: test_acc
+    figsize: [5, 5]
+    filters:                 # notebook used a different masking level here
+      radius: "None"
+      pct_mask_nodes: 0.1

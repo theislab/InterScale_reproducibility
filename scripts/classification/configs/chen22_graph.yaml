@@ -1,0 +1,61 @@
+# Chen et al. 2022 — graph-level classification.
+# Disease label prediction (control vs Mid-AD) per graph.
+# Source: notebooks/chen_2022/1_ Chen22_graph_class_performance.ipynb
+# Output: figures/graph_classification/chen22/
+
+dataset: chen22
+prediction_level: graph          # selects figures/graph_classification/
+sweep_goal: robustness
+
+classes:
+  - control
+  - Mid-AD
+
+wandb:
+  entity: francesca-drummer
+  project: InterScale_hyperparameter_sweep
+  sweeps:
+    # local component only
+    GCN:
+      id: 39pecmnt
+      local: true
+      global: false
+    # global component only
+    PCATransformer:
+      id: tohmr60x
+      local: false
+      global: true
+    # local + global (combined)
+    InterScale:
+      id: 3pfj292b
+      local: true
+      global: true
+
+# The graph-level sweeps have no radius, so it is NaN for every run:
+# radius: null selects exactly those runs, and dropna must be false or they
+# would all be discarded before filtering.
+dropna: false
+filters:
+  radius: null
+  pct_mask_nodes: 0.5
+
+figures:
+  - name: robustness_test_acc
+    fn: plot_robustness
+    metric: test_acc
+    per_model: true          # one panel per model in wandb.sweeps
+
+  - name: f1_across_seeds
+    fn: plot_f1_across_seeds
+    height: 10
+    aspect: 0.9
+
+  - name: overall_test_acc
+    fn: plot_overall_metric_comparison
+    metric: test_acc
+    figsize: [3, 5]
+
+  # Not in the original notebook; with two classes it is close to the plot
+  # above. Drop this entry if it does not earn a panel.
+  - name: class_f1_comparison
+    fn: plot_class_f1_comparison
