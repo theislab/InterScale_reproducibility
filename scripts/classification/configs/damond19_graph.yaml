@@ -1,0 +1,61 @@
+# Damond et al. 2019 — graph-level classification.
+# Disease stage prediction (Non-diabetic / Onset / Long-duration) per IMC image.
+# Source: notebooks/damond_19/IMC_graph_class_performance.ipynb
+# Output: figures/graph_classification/damond19/
+
+dataset: damond19
+prediction_level: graph          # selects figures/graph_classification/
+sweep_goal: robustness
+
+classes:
+  - Long-duration
+  - Non-diabetic
+  - Onset
+
+wandb:
+  entity: francesca-drummer
+  project: InterScale_hyperparameter_sweep
+  sweeps:
+    # local component only
+    GCN:
+      id: pzz25qfw
+      local: true
+      global: false
+    # global component only
+    PCATransformer:
+      id: 8jvwjnba
+      local: false
+      global: true
+    # local + global (combined)
+    InterScale:
+      id: 463vbe99
+      local: true
+      global: true
+
+# These sweeps record radius 0 and pct_mask_nodes 0.0 as real values, so the
+# default dropna is fine here (unlike chen22_graph, where radius is NaN).
+filters:
+  radius: 0
+  pct_mask_nodes: 0.0
+
+figures:
+  - name: robustness_test_acc
+    fn: plot_robustness
+    metric: test_acc
+    per_model: true          # one panel per model in wandb.sweeps
+
+  - name: f1_across_seeds
+    fn: plot_f1_across_seeds
+    height: 6
+    aspect: 0.9
+
+  # Significance tests between models across seeds -> CSV, no figure.
+  # All three sweeps use seeds 40-44, so the paired test applies.
+  - name: pairwise_tests
+    fn: pairwise_model_tests
+    metrics: [test_acc, test_f1_macro]
+    per_class: true
+
+# Not ported: the CLS-token section of the notebook (grouped heatmaps and the
+# squidpy spatial scatters). Those need the trained model plus damond19_pp.h5ad,
+# not just the sweep table — see the README's figure table.

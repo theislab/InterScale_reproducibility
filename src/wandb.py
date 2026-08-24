@@ -1001,3 +1001,133 @@ def plot_overall_metric_comparison(wandb_evaluations, metric, radius=None, pct_m
         fig.savefig(save_path, dpi=300, bbox_inches='tight')
 
     return fig, ax, stats_df
+
+
+def pairwise_model_tests(wandb_evaluations, metrics=None, per_class=True,
+                         radius=None, pct_mask_nodes=None, dropna=True,
+                         paired=True, alpha=0.05, save_path=None):
+    """
+    Pairwise significance tests between models, across seeds.
+
+    For every target (each overall metric, and each per-class F1 if per_class),
+    every pair of models is compared with a t-test over the seeds:
+
+    - paired (`scipy.stats.ttest_rel`) when both models were run on exactly the
+      same seeds — the usual case, and the more powerful test, since the seed is
+      the only thing that differs between the two runs being compared;
+    - Welch (`scipy.stats.ttest_ind`, equal_var=False) otherwise, which is
+      recorded per row so the fallback is never silent.
+
+    p-values are Holm-corrected *within each target*, i.e. across the model
+    pairs compared for that class/metric.
+
+    Parameters:
+    -----------
+    wandb_evaluations : list of Wandb_evaluation
+    metrics : list of str, optional
+        Overall metrics to test (default: test_acc, test_f1_macro, test_f1_micro
+        where present)
+    per_class : bool
+        Also test each `test_f1_class_*` column (default True)
+    radius, pct_mask_nodes : filter values; None matches NaN
+    dropna : bool
+        Drop runs with NaN radius/pct_mask_nodes before filtering
+    paired : bool
+        Allow the paired test when seeds match (default True)
+    alpha : float
+        Significance level recorded in the `significant` column
+    save_path : str, optional
+        Full path of a CSV to write, including extension
+
+    Returns:
+    --------
+    pd.DataFrame, one row per (target, model_a, model_b)
+    """
+    from itertools import combinations
+
+    from scipy import stats as sps
+    from statsmodels.stats.multitest import multipletests
+
+    if metrics is None:
+        metrics = ["test_acc", "test_f1_macro", "test_f1_micro"]
+
+    # Collect the filtered, seed-indexed values per model
+    per_model = {}
+    for wandb_eval in wandb_evaluations:
+        df = wandb_eval.df.dropna(subset=["radius", "pct_mask_nodes"]) if dropna else wandb_eval.df.copy()
+
+        mask_radius = df['radius'].isna() if radius is None else df['radius'] == radius
+        mask_pct = (df['pct_mask_nodes'].isna() if pct_mask_nodes is None
+                    else df['pct_mask_nodes'] == pct_mask_nodes)
+        df = df[mask_radius & mask_pct]
+
+        if df.empty:
+            print(f"Warning: No data for {wandb_eval.model} with specified filters")
+            continue
+        per_model[wandb_eval.model] = df.set_index('seed')
+
+    if len(per_model) < 2:
+        raise ValueError("Need at least two models with data to compare")
+
+    targets = [m for m in metrics
+               if any(m in df.columns for df in per_model.values())]
+    if per_class:
+        targets += sorted({c for df in per_model.values() for c in df.columns
+                           if c.startswith('test_f1_class_')})
+
+    rows = []
+    for target in targets:
+        for model_a, model_b in combinations(per_model, 2):
+            df_a, df_b = per_model[model_a], per_model[model_b]
+            if target not in df_a.columns or target not in df_b.columns:
+                continue
+
+            a, b = df_a[target].dropna(), df_b[target].dropna()
+            shared = sorted(set(a.index) & set(b.index))
+
+            # Paired only if the seeds line up and nothing is missing
+            use_paired = paired and len(shared) == len(a) == len(b) and len(shared) > 1
+            if use_paired:
+                a_vals, b_vals = a.loc[shared].values, b.loc[shared].values
+                test_name, n = "paired t-test", len(shared)
+                if n < 2:
+                    continue
+                res = sps.ttest_rel(a_vals, b_vals)
+            else:
+                a_vals, b_vals = a.values, b.values
+                test_name, n = "Welch t-test", min(len(a_vals), len(b_vals))
+                if len(a_vals) < 2 or len(b_vals) < 2:
+                    continue
+                res = sps.ttest_ind(a_vals, b_vals, equal_var=False)
+
+            rows.append({
+                "target": target.replace('test_f1_class_', ''),
+                "kind": "class_f1" if target.startswith('test_f1_class_') else "metric",
+                "model_a": model_a,
+                "model_b": model_b,
+                "n": n,
+                "mean_a": a_vals.mean(),
+                "mean_b": b_vals.mean(),
+                "mean_diff": a_vals.mean() - b_vals.mean(),
+                "test": test_name,
+                "statistic": res.statistic,
+                "p_value": res.pvalue,
+            })
+
+    tests_df = pd.DataFrame(rows)
+    if tests_df.empty:
+        raise ValueError("No comparable model pairs found — check the filters")
+
+    # Holm correction within each target
+    tests_df['p_holm'] = np.nan
+    for target, idx in tests_df.groupby('target').groups.items():
+        pvals = tests_df.loc[idx, 'p_value']
+        tests_df.loc[idx, 'p_holm'] = multipletests(pvals, method='holm')[1]
+    tests_df['significant'] = tests_df['p_holm'] < alpha
+
+    tests_df = tests_df.sort_values(['kind', 'target', 'model_a', 'model_b'])
+
+    if save_path is not None:
+        tests_df.to_csv(save_path, index=False)
+
+    return tests_df
