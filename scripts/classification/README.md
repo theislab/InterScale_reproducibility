@@ -141,7 +141,7 @@ figures/{node,graph}_classification/<dataset>/
 | --- | --- | --- |
 | `chen_2022/2_Chen22_node_class_performance.ipynb` | `chen22_node` | runs; output not yet compared |
 | `chen_2022/1_ Chen22_graph_class_performance.ipynb` | `chen22_graph` | config written, never run |
-| `damond_19/IMC_graph_class_performance.ipynb` | `damond19_graph` | ☐ |
+| `damond_19/IMC_graph_class_performance.ipynb` | `damond19_graph` | config written, never run (CLS section not ported) |
 | `legnini_23/Graph_class_performance.ipynb` | `legnini23_graph` | ☐ |
 | `melton_jimenez_25/Melton_graph_class_performance.ipynb` | `melton25_graph` | ☐ |
 | `melton_jimenez_25/Node_class_performance.ipynb` | `melton25_node` | ☐ |
@@ -154,6 +154,7 @@ Figure types and where they come from:
 | F1 across seeds, models compared | `src.wandb.plot_f1_across_seeds` | ported |
 | Per-class F1 comparison | `src.wandb.plot_class_f1_comparison` | ported |
 | Overall metric bar plot (acc / macro F1) | `src.wandb.plot_overall_metric_comparison` | ported |
+| Pairwise model significance tests (CSV, no figure) | `src.wandb.pairwise_model_tests` | new — not from a notebook |
 | CLS-token grouped heatmaps | `interscale.evaluation.graph_classification.plot_adata_grouped_heatmaps` | no handler yet |
 
 ## Adding a dataset or level

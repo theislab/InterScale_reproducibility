@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import cozipy, os; print\\(cozipy.__file__\\)\")",
+      "Bash(curl -sL https://raw.githubusercontent.com/SchapiroLabor/COZIpy/main/tutorial/cozipy_tutorial.ipynb -o /private/tmp/claude-501/-Users-francesca-drummer-Documents-2-Areas-A3-InterScale-code-InterScale-reproducibility/c51f42bb-d5fa-4a4d-8cb6-07340196e816/scratchpad/cozipy_tutorial.ipynb)",
+      "Bash(conda env *)",
+      "Bash(/Users/francesca.drummer/miniconda3/envs/workshop_2025_spatial/bin/python -c ' *)",
+      "Bash(/Users/francesca.drummer/miniconda3/envs/workshop_2025_spatial/bin/python -)",
+      "Bash(/Users/francesca.drummer/miniconda3/envs/workshop_2025_spatial/bin/python -c 'import nbconvert, ipykernel; print\\(nbconvert.__version__, ipykernel.__version__\\)')",
+      "Bash(/Users/francesca.drummer/miniconda3/envs/workshop_2025_spatial/bin/python /private/tmp/claude-501/-Users-francesca-drummer-Documents-2-Areas-A3-InterScale-code-InterScale-reproducibility/c51f42bb-d5fa-4a4d-8cb6-07340196e816/scratchpad/build_nb.py)",
+      "Bash(/Users/francesca.drummer/miniconda3/envs/workshop_2025_spatial/bin/jupyter nbconvert *)"
+    ]
+  }
+}

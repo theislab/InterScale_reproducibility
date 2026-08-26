@@ -248,6 +248,14 @@ def _seed_everything(seed: int) -> None:
         set_full_reproducibility(seed)
 
 
+def save_table(df, out_dir: Path, name: str) -> list[Path]:
+    """Write a stats table that has no figure of its own."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{name}.csv"
+    df.to_csv(path, index=False)
+    return [path]
+
+
 def _figure_of(obj):
     """Accept a Figure, a seaborn FacetGrid, or a (fig, ...) tuple."""
     if hasattr(obj, "savefig") and hasattr(obj, "fig"):  # FacetGrid
@@ -312,12 +320,36 @@ def _fig_overall_metric(spec, evals, cfg, out_dir, args):
     return save(_figure_of(fig), out_dir, spec["name"], args.format, stats)
 
 
+def _table_pairwise_tests(spec, evals, cfg, out_dir, args):
+    """Pairwise significance tests across seeds; writes a CSV, no figure."""
+    from src.wandb import pairwise_model_tests
+
+    flt = _filters(spec, cfg)
+    tests = pairwise_model_tests(
+        evals,
+        metrics=spec.get("metrics"),
+        per_class=spec.get("per_class", True),
+        radius=flt["radius"], pct_mask_nodes=flt["pct_mask_nodes"],
+        dropna=_dropna(spec, cfg),
+        paired=spec.get("paired", True),
+        alpha=spec.get("alpha", 0.05),
+    )
+    n_sig = int(tests["significant"].sum())
+    log.info("%s: %d comparisons, %d significant after Holm correction (%s)",
+             spec["name"], len(tests), n_sig, ", ".join(sorted(tests["test"].unique())))
+    return save_table(tests, out_dir, spec["name"])
+
+
 HANDLERS = {
     "plot_robustness": _fig_robustness,
     "plot_f1_across_seeds": _fig_f1_across_seeds,
     "plot_class_f1_comparison": _fig_class_f1_comparison,
     "plot_overall_metric_comparison": _fig_overall_metric,
+    "pairwise_model_tests": _table_pairwise_tests,
 }
+
+# Handlers that produce a table instead of a figure (affects --dry-run output).
+TABLE_FNS = {"pairwise_model_tests"}
 
 
 def _filters(spec: dict, cfg: dict) -> dict:
@@ -376,7 +408,7 @@ def run(default_config: Path | None = None, argv=None) -> int:
             fn = s["fn"]
             mark = " " if fn in HANDLERS else "!"
             suffix = "_<model> (one per model)" if s.get("per_model") else ""
-            exts = "/".join(_formats(args.format))
+            exts = "csv" if fn in TABLE_FNS else "/".join(_formats(args.format))
             print(f"  {mark} {s['name']}{suffix}.{exts}  [{fn}]")
         missing = [s["fn"] for s in specs if s["fn"] not in HANDLERS]
         if missing:
