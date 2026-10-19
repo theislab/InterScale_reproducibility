@@ -33,8 +33,8 @@ if os.path.exists("/dss/dsshome1/05/di93tig"):
 elif os.path.exists("/home/icb/francesca.drummer/"):
     print('HPC cluster')
     CLUSTER = 'HPC'
-    BASE_DIR_REPO = "/home/icb/francesca.drummer/1-Projects/"
-    BASE_DIR_PROJECT = ""
+    BASE_DIR_REPO = "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/"
+    BASE_DIR_PROJECT = "/lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/"
 else:
     print('unkown')
     CLUSTER = 'unknown'
@@ -64,6 +64,19 @@ adata
 
 # %% [markdown]
 # ## SHH rings
+
+# %%
+import liana as li
+
+lr_db = li.rs.select_resource("consensus")  # use consesnus resource by default
+lr_db = lr_db.loc[
+    (lr_db["ligand"].isin(adata.var.index.to_list())) & (lr_db["receptor"].isin(adata.var.index.to_list())), :
+].copy()
+lr_db["interaction"] = [l + "^" + r for l, r in zip(lr_db["ligand"], lr_db["receptor"])]
+
+print(f"Number of cognate ligand-receptor pairs in the dataset: {len(lr_db)}")
+
+lr_db
 
 # %%
 from skimage.filters import threshold_otsu

@@ -1,0 +1,1361 @@
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.X does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+applied sweep parameters: ['dataset.batch_size', 'dataset.pct_mask_nodes', 'model.global_component.parameters.dim_feedforward', 'model.global_component.parameters.dropout_global', 'model.global_component.parameters.n_heads', 'model.global_component.parameters.num_layers', 'model.local_component.parameters.dropout_local', 'model.local_component.parameters.hidden_dim', 'model.local_component.parameters.num_layers', 'model.n_embed', 'optim.loss', 'optim.lr', 'optim.lr_warmup', 'optim.monitor', 'optim.wd']
+Nr. of zero expression cells: 0
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+Seed set to 44
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /home/icb/francesca.drummer/.netrc.
+wandb: Currently logged in as: francesca-drummer to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run bhlsgxfu
+wandb: Tracking run with wandb version 0.28.1
+wandb: Run data is saved locally in /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/wandb/run-20260825_190357-bhlsgxfu
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run dual_melton25_regr_node_44_GCN_self-attn-transformer_
+wandb: ⭐️ View project at https://wandb.ai/francesca-drummer/GTLongRange_CosmXPancreas
+wandb: 🚀 View run at https://wandb.ai/francesca-drummer/GTLongRange_CosmXPancreas/runs/bhlsgxfu
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+You are using a CUDA device ('NVIDIA A100-PCIE-40GB MIG 3g.20gb') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+/opt/conda/envs/interscale/lib/python3.12/site-packages/lightning/pytorch/loggers/wandb.py:400: There is a wandb run already in progress and newly created instances of `WandbLogger` will reuse this run. If this is not desired, call `wandb.finish()` before instantiating `WandbLogger`.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Steps per epoch 26
+cross-cell per gene correlation metrics
+Wandb initialize...
+Total parameters: 769,318
+Trainable parameters: 769,318
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type                      ┃ Params ┃ Mode  ┃ FLOPs ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━┩
+│ 0 │ module        │ DualDecoderCombinedModule │  769 K │ train │     0 │
+│ 1 │ loss          │ GaussianNLLLoss           │      0 │ train │     0 │
+│ 2 │ train_metrics │ MetricCollection          │      0 │ train │     0 │
+│ 3 │ valid_metrics │ MetricCollection          │      0 │ train │     0 │
+│ 4 │ test_metrics  │ MetricCollection          │      0 │ train │     0 │
+└───┴───────────────┴───────────────────────────┴────────┴───────┴───────┘
+Trainable params: 769 K                                                         
+Non-trainable params: 0                                                         
+Total params: 769 K                                                             
+Total estimated model params size (MB): 3.077                                   
+Modules in train mode: 60                                                       
+Modules in eval mode: 0                                                         
+Total FLOPs: 0                                                                  
+/opt/conda/envs/interscale/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+/opt/conda/envs/interscale/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:434: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+Metric val_concordance_corr improved. New best score: -0.000
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.000
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.001
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.001
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.001
+Metric val_concordance_corr improved by 0.001 >= min_delta = 0.0. New best score: 0.002
+Metric val_concordance_corr improved by 0.001 >= min_delta = 0.0. New best score: 0.003
+Metric val_concordance_corr improved by 0.002 >= min_delta = 0.0. New best score: 0.005
+Metric val_concordance_corr improved by 0.002 >= min_delta = 0.0. New best score: 0.007
+Metric val_concordance_corr improved by 0.001 >= min_delta = 0.0. New best score: 0.008
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.008
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.009
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.009
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.010
+Metric val_concordance_corr improved by 0.001 >= min_delta = 0.0. New best score: 0.010
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.010
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.010
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.011
+Metric val_concordance_corr improved by 0.001 >= min_delta = 0.0. New best score: 0.011
+Metric val_concordance_corr improved by 0.001 >= min_delta = 0.0. New best score: 0.012
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.012
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.012
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.013
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.013
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.013
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.013
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.014
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.014
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.014
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.014
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.014
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.015
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.015
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.015
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.015
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.015
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.015
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.015
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.015
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.016
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.016
+Metric val_concordance_corr improved by 0.001 >= min_delta = 0.0. New best score: 0.016
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.016
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.016
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.017
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.017
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.017
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.017
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.017
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.017
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.017
+Metric val_concordance_corr improved by 0.000 >= min_delta = 0.0. New best score: 0.017
+Monitored metric val_concordance_corr did not improve in the last 5 records. Best score: 0.017. Signaling Trainer to stop.
+Epoch 79/99 ━━━━━━━━━━━━━━━━━━━━━━ 26/26 0:00:01 • 0:00:00 17.64it/s v_num: gxfu
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Restoring best checkpoint (val_concordance_corr=0.0174) from /ictstr01/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/melton25_revision/best_recon/dual_melton25_regr_node_44_GCN_self-attn-transformer_.ckpt
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃      Validate metric      ┃       DataLoader 0        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│   val_concordance_corr    │    0.0174198467284441     │
+│   val_cosine_similarity   │    0.7009817957878113     │
+│      val_global_loss      │    -0.5752674341201782    │
+│      val_local_loss       │    -0.5749406814575195    │
+│         val_loss          │    -0.5751041173934937    │
+│          val_mse          │    0.04089239984750748    │
+│     val_pearson_corr      │    0.05192070081830025    │
+│          val_r2           │  -0.0053371223621070385   │
+└───────────────────────────┴───────────────────────────┘
+Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23/23 0:00:01 • 0:00:00 22.49it/s 
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/opt/conda/envs/interscale/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=7` in the `DataLoader` to improve performance.
+on_test_epoch_end 80
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃        Test metric        ┃       DataLoader 0        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│   test_concordance_corr   │   0.018186131492257118    │
+│  test_cosine_similarity   │    0.6873908638954163     │
+│     test_global_loss      │   -0.48514696955680847    │
+│      test_local_loss      │    -0.4841564893722534    │
+│         test_loss         │    -0.4846518039703369    │
+│         test_mse          │    0.05833189934492111    │
+│     test_pearson_corr     │    0.05942446365952492    │
+│          test_r2          │   -0.009578539989888668   │
+└───────────────────────────┴───────────────────────────┘
+Testing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27/27 0:00:01 • 0:00:00 21.05it/s 
+`weights_only` was not set, defaulting to `False`.
+
+Early stopping triggered at epoch 79
+Best val_concordance_corr: 0.0174
+Model checkpoint will be saved in:  /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/melton25_revision/best_recondual_melton25_regr_node_44_GCN_self-attn-transformer_model.ckpt
+Load GEX from .X
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/conda/envs/interscale/lib/python3.12/site-packages/geome/ann2data/basic.py:90: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:206.)
+  return torch.from_numpy(pd.get_dummies(obj).to_numpy()).to(torch.float)
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+
+InterScale per cell type:
+              mse_mean  mse_std       n    fvu
+cell_type                                    
+Beta           0.0441   0.0146    9028 0.5985
+Alpha          0.0454   0.0165   10318 0.5942
+Acinar         0.0457   0.0154  184395 0.5811
+Endocrine      0.0519   0.0154    3658 0.6298
+Ductal         0.0671   0.0211  127936 0.7320
+Endothelial    0.0689   0.0232    8528 0.7611
+Fibroblasts    0.0724   0.0251   25194 0.8064
+Immune         0.0848   0.0240   14578 0.8705
+Mast           0.1094   0.0238    3092 1.0770
+
+GITIII per cell type:
+              mse_mean  mse_std       n    fvu
+cell_type                                    
+Acinar         0.0337   0.0141  183994 0.9418
+Alpha          0.0360   0.0143   10315 0.9049
+Beta           0.0331   0.0120    9023 0.8486
+Ductal         0.0506   0.0193  127800 0.9144
+Endocrine      0.0371   0.0132    3656 0.8890
+Endothelial    0.0518   0.0187    8492 0.9324
+Fibroblasts    0.0542   0.0205   24852 0.8997
+Immune         0.0616   0.0195   14479 0.9302
+Mast           0.0863   0.0208    2949 0.9562
+
+wrote /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/reconstruction_per_celltype/reconstruction_mse_per_celltype.png
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mdual_melton25_regr_node_44_GCN_self-attn-transformer_[0m at: [34mhttps://wandb.ai/francesca-drummer/GTLongRange_CosmXPancreas/runs/bhlsgxfu[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20260825_190357-bhlsgxfu/logs[0m

@@ -12,10 +12,41 @@ import os
 import yaml
 import scanpy as sc
 
-import InterScale as interscale
+import interscale 
 from yacs.config import CfgNode as CN
 
-from InterScale.config import load_config, config_from_wandb_run
+from interscale.config import load_config #, config_from_wandb_run
+
+
+def _mask_cfg(run, key, legacy_key=None):
+    """Read a dataset masking setting off a wandb run, whether or not the sweep varied it.
+
+    wandb stores two views of the config. A sweep parameter appears as a FLAT dotted key
+    (``dataset.mask_percentage``) carrying that trial's value. Everything else appears in the
+    NESTED dict logged by ``main_sweep.py``'s ``wandb.init(config=cfg)``, which runs after the
+    registry pair is resolved but before the trial is applied -- so a value that comes from a task
+    file rather than from the sweep (``node_reg_genemask``'s ``mask_strategy: gene``, say) is only
+    ever in the nested copy.
+
+    Checking the flat key alone reported every gene-masking run as ``mask_strategy: node``, and
+    left the rate ``None`` for any sweep that did not pin it. ``legacy_key`` covers sweeps
+    registered before ``pct_mask_nodes`` was split into strategy + percentage.
+
+    KNOWN GAP: an ARM sweep (``mask_granularity_legnini.yaml``) varies these through its ``arms:``
+    block, which is expanded inside the trial and never round-trips through wandb -- only the arm
+    NAME does, as ``run.config["arm"]``. Both views therefore show the arm-less base config for
+    every trial, so these two columns are the same for all of them and are NOT the trial's real
+    setting. Group an arm sweep by ``arm`` and read the rate off the yaml.
+    """
+    nested = run.config.get("dataset") or {}
+    for candidate in (key, legacy_key):
+        if candidate is None:
+            continue
+        if (flat := run.config.get(f"dataset.{candidate}")) is not None:
+            return flat
+        if (value := nested.get(candidate)) is not None:
+            return value
+    return None
 
 
 class Wandb_evaluation():
@@ -62,7 +93,26 @@ class Wandb_evaluation():
                     "name": run.name,
                     "seed": run.config.get("optim.seed", None),
                     "state": run.state,  # finished, running, failed
-                    "pct_mask_nodes": run.config.get("dataset.pct_mask_nodes", None),
+                    # Kept under its original name: ~20 groupby/filter/plot sites in this file and
+                    # in other notebooks key on the "pct_mask_nodes" COLUMN, so renaming it would
+                    # break them. The interscale config key it reads was split into
+                    # dataset.mask_strategy + dataset.mask_percentage, hence the fallback -- new
+                    # sweeps carry the new key, sweeps registered before the split the old one.
+                    #
+                    # Read it together with mask_strategy: under "gene" this is a fraction of each
+                    # cell's GENES, not a fraction of the cells, so the two are not comparable at
+                    # equal values.
+                    # `mask_percentage` is the honest name: mask_strategy says what a masked
+                    # UNIT is, so this is a fraction of the cells under "node" and a fraction of
+                    # every cell's genes under "gene". The two are NOT comparable at equal values.
+                    "mask_percentage": _mask_cfg(run, "mask_percentage", "pct_mask_nodes"),
+                    "mask_strategy": _mask_cfg(run, "mask_strategy"),
+                    # Deprecated alias, same values. Kept only because ~20 groupby/filter/plot
+                    # sites in this file and in other notebooks key on this column name. Do not
+                    # read it as "percent of nodes" -- for a gene-masked run it is percent of
+                    # genes, which is exactly the misreading the name invites. Prefer
+                    # `mask_percentage`, and read it next to `mask_strategy`.
+                    "pct_mask_nodes": _mask_cfg(run, "mask_percentage", "pct_mask_nodes"),
                     "radius": run.config.get("dataset.spatial_neigbors_kwargs.radius", None),
                     "decoder_type": run.config.get("model.decoder.type", None),
                     "runtime_seconds": run.summary.get("_runtime", None),
@@ -866,3 +916,378 @@ def plot_class_f1_robustness(wandb_evaluations, class_idx, pct_mask_nodes=None, 
     print(stats_df.to_string(index=False))
     
     return fig, ax, stats_df
+
+def plot_mse_per_celltype(csv_path,
+                          BASE_DIR_REPO,
+                          models=('InterScale', 'GITIII'),
+                          sort_by='InterScale',
+                          figsize=(10, 5),
+                          gitiii_color="#4D4D4D",
+                          annotate_n_cells=True,
+                          save_path=None):
+    """
+    Plot per-cell-type reconstruction MSE (mean +/- sd) for InterScale and GITIII
+    as a grouped barplot, in the same style as `plot_f1_across_seeds`.
+
+    Parameters:
+    -----------
+    csv_path : str
+        Path to the per-cell-type comparison csv. Expected columns:
+        'cell_type', '<model>_mse' and one sd column per model
+        ('InterScale_sd_across_5_runs', 'GITIII_sd_across_cells'),
+        optionally 'n_cells'.
+    BASE_DIR_REPO : str
+        Repository base dir, used to load `figures/config.yml`.
+    models : tuple of str, optional
+        Models to plot, in bar order (default: ('InterScale', 'GITIII')).
+    sort_by : str or None, optional
+        Model whose MSE defines the cell-type ordering (default: 'InterScale').
+        If None, the csv order is kept.
+    figsize : tuple, optional
+        Figure size (default: (10, 5)).
+    gitiii_color : str, optional
+        Colour for GITIII bars (default: dark grey "#4D4D4D"). InterScale takes
+        its colour from `palettes.Models` in config.yml.
+    annotate_n_cells : bool, optional
+        Annotate each cell type with its number of cells (if 'n_cells' present).
+    save_path : str, optional
+        Path name relative to `<BASE_DIR_REPO>/figures/` to save the plot as jpg.
+
+    Returns:
+    --------
+    fig, ax : matplotlib figure and axes
+    plot_data : pd.DataFrame
+        Long-form data used for plotting (cell_type, model, mse, sd, n_cells).
+    """
+    general_config, model_palette = set_plot_configs(BASE_DIR_REPO)
+
+    df = pd.read_csv(csv_path)
+
+    # Resolve the mse / sd column for each model (sd column names differ per model)
+    records = []
+    for model in models:
+        mse_col = f'{model}_mse'
+        if mse_col not in df.columns:
+            raise ValueError(f"No column '{mse_col}' found in {csv_path}")
+
+        sd_candidates = [
+            col for col in df.columns
+            if col.startswith(f'{model}_sd') or col == f'{model}_std'
+        ]
+        if not sd_candidates:
+            print(f"Warning: no sd column found for '{model}', plotting without error bars")
+            sd_col = None
+        else:
+            sd_col = sd_candidates[0]
+
+        sub = pd.DataFrame({
+            'cell_type': df['cell_type'],
+            'model': model,
+            'mse': df[mse_col],
+            'sd': df[sd_col] if sd_col is not None else np.nan,
+            'sd_source': sd_col if sd_col is not None else 'none',
+        })
+        if 'n_cells' in df.columns:
+            sub['n_cells'] = df['n_cells']
+        records.append(sub)
+
+    plot_data = pd.concat(records, ignore_index=True)
+
+    # Cell-type ordering
+    if sort_by is not None and f'{sort_by}_mse' in df.columns:
+        order = df.sort_values(f'{sort_by}_mse')['cell_type'].tolist()
+    else:
+        order = df['cell_type'].tolist()
+
+    # Colours: InterScale from config palette, GITIII dark grey
+    colors = {}
+    for model in models:
+        if model == 'GITIII':
+            colors[model] = gitiii_color
+        elif model in model_palette:
+            colors[model] = model_palette[model]
+        else:
+            print(f"Warning: Model '{model}' not found in config palette. Using grey.")
+            colors[model] = "#999999"
+
+    # Grouped barplot
+    fig, ax = plt.subplots(figsize=figsize)
+
+    x = np.arange(len(order))
+    n_models = len(models)
+    width = 0.8 / n_models
+
+    for i, model in enumerate(models):
+        sub = plot_data[plot_data['model'] == model].set_index('cell_type').loc[order]
+        offset = (i - (n_models - 1) / 2) * width
+        ax.bar(
+            x + offset,
+            sub['mse'].values,
+            width=width,
+            yerr=sub['sd'].values,
+            capsize=3,
+            label=model,
+            color=colors[model],
+            edgecolor='black',
+            linewidth=1.0,
+            alpha=0.8,
+            error_kw={'elinewidth': 1.0, 'ecolor': 'black'},
+        )
+
+    xticklabels = list(order)
+    if annotate_n_cells and 'n_cells' in plot_data.columns:
+        n_cells = plot_data.drop_duplicates('cell_type').set_index('cell_type')['n_cells']
+        xticklabels = [f'{ct}\n(n={int(n_cells[ct]):,})' for ct in order]
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(xticklabels, rotation=45, ha='right')
+    ax.set_xlabel(
+        'Cell type',
+        fontsize=general_config['legend_fontsize'],
+        fontweight=general_config['legend_fontweight'],
+    )
+    ax.set_ylabel(
+        'Reconstruction MSE',
+        fontsize=general_config['legend_fontsize'],
+        fontweight=general_config['legend_fontweight'],
+    )
+    ax.set_title(
+        'Reconstruction error per cell type',
+        fontsize=general_config['title_fontsize'],
+        fontweight=general_config['title_fontweight'],
+    )
+
+    ax.grid(axis='y', alpha=0.3, linestyle='--')
+    ax.set_axisbelow(True)
+    ax.spines[['top', 'right']].set_visible(False)
+
+    plt.tight_layout()
+
+    if save_path is not None:
+        plt.savefig(
+            os.path.join(BASE_DIR_REPO, 'figures/', f'{save_path}.jpg'),
+            dpi=300, bbox_inches='tight'
+        )
+
+    plt.show()
+
+    # Note: sd columns can have different meanings per model (see 'sd_source')
+    print(plot_data.groupby('model')['sd_source'].first().to_string())
+
+    return fig, ax, plot_data
+
+
+# Mapping from the model names used in the benchmark result csvs to the
+# palette keys in figures/config.yml, plus display labels for the x-axis.
+MODEL_ALIASES = {
+    'Interscale_Dual': 'DualInterScale',
+    'InterScale_Dual': 'DualInterScale',
+    'Interscale_Global_PCA': 'PCATransformer',
+    'InterScale_Global_PCA': 'PCATransformer',
+}
+
+MODEL_LABELS = {
+    'Interscale_Dual': 'InterScale (Dual)',
+    'InterScale_Dual': 'InterScale (Dual)',
+    'Interscale_Global_PCA': 'InterScale (PCA)',
+    'InterScale_Global_PCA': 'InterScale (PCA)',
+    'Steamboat': 'Steamboat',
+    'Amici': 'AMICI',
+    'AMICI': 'AMICI',
+    'GITIII': 'GITIII',
+}
+
+# Baselines are plotted in greys, InterScale variants take their config colour.
+BASELINE_COLORS = {
+    'GITIII': "#4D4D4D",
+    'Steamboat': "#4D4D4D",
+    'Amici': "#8C8C8C",
+    'AMICI': "#8C8C8C",
+}
+
+DATASET_LABELS = {
+    'meltonjimenez_25': 'Melton & Jimenez 2025',
+    'melton25': 'Melton & Jimenez 2025',
+    'legnini_23': 'Legnini 2023',
+    'legnini23': 'Legnini 2023',
+}
+
+
+
+def plot_cosine_sim_comparison(csv_path,
+                               dataset,
+                               BASE_DIR_REPO,
+                               models=None,
+                               figsize=None,
+                               annotate_seed=False,
+                               bar_width_in=0.38,
+                               bar_gap_in=0.04,
+                               height=4.5,
+                               save_path=None):
+    """
+    Plot the cosine similarity per model for one dataset, in the same style as
+    `plot_f1_across_seeds` / `plot_mse_per_celltype`.
+
+    For models run with several seeds (the InterScale variants) only the *best*
+    run is shown, i.e. the seed with the highest cosine similarity. Models run
+    once (Steamboat, AMICI) contribute their single value. Every bar therefore
+    corresponds to exactly one run and no error bars are drawn.
+
+    Parameters:
+    -----------
+    csv_path : str
+        Path to the combined benchmark csv. Expected columns: 'model',
+        'dataset', 'cosine_sim', optionally 'seed'.
+    dataset : str
+        Dataset to plot, as it appears in the 'dataset' column
+        (e.g. 'meltonjimenez_25' or 'legnini_23').
+    BASE_DIR_REPO : str
+        Repository base dir, used to load `figures/config.yml`.
+    models : list of str, optional
+        Models to plot, in bar order. Defaults to all models present for this
+        dataset, InterScale variants first and baselines after.
+    figsize : tuple, optional
+        Figure size. By default the width is derived from `bar_width_in`,
+        `bar_gap_in` and the number of models, so the bars keep the same
+        physical width no matter how many models are plotted.
+    annotate_seed : bool, optional
+        Append the seed of the selected run to the x tick label, for models
+        that were run with more than one seed (default: False -- the seeds are
+        in the returned dataframe and would make the tick labels long).
+    bar_width_in : float, optional
+        Physical width of a single bar in inches (default: 0.38).
+    bar_gap_in : float, optional
+        Physical gap between neighbouring bars in inches (default: 0.04, i.e.
+        the bars almost touch).
+    height : float, optional
+        Figure height in inches (default: 4.5). Ignored if `figsize` is given.
+    save_path : str, optional
+        Path name relative to `<BASE_DIR_REPO>/figures/` to save the plot as jpg.
+
+    Returns:
+    --------
+    fig, ax : matplotlib figure and axes
+    best_df : pd.DataFrame
+        The selected best run per model, with the number of runs it was picked
+        from ('n_runs') for reference.
+    """
+    general_config, model_palette = set_plot_configs(BASE_DIR_REPO)
+
+    df = pd.read_csv(csv_path)
+
+    for col in ('model', 'dataset', 'cosine_sim'):
+        if col not in df.columns:
+            raise ValueError(f"No column '{col}' found in {csv_path}")
+
+    df_ds = df[df['dataset'] == dataset].copy()
+    if df_ds.empty:
+        raise ValueError(
+            f"No rows for dataset='{dataset}' in {csv_path}. "
+            f"Available: {sorted(df['dataset'].unique())}"
+        )
+
+    # Keep only the best run per model (highest cosine similarity)
+    n_runs = df_ds.groupby('model')['cosine_sim'].size().rename('n_runs')
+    best_df = (
+        df_ds.loc[df_ds.groupby('model')['cosine_sim'].idxmax()]
+        .join(n_runs, on='model')
+        .reset_index(drop=True)
+    )
+
+    # Default order: InterScale variants first, then baselines
+    if models is None:
+        present = best_df['model'].tolist()
+        interscale = [m for m in present if m.lower().startswith('interscale')]
+        baselines = [m for m in present if m not in interscale]
+        models = sorted(interscale) + sorted(baselines)
+    else:
+        missing = [m for m in models if m not in set(best_df['model'])]
+        if missing:
+            print(f"Warning: no data for {missing} in dataset '{dataset}', skipping")
+            models = [m for m in models if m not in missing]
+
+    best_df = best_df.set_index('model').loc[models].reset_index()
+
+    # Colours: baselines grey, InterScale variants from the config palette
+    colors = []
+    for model in models:
+        if model in BASELINE_COLORS:
+            colors.append(BASELINE_COLORS[model])
+            continue
+        key = MODEL_ALIASES.get(model, model)
+        if key in model_palette:
+            colors.append(model_palette[key])
+        else:
+            print(f"Warning: Model '{model}' (palette key '{key}') not found in "
+                  f"config palette. Using grey.")
+            colors.append("#999999")
+
+    # Size the figure so that each bar is `bar_width_in` inches wide, rather
+    # than padding the x-axis (which would only add empty space around the
+    # bars). MARGIN_IN covers the y-axis label, ticks and a little breathing
+    # room on the right.
+    MARGIN_IN = 1.1
+    n = len(models)
+    if figsize is None:
+        fig_width = MARGIN_IN + n * (bar_width_in + bar_gap_in) + 2 * bar_gap_in
+        figsize = (fig_width, height)
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    # Narrow bars placed close together, so they almost touch. Work in inches
+    # and let the x-limits span the full bar block plus one gap on each side.
+    x = np.arange(n) * (bar_width_in + bar_gap_in)
+    ax.bar(
+        x,
+        best_df['cosine_sim'].values,
+        width=bar_width_in,
+        color=colors,
+        edgecolor='black',
+        linewidth=1.0,
+        alpha=0.8,
+    )
+    ax.set_xlim(
+        x[0] - bar_width_in / 2 - bar_gap_in,
+        x[-1] + bar_width_in / 2 + bar_gap_in,
+    )
+
+    xticklabels = []
+    for _, row in best_df.iterrows():
+        label = MODEL_LABELS.get(row['model'], row['model'].replace('_', ' '))
+        seed = row.get('seed', np.nan)
+        if annotate_seed and row['n_runs'] > 1 and pd.notna(seed):
+            label = f'{label}, seed {int(seed)}'
+        xticklabels.append(label)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(xticklabels, rotation=90, ha='center', va='top')
+    ax.set_ylabel(
+        'Cosine similarity',
+        fontsize=general_config['legend_fontsize'],
+        fontweight=general_config['legend_fontweight'],
+    )
+    ax.set_title(
+        DATASET_LABELS.get(dataset, dataset),
+        fontsize=general_config['title_fontsize'],
+        fontweight=general_config['title_fontweight'],
+    )
+
+    ax.set_ylim(0, 1)
+    ax.grid(axis='y', alpha=0.3, linestyle='--')
+    ax.set_axisbelow(True)
+    ax.spines[['top', 'right']].set_visible(False)
+
+    plt.tight_layout()
+
+    if save_path is not None:
+        plt.savefig(
+            os.path.join(BASE_DIR_REPO, 'figures/', f'{save_path}.jpg'),
+            dpi=300, bbox_inches='tight'
+        )
+
+    plt.show()
+
+    cols = [c for c in ('model', 'cosine_sim', 'seed', 'n_runs', 'epochs') if c in best_df.columns]
+    print(best_df[cols].to_string(index=False))
+
+    return fig, ax, best_df

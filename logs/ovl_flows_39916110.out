@@ -1,0 +1,823 @@
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from /home/icb/francesca.drummer/.netrc.
+sweep ghyigj4d: 12 runs (https://wandb.ai/francesca-drummer/InterScale_hyperparameter_sweep/sweeps/ghyigj4d)
+                                                        run_name    state  step  seed  val_concordance_corr    val_r2
+dual_legnini23_ovl_step0_regr_node_42_GCN_self-attn-transformer_ finished step0    42              0.120325 -0.415406
+dual_legnini23_ovl_step0_regr_node_43_GCN_self-attn-transformer_ finished step0    43              0.125762 -0.337135
+dual_legnini23_ovl_step0_regr_node_44_GCN_self-attn-transformer_ finished step0    44              0.123021 -0.293624
+dual_legnini23_ovl_step1_regr_node_42_GCN_self-attn-transformer_ finished step1    42              0.118448 -0.593899
+dual_legnini23_ovl_step1_regr_node_43_GCN_self-attn-transformer_ finished step1    43              0.106551 -1.279814
+dual_legnini23_ovl_step1_regr_node_44_GCN_self-attn-transformer_ finished step1    44              0.119825 -1.307139
+dual_legnini23_ovl_step2_regr_node_42_GCN_self-attn-transformer_ finished step2    42              0.159238 -0.397744
+dual_legnini23_ovl_step2_regr_node_43_GCN_self-attn-transformer_ finished step2    43              0.155623 -0.276048
+dual_legnini23_ovl_step2_regr_node_44_GCN_self-attn-transformer_ finished step2    44              0.153095 -0.227406
+dual_legnini23_ovl_step3_regr_node_42_GCN_self-attn-transformer_ finished step3    42              0.056590 -1.681442
+dual_legnini23_ovl_step3_regr_node_43_GCN_self-attn-transformer_ finished step3    43              0.042924 -0.821417
+dual_legnini23_ovl_step3_regr_node_44_GCN_self-attn-transformer_ finished step3    44              0.048576 -0.433732
+applied arm 'step0': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step0 seed 42 | ['overlap_step0_p0'] | max_seq_len 2812 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step0_regr_node_42_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/conda/envs/interscale/lib/python3.12/site-packages/geome/ann2data/basic.py:90: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:206.)
+  return torch.from_numpy(pd.get_dummies(obj).to_numpy()).to(torch.float)
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  64 windows over 17 samples; 0/6 zone pairs share a window
+applied arm 'step0': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step0 seed 43 | ['overlap_step0_p0'] | max_seq_len 2812 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step0_regr_node_43_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  64 windows over 17 samples; 0/6 zone pairs share a window
+applied arm 'step0': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step0 seed 44 | ['overlap_step0_p0'] | max_seq_len 2812 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step0_regr_node_44_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  64 windows over 17 samples; 0/6 zone pairs share a window
+applied arm 'step1': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step1 seed 42 | ['overlap_step1_p0'] | max_seq_len 3010 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step1_regr_node_42_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  33 windows over 17 samples; 2/6 zone pairs share a window
+applied arm 'step1': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step1 seed 43 | ['overlap_step1_p0'] | max_seq_len 3010 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step1_regr_node_43_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  33 windows over 17 samples; 2/6 zone pairs share a window
+applied arm 'step1': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step1 seed 44 | ['overlap_step1_p0'] | max_seq_len 3010 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step1_regr_node_44_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  33 windows over 17 samples; 2/6 zone pairs share a window
+applied arm 'step2': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step2 seed 42 | ['overlap_step2_p0', 'overlap_step2_p1'] | max_seq_len 3803 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step2_regr_node_42_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  81 windows over 17 samples; 3/6 zone pairs share a window
+applied arm 'step2': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step2 seed 43 | ['overlap_step2_p0', 'overlap_step2_p1'] | max_seq_len 3803 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step2_regr_node_43_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  81 windows over 17 samples; 3/6 zone pairs share a window
+applied arm 'step2': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step2 seed 44 | ['overlap_step2_p0', 'overlap_step2_p1'] | max_seq_len 3803 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step2_regr_node_44_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  81 windows over 17 samples; 3/6 zone pairs share a window
+applied arm 'step3': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step3 seed 42 | ['overlap_step3_p0'] | max_seq_len 4318 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step3_regr_node_42_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  17 windows over 17 samples; 6/6 zone pairs share a window
+applied arm 'step3': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step3 seed 43 | ['overlap_step3_p0'] | max_seq_len 4318 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step3_regr_node_43_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  17 windows over 17 samples; 6/6 zone pairs share a window
+applied arm 'step3': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step3 seed 44 | ['overlap_step3_p0'] | max_seq_len 4318 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step3_regr_node_44_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+  17 windows over 17 samples; 6/6 zone pairs share a window
+
+--- 1. MEASURABLE: zone pairs that share a window ---
+  step0 (width 1            overlap none): 0/6  (none)
+  step1 (width 2, stride 2  overlap none): 2/6  ['SHH-near', 'far-medium']
+  step2 (width 2, stride 1  overlap 50% ): 3/6  ['SHH-near', 'far-medium', 'medium-near']
+  step3 (whole sample       overlap n/a ): 6/6  ['SHH-far', 'SHH-medium', 'SHH-near', 'far-medium', 'far-near', 'medium-near']
+
+--- 2. RECOVERED: measurable entries relative to the whole sample ---
+  step0: nothing measurable
+  step1: n= 4  mean ratio 1.085  range 1.042-1.124
+  step2: n= 6  mean ratio 1.092  range 1.053-1.117
+
+--- 3. DILUTION: raw vs corrected magnitude ---
+  step1: median |raw| 0.4272  median |corrected| 0.9224  median co-occurrence 0.470
+  step2: median |raw| 0.1881  median |corrected| 0.9389  median co-occurrence 0.198
+  step3: median |raw| 0.7485  median |corrected| 0.8457  median co-occurrence 0.882
+wrote /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/legnini23/sliding_window_ablation/fig_overlap_ladder.png
+
+done. table and figure in /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/legnini23/sliding_window_ablation
+[W828 19:22:47.568504653 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

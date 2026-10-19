@@ -1,0 +1,36 @@
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+device: cuda
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+Traceback (most recent call last):
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/overfit_single_graph.py", line 182, in <module>
+    main()
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/overfit_single_graph.py", line 162, in main
+    batch = pick_graph(pyg, device)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/overfit_single_graph.py", line 87, in pick_graph
+    data = max(pyg, key=lambda d: d.num_nodes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/overfit_single_graph.py", line 87, in <lambda>
+    data = max(pyg, key=lambda d: d.num_nodes)
+                                  ^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'num_nodes'

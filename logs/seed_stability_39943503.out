@@ -1,0 +1,265 @@
+======================================================================
+ melton25 node_reg -- decoder loading stability across seeds
+   host   : cpusrv24.scidom.de
+   job id : 39943503
+   arrays : /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/melton25_revision/best_recon/analysis
+   figures: /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/seed_stability
+   sweep  : <none>
+======================================================================
+WARNING: no GPU visible on cpusrv24.scidom.de -- running without --nv.
+         torch.cuda.is_available() will be False. Submit to gpu_p
+         (or interactive_gpu_p / cemp_gpu_p) for GPU acceleration.
+
+=== per-seed sanity checks ===
+ seed  n_obs  n_vars  n_dims_local  n_dims_global  program_size_local  program_size_global  median_gene_r2_local  median_gene_r2_global  median_gene_r_local  median_gene_r_global  q90_gene_r_global  n_genes_r_gt_0.2_local  n_genes_r_gt_0.2_global  pred_true_sd_ratio_global
+   40 386727     979            44             46                  29                   43             -4.356149              -0.177280             0.006252              0.017290           0.132914                      31                       51                   0.362143
+   41 386727     979            44             45                  26                   32             -4.010787              -0.159476             0.009398              0.016648           0.138869                      36                       56                   0.334724
+   42 386727     979            47             52                  38                   48             -3.392256              -0.167563             0.007882              0.020773           0.146613                      38                       65                   0.352433
+   43 386727     979            41             44                  14                   41             -3.929164              -0.187093             0.007328              0.016717           0.114598                      25                       40                   0.348148
+   44 386727     979            50             47                  14                   63             -4.263934              -0.180353             0.010700              0.018963           0.138251                      30                       61                   0.344827
+
+=== cross-seed stability (10 seed pairs) ===
+ component                         metric                level     n   mean    sd  median    min   max  permutation_null
+     local              spearman_loadings      per_matched_dim   754  0.002 0.035   0.002 -0.099 0.156               NaN
+     local          abs_spearman_loadings      per_matched_dim   754  0.027 0.022   0.023  0.000 0.156               NaN
+     local                  jaccard_top10      per_matched_dim   754  0.034 0.043   0.000  0.000 0.176             0.006
+     local                  jaccard_top20      per_matched_dim   754  0.051 0.038   0.053  0.000 0.212             0.010
+     local              spearman_loadings     per_selected_dim   361 -0.001 0.034  -0.001 -0.099 0.082               NaN
+     local          abs_spearman_loadings     per_selected_dim   361  0.027 0.021   0.023  0.000 0.099               NaN
+     local                  jaccard_top10     per_selected_dim   361  0.036 0.043   0.053  0.000 0.176             0.006
+     local                  jaccard_top20     per_selected_dim   361  0.056 0.039   0.053  0.000 0.176             0.010
+     local          abs_spearman_loadings shuffled_dim_pairing 25600  0.028 0.021   0.024  0.000 0.160               NaN
+     local                  jaccard_top10 shuffled_dim_pairing 25600  0.035 0.043   0.000  0.000 0.429               NaN
+     local                  jaccard_top20 shuffled_dim_pairing 25600  0.050 0.037   0.053  0.000 0.290               NaN
+     local             abs_r_matched_dims      per_matched_dim  1280  0.335 0.110   0.329  0.057 0.696               NaN
+     local                   discard_rate        per_seed_pair    10  0.411 0.047   0.422  0.352 0.484               NaN
+     local                jaccard_program        per_seed_pair    10  0.075 0.036   0.081  0.000 0.120             0.011
+    global              spearman_loadings      per_matched_dim  1187  0.004 0.035   0.003 -0.111 0.118               NaN
+    global          abs_spearman_loadings      per_matched_dim  1187  0.028 0.021   0.024  0.000 0.118               NaN
+    global                  jaccard_top10      per_matched_dim  1187  0.043 0.048   0.053  0.000 0.333             0.006
+    global                  jaccard_top20      per_matched_dim  1187  0.062 0.039   0.053  0.000 0.290             0.010
+    global              spearman_loadings     per_selected_dim   438  0.005 0.036   0.007 -0.111 0.117               NaN
+    global          abs_spearman_loadings     per_selected_dim   438  0.029 0.022   0.025  0.000 0.117               NaN
+    global                  jaccard_top10     per_selected_dim   438  0.041 0.048   0.053  0.000 0.250             0.006
+    global                  jaccard_top20     per_selected_dim   438  0.059 0.039   0.053  0.000 0.290             0.010
+    global          abs_spearman_loadings shuffled_dim_pairing 25600  0.028 0.021   0.023  0.000 0.134               NaN
+    global                  jaccard_top10 shuffled_dim_pairing 25600  0.042 0.047   0.053  0.000 0.333               NaN
+    global                  jaccard_top20 shuffled_dim_pairing 25600  0.059 0.039   0.053  0.000 0.333               NaN
+    global             abs_r_matched_dims      per_matched_dim  1280  0.493 0.128   0.497  0.086 0.803               NaN
+    global                   discard_rate        per_seed_pair    10  0.073 0.016   0.070  0.039 0.094               NaN
+    global                jaccard_program        per_seed_pair    10  0.120 0.041   0.113  0.058 0.178             0.023
+gene_level                label_agreement        per_seed_pair    10  0.443 0.063   0.446  0.316 0.533               NaN
+gene_level       spearman_rank_difference        per_seed_pair    10  0.009 0.023   0.004 -0.020 0.050               NaN
+gene_level sign_agreement_rank_difference        per_seed_pair    10  0.504 0.008   0.504  0.492 0.519               NaN
+wrote /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/seed_stability/seed_stability_boxplot.png
+
+wrote /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/seed_stability/stability_summary.csv and /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/seed_stability/stability_pairs.csv
+WARNING: no GPU visible on cpusrv24.scidom.de -- running without --nv.
+         torch.cuda.is_available() will be False. Submit to gpu_p
+         (or interactive_gpu_p / cemp_gpu_p) for GPU acceleration.
+=== melton25: basis-free cross-seed stability ===
+arrays /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/melton25_revision/best_recon/analysis
+out    /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/seed_stability
+386727 cells, 979 genes, 5 seeds, groups(cell_type_coarse): {np.str_('Acinar'): np.int64(184395), np.str_('Alpha'): np.int64(10318), np.str_('Beta'): np.int64(9028), np.str_('Ductal'): np.int64(127936), np.str_('Endocrine'): np.int64(3658), np.str_('Endothelial'): np.int64(8528), np.str_('Fibroblasts'): np.int64(25194), np.str_('Immune'): np.int64(14578), np.str_('Mast'): np.int64(3092)}
+Z @ W.T reproduces the stored per-gene Pearson for both decoders (< 1e-5)
+
+--- (1)+(2) gene-gene co-loading geometry (rotation/sign/permutation invariant) ---
+           spearman_gene_gram  spearman_gene_gram_null  z_vs_null   cka_S  cka_S_null  cka_S_rownorm  cka_S_rownorm_null   cka_W  cka_W_null
+component                                                                                                                                   
+global                +0.0158                  -0.0000   +10.0817 +0.1008     +0.0728        +0.0926             +0.0760 +0.1581     +0.1133
+local                 +0.0151                  +0.0000   +10.2219 +0.0965     +0.0700        +0.0885             +0.0747 +0.2362     +0.1037
+
+--- (3) per-gene agreement of PREDICTED expression across seeds (no matching) ---
+           median_abs_r  median_r  frac_abs_r_gt_0.5  median_abs_r_gene_shifted_null
+component                                                                           
+global          +0.1465   +0.0873            +0.0668                         +0.1203
+local           +0.1230   +0.0230            +0.0099                         +0.1158
+
+--- (4a) cross-seed agreement of the predicted cell_type_coarse contrast ---
+                       spearman_lfc  sign_agreement_all  sign_agreement_top20_true
+component group                                                                   
+global    Acinar            +0.1863             +0.5536                    +0.9300
+          Alpha             +0.2694             +0.5700                    +1.0000
+          Beta              +0.3035             +0.5781                    +1.0000
+          Ductal            +0.2762             +0.5806                    +0.9200
+          Endocrine         +0.1815             +0.5428                    +0.9600
+          Endothelial       +0.0834             +0.5201                    +0.6100
+          Fibroblasts       +0.1629             +0.5442                    +0.8600
+          Immune            +0.0806             +0.5244                    +0.7500
+          Mast              +0.1867             +0.5459                    +0.8200
+local     Acinar            +0.0389             +0.5066                    +0.7900
+          Alpha             +0.0728             +0.5175                    +0.9200
+          Beta              +0.0831             +0.5236                    +0.9200
+          Ductal            +0.0402             +0.5126                    +0.6800
+          Endocrine         +0.0450             +0.5111                    +0.7600
+          Endothelial       -0.0039             +0.4985                    +0.4900
+          Fibroblasts       +0.0351             +0.5073                    +0.6700
+          Immune            +0.0270             +0.5077                    +0.6500
+          Mast              +0.0400             +0.5154                    +0.6600
+
+--- (4b) agreement of that contrast with the OBSERVED data: single seed vs 5-seed mean ---
+                       spearman_vs_observed_1seed  spearman_vs_observed_ens5  spearman_vs_observed_null  sign_agreement_vs_observed_all_1seed  sign_agreement_vs_observed_all_ens5  sign_agreement_vs_observed_all_null  sign_agreement_vs_observed_top20_1seed  sign_agreement_vs_observed_top20_ens5  sign_agreement_vs_observed_top20_null
+component group                                                                                                                                                                                                                                                                                                                              
+global    Acinar                          +0.3491                    +0.5649                    +0.0494                               +0.6082                              +0.6742                                  NaN                                 +0.9500                                +0.9500                                +0.5680
+          Alpha                           +0.4059                    +0.5852                    -0.0386                               +0.6104                              +0.6782                                  NaN                                 +1.0000                                +1.0000                                +0.5010
+          Beta                            +0.4445                    +0.6239                    -0.0080                               +0.6131                              +0.6619                                  NaN                                 +1.0000                                +1.0000                                +0.5000
+          Ductal                          +0.3772                    +0.5504                    +0.0032                               +0.6080                              +0.6476                                  NaN                                 +0.9600                                +1.0000                                +0.5210
+          Endocrine                       +0.3278                    +0.5049                    +0.0116                               +0.5924                              +0.6435                                  NaN                                 +0.9800                                +1.0000                                +0.5010
+          Endothelial                     +0.1330                    +0.2477                    -0.0085                               +0.5350                              +0.5771                                  NaN                                 +0.5200                                +0.5500                                +0.4850
+          Fibroblasts                     +0.2808                    +0.4677                    -0.0426                               +0.5816                              +0.6435                                  NaN                                 +0.9200                                +1.0000                                +0.4530
+          Immune                          +0.1904                    +0.3436                    +0.0056                               +0.5536                              +0.6067                                  NaN                                 +0.8500                                +1.0000                                +0.5120
+          Mast                            +0.3279                    +0.5240                    -0.0051                               +0.5941                              +0.6456                                  NaN                                 +0.8600                                +0.9000                                +0.5330
+local     Acinar                          +0.1234                    +0.2343                    -0.0030                               +0.5275                              +0.5475                                  NaN                                 +0.8400                                +0.9500                                +0.5270
+          Alpha                           +0.1730                    +0.2785                    -0.0071                               +0.5479                              +0.5781                                  NaN                                 +0.9600                                +1.0000                                +0.4870
+          Beta                            +0.2051                    +0.3442                    -0.0022                               +0.5561                              +0.6027                                  NaN                                 +0.9600                                +1.0000                                +0.4650
+          Ductal                          +0.1235                    +0.2492                    -0.0076                               +0.5356                              +0.5689                                  NaN                                 +0.8000                                +0.9000                                +0.5170
+          Endocrine                       +0.1341                    +0.2257                    -0.0120                               +0.5477                              +0.5792                                  NaN                                 +0.8500                                +0.9500                                +0.5190
+          Endothelial                     +0.0709                    +0.1465                    -0.0082                               +0.5258                              +0.5495                                  NaN                                 +0.6100                                +0.7000                                +0.4740
+          Fibroblasts                     +0.1211                    +0.2497                    -0.0046                               +0.5438                              +0.5751                                  NaN                                 +0.7900                                +0.9500                                +0.5680
+          Immune                          +0.0991                    +0.1915                    -0.0119                               +0.5201                              +0.5352                                  NaN                                 +0.7900                                +0.9000                                +0.5010
+          Mast                            +0.1176                    +0.2306                    -0.0043                               +0.5279                              +0.5424                                  NaN                                 +0.6800                                +0.8500                                +0.5020
+
+--- (5) do the same gene PAIRS cluster together (k=8) ---
+              ari  ari_null  pair_jaccard  pair_jaccard_null
+component                                                   
+global    +0.0041   +0.0002       +0.1049            +0.1029
+local     +0.0018   -0.0004       +0.1194            +0.1184
+
+--- (6) how much of top-20 Jaccard is the 1/std(x_g) denominator ---
+component parameterisation  jaccard_top20_matched_index  jaccard_top20_shuffled_dims  excess_over_shuffled
+    local                S                      +0.0512                      +0.0508               +0.0004
+    local                W                      +0.0537                      +0.0558               -0.0022
+    local        S_rownorm                      +0.0108                      +0.0116               -0.0007
+   global                S                      +0.0595                      +0.0601               -0.0006
+   global                W                      +0.0382                      +0.0385               -0.0003
+   global        S_rownorm                      +0.0116                      +0.0106               +0.0010
+
+--- (8) per-gene loading stability (gene's co-loading profile, across seeds) ---
+           profile_rho_mean  profile_rho_null_mean  excess_over_null
+component                                                           
+global              +0.0145                +0.0033           +0.0112
+local               +0.0152                +0.0030           +0.0122
+  local  genes with excess over null > 0.10: 3.0% (29/979) | most stable: MZT2A, CUZD1, KRT8, NEAT1, ANXA4, AZU1
+  global genes with excess over null > 0.10: 2.2% (22/979) | most stable: ANXA4, CLU, KRT8, VIM, HSP90AA1, FGFR3
+
+--- (7) is a gene's local-vs-global assignment reproducible (Fig 3E/3F claim) ---
+cross-seed spearman of r_local - r_global : +0.1207 (sd 0.045)
+cross-seed sign agreement                 : 0.5387 (chance 0.5)
+leave-one-out: rho(mean of 4, held-out)   : +0.1960
+genes where all 5 seeds agree which component wins: 12% (113/979)
+unanimous genes, largest |delta| first:
+   gene  delta_pearson_mean  delta_pearson_sd  n_seeds_favour_local  all_seeds_agree favoured_component
+  RPL34             -0.2513           +0.0455                     0             True             global
+    APP             -0.2261           +0.0353                     0             True             global
+   KRT7             -0.2055           +0.1151                     0             True             global
+  CCND1             -0.2015           +0.1133                     0             True             global
+   SCG5             -0.1969           +0.1853                     0             True             global
+   TYK2             -0.1895           +0.0802                     0             True             global
+TACSTD2             -0.1835           +0.0923                     0             True             global
+   AZU1             -0.1652           +0.1081                     0             True             global
+     GC             -0.1632           +0.0998                     0             True             global
+COL18A1             -0.1594           +0.1065                     0             True             global
+  CXCL3             -0.1561           +0.1137                     0             True             global
+ MALAT1             -0.1556           +0.0866                     0             True             global
+
+=== headline ===
+local  gene-gram rho +0.015 (null +0.000, z +10.2) | CKA(rownorm) 0.088 (null 0.075) | pred |r| 0.123 (null 0.116)
+global gene-gram rho +0.016 (null -0.000, z +10.1) | CKA(rownorm) 0.093 (null 0.076) | pred |r| 0.147 (null 0.120)
+
+global decoder, per group: fraction of genes where all seeds agree on the direction, and where that direction also matches the observed data
+             unanimous  unanimous_and_right
+group                                      
+Acinar           0.142                0.127
+Alpha            0.178                0.161
+Beta             0.191                0.172
+Ductal           0.199                0.185
+Endocrine        0.132                0.112
+Endothelial      0.092                0.059
+Fibroblasts      0.127                0.106
+Immune           0.093                0.066
+Mast             0.137                0.117
+
+wrote 10 csv files to /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/seed_stability
+WARNING: no GPU visible on cpusrv24.scidom.de -- running without --nv.
+         torch.cuda.is_available() will be False. Submit to gpu_p
+         (or interactive_gpu_p / cemp_gpu_p) for GPU acceleration.
+=== melton25: embedding / panel / rank stability ===
+arrays /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/melton25_revision/best_recon/analysis
+out    /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/seed_stability
+5 seeds, 979 genes, n_embed 128
+
+clustering 386727 cells at k=[5, 9, 15, 25] (biological groups: 9 levels of cell_type_coarse)
+
+--- (1) cross-seed agreement of the embedding CLUSTERINGS ---
+                 ami     ari     nmi  fowlkes_mallows  ami_shuffled  ari_shuffled
+component k                                                                      
+global    5  +0.2979 +0.2076 +0.2979          +0.4079       +0.0000       +0.0001
+          9  +0.2695 +0.1610 +0.2695          +0.2709       +0.0000       +0.0000
+          15 +0.2720 +0.1459 +0.2720          +0.2146       -0.0000       +0.0000
+          25 +0.2907 +0.1269 +0.2909          +0.1704       -0.0000       -0.0000
+local     5  +0.3774 +0.3197 +0.3774          +0.4779       +0.0000       +0.0000
+          9  +0.4073 +0.2971 +0.4073          +0.3883       -0.0000       +0.0000
+          15 +0.4167 +0.2689 +0.4168          +0.3250       +0.0000       +0.0000
+          25 +0.4151 +0.2321 +0.4152          +0.2693       -0.0000       -0.0000
+
+--- (1b) do those clusters correspond to cell_type_coarse? ---
+              ami_vs_biology  ari_vs_biology  nmi_vs_biology
+component k                                                 
+global    5          +0.2168         +0.1790         +0.2168
+          9          +0.1972         +0.1170         +0.1972
+          15         +0.1905         +0.0863         +0.1906
+          25         +0.1910         +0.0605         +0.1911
+local     5          +0.2802         +0.2135         +0.2803
+          9          +0.2936         +0.1771         +0.2936
+          15         +0.2731         +0.1190         +0.2732
+          25         +0.2608         +0.0817         +0.2609
+
+--- (2) top genes of the most important dimensions, intersected across seeds ---
+component  source  n_top_dims  panel_size_mean  n_in_all_5_seeds  n_in_all_5_null  frac_of_mean_panel_in_all_5  mean_pairwise_jaccard  mean_pairwise_jaccard_null
+    local    meta           1           17.600                 0            0.000                        0.000                  0.055                       0.009
+    local rownorm           1           20.000                 0            0.000                        0.000                  0.018                       0.011
+    local    meta           2           22.200                 0            0.000                        0.000                  0.066                       0.011
+    local rownorm           2           39.800                 0            0.000                        0.000                  0.039                       0.021
+    local    meta           3           23.600                 0            0.000                        0.000                  0.073                       0.012
+    local rownorm           3           59.200                 0            0.000                        0.000                  0.048                       0.032
+    local    meta           5           24.200                 0            0.000                        0.000                  0.075                       0.012
+    local rownorm           5           96.600                 0            0.010                        0.000                  0.060                       0.053
+    local    meta          10           24.200                 0            0.000                        0.000                  0.075                       0.011
+    local rownorm          10          185.800                 1            0.255                        0.005                  0.116                       0.105
+   global    meta           1           20.000                 0            0.000                        0.000                  0.080                       0.011
+   global rownorm           1           20.000                 0            0.000                        0.000                  0.013                       0.010
+   global    meta           2           30.400                 0            0.000                        0.000                  0.091                       0.016
+   global rownorm           2           40.000                 0            0.000                        0.000                  0.025                       0.021
+   global    meta           3           36.200                 0            0.000                        0.000                  0.109                       0.019
+   global rownorm           3           59.000                 0            0.000                        0.000                  0.042                       0.031
+   global    meta           5           42.000                 0            0.000                        0.000                  0.115                       0.022
+   global rownorm           5           96.800                 0            0.010                        0.000                  0.058                       0.053
+   global    meta          10           45.000                 0            0.000                        0.000                  0.120                       0.023
+   global rownorm          10          185.200                 1            0.280                        0.005                  0.120                       0.105
+
+--- (3) top-N gene-rank overlap, tuned to a shared fraction of 0.5 ---
+ranking  target  n_first_over_target  frac_at_that_N  chance_at_that_N  n_at_max_excess  frac_at_max_excess  chance_at_max_excess  max_excess
+    avg   0.500                  490           0.502             0.063              475               0.495                 0.055       0.439
+ global   0.500                  710           0.508             0.277              500               0.354                 0.068       0.286
+  local   0.500                  680           0.506             0.233              385               0.397                 0.024       0.373
+
+  curve at selected N (ranking = avg):
+  N  frac_N  n_in_all_5  frac_in_all_5  frac_in_all_5_chance  excess_over_chance  mean_pairwise_jaccard
+405   0.414         181          0.447                 0.029               0.418                  0.556
+810   0.827         584          0.721                 0.469               0.252                  0.796
+979   1.000         979          1.000                 1.000               0.000                  1.000
+
+--- (3c) is the rank agreement learned, or inherited from expression variance? ---
+ranking  rho_rank_vs_expression_sd  cross_seed_rho_raw  cross_seed_rho_raw_sd  cross_seed_rho_residual  cross_seed_rho_residual_sd
+  local                    +0.7491             +0.5816                +0.0282                  +0.0385                     +0.0349
+ global                    +0.6835             +0.4966                +0.0295                  +0.0423                     +0.0442
+  (residual = after regressing each seed's rank on per-gene expression sd, which is
+   identical across seeds; agreement surviving that is contributed by the model)
+
+--- (3b) do the two decoders prefer different genes? (top-N Jaccard) ---
+  N  jaccard_local_vs_global_same_seed  jaccard_local_vs_global_across_seeds  jaccard_chance
+405                              0.481                                 0.485           0.261
+810                              0.754                                 0.753           0.706
+979                              1.000                                 1.000           1.000
+
+wrote 7 csv files to /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/melton25/seed_stability

@@ -1,0 +1,276 @@
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+device: cuda
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+
+########## n_embed=16  graph: 4299 cells x 88 genes (legnini23) ##########
+  PCA-16 reconstruction R2 on this graph (linear ceiling for this width): 0.6768
+
+  A  local autoencoder, masking OFF (all nodes supervised, input = target)
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+    step     0  mse 1.8697  pearson -0.0225  R2 -13.3423
+    step   500  mse 0.2028  pearson 0.4719  R2 -0.3188
+    step  1000  mse 0.1613  pearson 0.4942  R2 0.2803
+    step  1500  mse 0.1514  pearson 0.5064  R2 0.3479
+    step  2000  mse 0.1467  pearson 0.5143  R2 0.3645
+    step  2500  mse 0.1440  pearson 0.5197  R2 0.3710
+    step  3000  mse 0.1425  pearson 0.5227  R2 0.3742
+    step  3500  mse 0.1417  pearson 0.5245  R2 0.3758
+    step  4000  mse 0.1412  pearson 0.5254  R2 0.3763
+    step  4500  mse 0.1408  pearson 0.5254  R2 0.3762
+    step  5000  mse 0.1406  pearson 0.5251  R2 0.3758
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+
+  B  full model autoencoder, masking OFF (local -> transformer -> global decoder)
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+    step     0  mse 1.7516  pearson 0.0138  R2 -13.6201
+    step   500  mse 0.1902  pearson 0.4668  R2 -0.3796
+    step  1000  mse 0.1584  pearson 0.4994  R2 0.2236
+    step  1500  mse 0.1490  pearson 0.5133  R2 0.3468
+    step  2000  mse 0.1450  pearson 0.5191  R2 0.3599
+    step  2500  mse 0.1429  pearson 0.5213  R2 0.3667
+    step  3000  mse 0.1417  pearson 0.5217  R2 0.3702
+    step  3500  mse 0.1410  pearson 0.5217  R2 0.3721
+    step  4000  mse 0.1406  pearson 0.5222  R2 0.3732
+    step  4500  mse 0.1404  pearson 0.5227  R2 0.3737
+    step  5000  mse 0.1402  pearson 0.5230  R2 0.3740
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+
+  C  real task, ONE fixed mask on one graph (memorisation possible)
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+    step     0  mse 1.9238  pearson -0.0231  R2 -48.8314
+    step   500  mse 0.2494  pearson 0.3868  R2 -0.7084
+    step  1000  mse 0.2048  pearson 0.4644  R2 -0.2286
+    step  1500  mse 0.1826  pearson 0.5039  R2 0.1231
+    step  2000  mse 0.1700  pearson 0.5262  R2 0.2876
+    step  2500  mse 0.1618  pearson 0.5433  R2 0.3613
+    step  3000  mse 0.1557  pearson 0.5545  R2 0.3788
+    step  3500  mse 0.1521  pearson 0.5599  R2 0.3858
+    step  4000  mse 0.1495  pearson 0.5632  R2 0.3903
+    step  4500  mse 0.1461  pearson 0.5688  R2 0.3967
+    step  5000  mse 0.1443  pearson 0.5706  R2 0.3991
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+
+########## n_embed=128  graph: 4299 cells x 88 genes (legnini23) ##########
+  PCA-88 reconstruction R2 on this graph (linear ceiling for this width): 1.0000
+
+  A  local autoencoder, masking OFF (all nodes supervised, input = target)
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+    step     0  mse 1.6377  pearson 0.0242  R2 -14.7807
+    step   500  mse 0.0025  pearson 0.9869  R2 0.9711
+    step  1000  mse 0.0007  pearson 0.9973  R2 0.9936
+    step  1500  mse 0.0004  pearson 0.9988  R2 0.9972
+    step  2000  mse 0.0002  pearson 0.9993  R2 0.9983
+    step  2500  mse 0.0002  pearson 0.9995  R2 0.9988
+    step  3000  mse 0.0002  pearson 0.9996  R2 0.9988
+    step  3500  mse 0.0002  pearson 0.9997  R2 0.9991
+    step  4000  mse 0.0001  pearson 0.9997  R2 0.9994
+    step  4500  mse 0.0001  pearson 0.9998  R2 0.9993
+    step  5000  mse 0.0002  pearson 0.9998  R2 0.9991
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+
+  B  full model autoencoder, masking OFF (local -> transformer -> global decoder)
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+    step     0  mse 1.7418  pearson -0.0400  R2 -13.2932
+    step   500  mse 0.0044  pearson 0.9484  R2 0.8980
+    step  1000  mse 0.0013  pearson 0.9869  R2 0.9733
+    step  1500  mse 0.0007  pearson 0.9935  R2 0.9865
+    step  2000  mse 0.0005  pearson 0.9959  R2 0.9911
+    step  2500  mse 0.0003  pearson 0.9972  R2 0.9934
+    step  3000  mse 0.0002  pearson 0.9979  R2 0.9955
+    step  3500  mse 0.0002  pearson 0.9983  R2 0.9961
+    step  4000  mse 0.0002  pearson 0.9987  R2 0.9967
+    step  4500  mse 0.0001  pearson 0.9989  R2 0.9976
+    step  5000  mse 0.0001  pearson 0.9991  R2 0.9974
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+
+  C  real task, ONE fixed mask on one graph (memorisation possible)
+Nr. of zero expression cells: 648
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+    step     0  mse 1.6172  pearson -0.0165  R2 -25.7024
+    step   500  mse 0.1254  pearson 0.6518  R2 -0.0119
+    step  1000  mse 0.0760  pearson 0.7571  R2 0.5416
+    step  1500  mse 0.0602  pearson 0.7996  R2 0.6617
+    step  2000  mse 0.0521  pearson 0.8241  R2 0.7054
+    step  2500  mse 0.0461  pearson 0.8422  R2 0.7332
+    step  3000  mse 0.0408  pearson 0.8540  R2 0.7538
+    step  3500  mse 0.0374  pearson 0.8647  R2 0.7696
+    step  4000  mse 0.0359  pearson 0.8686  R2 0.7735
+    step  4500  mse 0.0329  pearson 0.8768  R2 0.7873
+    step  5000  mse 0.0305  pearson 0.8805  R2 0.7945
+
+
+================ SUMMARY (fit on the data being fitted) ================
+ n_embed  regime       mse   pearson        R2
+      16  PCA-16       nan       nan    0.6768
+      16       A    0.1406    0.5251    0.3758
+      16       B    0.1402    0.5230    0.3740
+      16       C    0.1443    0.5706    0.3991
+     128  PCA-88       nan       nan    1.0000
+     128       A    0.0002    0.9998    0.9991
+     128       B    0.0001    0.9991    0.9974
+     128       C    0.0305    0.8805    0.7945
+
+Reading it: R2 near 1 in A/B means the architecture can represent the data and the
+sweep result is about the task, not capacity. R2 near 0 in A means it cannot.

@@ -1,0 +1,42 @@
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from /home/icb/francesca.drummer/.netrc.
+sweep z63vmk20: 18 runs (https://wandb.ai/francesca-drummer/InterScale_hyperparameter_sweep/sweeps/z63vmk20)
+                                                    run_name    state   arm  seed  val_concordance_corr    val_r2
+ dual_melton25_sw400_regr_node_42_GCN_self-attn-transformer_ finished  w400    42              0.018448 -0.008616
+ dual_melton25_sw400_regr_node_43_GCN_self-attn-transformer_ finished  w400    43              0.017091 -0.014969
+ dual_melton25_sw400_regr_node_44_GCN_self-attn-transformer_ finished  w400    44              0.018338 -0.009740
+ dual_melton25_sw800_regr_node_42_GCN_self-attn-transformer_ finished  w800    42              0.017446 -0.002163
+ dual_melton25_sw800_regr_node_43_GCN_self-attn-transformer_ finished  w800    43              0.016074 -0.019955
+ dual_melton25_sw800_regr_node_44_GCN_self-attn-transformer_ finished  w800    44              0.016106 -0.013581
+dual_melton25_sw1200_regr_node_42_GCN_self-attn-transformer_ finished w1200    42              0.015516 -0.009925
+dual_melton25_sw1200_regr_node_43_GCN_self-attn-transformer_ finished w1200    43              0.013765 -0.022180
+dual_melton25_sw1200_regr_node_44_GCN_self-attn-transformer_ finished w1200    44              0.015160 -0.013082
+dual_melton25_sw1600_regr_node_42_GCN_self-attn-transformer_ finished w1600    42              0.015410 -0.019318
+dual_melton25_sw1600_regr_node_43_GCN_self-attn-transformer_ finished w1600    43              0.015719 -0.013790
+dual_melton25_sw1600_regr_node_44_GCN_self-attn-transformer_ finished w1600    44              0.015702 -0.009917
+dual_melton25_sw2000_regr_node_42_GCN_self-attn-transformer_ finished w2000    42              0.016340 -0.007977
+dual_melton25_sw2000_regr_node_43_GCN_self-attn-transformer_ finished w2000    43              0.015664 -0.006262
+dual_melton25_sw2000_regr_node_44_GCN_self-attn-transformer_ finished w2000    44              0.015684 -0.006537
+dual_melton25_sw3000_regr_node_42_GCN_self-attn-transformer_ finished w3000    42              0.013327 -0.022816
+dual_melton25_sw3000_regr_node_43_GCN_self-attn-transformer_ finished w3000    43              0.013498 -0.025566
+dual_melton25_sw3000_regr_node_44_GCN_self-attn-transformer_ finished w3000    44              0.014677 -0.013884
+applied arm 'w400': ['dataset.batch_size', 'dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.batch_size', 'dataset.name', 'dataset.pct_mask_nodes', 'dataset.sample_key', 'model.global_component.parameters.dim_feedforward', 'model.global_component.parameters.dropout_global', 'model.global_component.parameters.max_seq_len', 'model.global_component.parameters.n_heads', 'model.global_component.parameters.num_layers', 'model.local_component.parameters.dropout_local', 'model.local_component.parameters.hidden_dim', 'model.local_component.parameters.num_layers', 'model.n_embed', 'optim.loss', 'optim.lr', 'optim.lr_warmup', 'optim.monitor', 'optim.seed', 'optim.wd']
+Nr. of zero expression cells: 0
+cached analysis slide to /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/melton25_revision/sliding_window/attention/_slide_Run5211_S3.h5ad (388 MB)
+analysis slide Run5211_S3: 151595 cells, 3426 windows of sliding_window_400, 25 FOVs, conditions ['ND', 'T1D']
+cell types (9): ['Acinar', 'Alpha', 'Beta', 'Ductal', 'Endocrine', 'Endothelial', 'Fibroblasts', 'Immune', 'Mast']
+  reference pairs 3_1: 6389 cells
+  reference pairs 3_10: 6372 cells
+  reference pairs 3_11: 7627 cells
+  reference pairs 3_12: 6840 cells
+  reference pairs 3_13: 7313 cells
+  reference pairs 3_14: 6727 cells
+  reference pairs 3_15: 5041 cells
+  reference pairs 3_16: 5550 cells
+  reference pairs 3_17: 5565 cells
+  reference pairs 3_18: 5259 cells
+  reference pairs 3_19: 5375 cells
+  reference pairs 3_2: 6468 cells
+  reference pairs 3_20: 4940 cells
+  reference pairs 3_21: 4785 cells
+[2026-08-28T14:34:49.094] error: *** JOB 39912292 ON gpusrv55 CANCELLED AT 2026-08-28T14:34:49 DUE to SIGNAL Terminated ***

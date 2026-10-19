@@ -1,0 +1,139 @@
+_wandb:
+    value:
+        cli_version: 0.28.1
+        e:
+            6of5u6njmflup01zxjf75wadidd27ud2:
+                codePath: scripts/melton_jimenez_25/celltype_reconstruction_mse.py
+                codePathLocal: scripts/melton_jimenez_25/celltype_reconstruction_mse.py
+                cpu_count: 64
+                cpu_count_logical: 128
+                cudaVersion: "13.3"
+                disk:
+                    /:
+                        total: "67108864"
+                        used: "12288"
+                email: francesca.drummer@googlemail.com
+                executable: /opt/conda/envs/interscale/bin/python
+                git:
+                    commit: 27f4ae6e3e668b1ac68512b4ddafbff6aad1911a
+                    remote: https://github.com/theislab/InterScale_reproducibility.git
+                gpu: NVIDIA A100-PCIE-40GB
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      memoryTotal: "42949672960"
+                      name: NVIDIA A100-PCIE-40GB
+                      uuid: GPU-1e8cb396-c913-f996-3bfd-73efe2804f62
+                host: gpusrv29.scidom.de
+                memory:
+                    total: "810776346624"
+                os: Linux-6.12.0-211.47.1.el10_2.x86_64-x86_64-with-glibc2.39
+                program: /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/melton_jimenez_25/celltype_reconstruction_mse.py
+                python: CPython 3.12.13
+                root: /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility
+                startedAt: "2026-08-25T17:03:57.050414Z"
+                writerId: 6of5u6njmflup01zxjf75wadidd27ud2
+        m: []
+        python_version: 3.12.13
+        t:
+            "1":
+                - 1
+                - 5
+                - 9
+                - 53
+                - 54
+                - 77
+                - 103
+                - 106
+            "2":
+                - 1
+                - 5
+                - 9
+                - 53
+                - 54
+                - 77
+                - 103
+                - 106
+            "3":
+                - 13
+                - 16
+            "4": 3.12.13
+            "5": 0.28.1
+            "12": 0.28.1
+            "13": linux-x86_64
+dataset:
+    value:
+        batch_size: 8
+        description: ""
+        h5ad_data: /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/data/melton25.h5ad
+        layer_key: null
+        name: melton25
+        num_classes: -1
+        num_features: -1
+        pct_mask_nodes: 0.1
+        prediction_level: node
+        prediction_obs: null
+        prediction_task: regression
+        sample_key:
+            - sliding_window_square
+        segmentation_robustness: null
+        spatial_neigbors_kwargs:
+            coord_type: generic
+            library_key: sliding_window_square
+            n_neighs: 6
+            radius: 110
+        split_key: split
+        test_size: 0.1
+        train_size: 0.7
+        val_size: 0.2
+model:
+    value:
+        decoder:
+            dropout_decoder: 0.1
+            dual_decoder: true
+            hidden_dims:
+                - 256
+                - 128
+            type: linear
+        global_component:
+            latent_obsm_key: null
+            name: self-attn-transformer
+            parameters:
+                activation_func: relu
+                dim_feedforward: 256
+                dropout_global: 0
+                long_range_attention: false
+                max_seq_len: 1600
+                n_heads: 2
+                num_layers: 2
+                type_gex_embedding: null
+        local_component:
+            name: GCN
+            parameters:
+                dropout_local: 0
+                hidden_dim: 256
+                num_layers: 1
+        loss: null
+        n_embed: 128
+        save: /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/melton25_revision/best_recon
+optim:
+    value:
+        accelerator: auto
+        cross_corr: cell
+        early_stopping: true
+        loss: GaussianNLL
+        lr: 0.005
+        lr_max_epochs: 100
+        lr_scheduler: CosineWarmupScheduler
+        lr_warmup: 20
+        min_delta: 0
+        min_epochs: 40
+        monitor: val_concordance_corr
+        n_epochs: 100
+        patience: 5
+        seed: 44
+        wd: 0.01
+wandb:
+    value:
+        project_name: GTLongRange_CosmXPancreas
+        use: true

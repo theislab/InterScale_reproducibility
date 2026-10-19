@@ -1,0 +1,44 @@
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from /home/icb/francesca.drummer/.netrc.
+sweep ghyigj4d: 12 runs (https://wandb.ai/francesca-drummer/InterScale_hyperparameter_sweep/sweeps/ghyigj4d)
+                                                        run_name    state  step  seed  val_concordance_corr    val_r2
+dual_legnini23_ovl_step0_regr_node_42_GCN_self-attn-transformer_ finished step0    42              0.120325 -0.415406
+dual_legnini23_ovl_step0_regr_node_43_GCN_self-attn-transformer_ finished step0    43              0.125762 -0.337135
+dual_legnini23_ovl_step0_regr_node_44_GCN_self-attn-transformer_ finished step0    44              0.123021 -0.293624
+dual_legnini23_ovl_step1_regr_node_42_GCN_self-attn-transformer_ finished step1    42              0.118448 -0.593899
+dual_legnini23_ovl_step1_regr_node_43_GCN_self-attn-transformer_ finished step1    43              0.106551 -1.279814
+dual_legnini23_ovl_step1_regr_node_44_GCN_self-attn-transformer_ finished step1    44              0.119825 -1.307139
+dual_legnini23_ovl_step2_regr_node_42_GCN_self-attn-transformer_ finished step2    42              0.159238 -0.397744
+dual_legnini23_ovl_step2_regr_node_43_GCN_self-attn-transformer_ finished step2    43              0.155623 -0.276048
+dual_legnini23_ovl_step2_regr_node_44_GCN_self-attn-transformer_ finished step2    44              0.153095 -0.227406
+dual_legnini23_ovl_step3_regr_node_42_GCN_self-attn-transformer_ finished step3    42              0.056590 -1.681442
+dual_legnini23_ovl_step3_regr_node_43_GCN_self-attn-transformer_ finished step3    43              0.042924 -0.821417
+dual_legnini23_ovl_step3_regr_node_44_GCN_self-attn-transformer_ finished step3    44              0.048576 -0.433732
+applied arm 'step0': ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len']
+applied sweep parameters: ['dataset.name', 'dataset.sample_key', 'model.global_component.parameters.max_seq_len', 'optim.seed']
+
+===== step0 seed 42 | ['overlap_step0_p0'] | max_seq_len 2812 =====
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/overlap_ladder/dual_legnini23_ovl_step0_regr_node_42_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Traceback (most recent call last):
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/legnini_23/3d_overlap_ladder_flows.py", line 509, in <module>
+    main()
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/legnini_23/3d_overlap_ladder_flows.py", line 472, in main
+    df = run(args.steps, args.seeds, runs, compute_net=args.compute_net)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/legnini_23/3d_overlap_ladder_flows.py", line 339, in run
+    windows = flows_for_trial(cfg, model, adata, compute_net=compute_net)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/legnini_23/3d_overlap_ladder_flows.py", line 236, in flows_for_trial
+    windows = _flows_over_columns(cfg, model, adata_template, compute_net, n_zones)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/scripts/legnini_23/3d_overlap_ladder_flows.py", line 259, in _flows_over_columns
+    set_full_reproducibility(int(cfg.optim.seed))
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'set_full_reproducibility' is not defined
+[W828 19:13:59.494769105 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

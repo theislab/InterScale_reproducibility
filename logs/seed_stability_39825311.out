@@ -1,0 +1,262 @@
+======================================================================
+ legnini23 node_reg -- decoder loading stability across seeds
+   host   : cpusrv27.scidom.de
+   job id : 39825311
+   sweep  : zmnw1x9c
+======================================================================
+WARNING: no GPU visible on cpusrv27.scidom.de -- running without --nv.
+         torch.cuda.is_available() will be False. Submit to gpu_p
+         (or interactive_gpu_p / cemp_gpu_p) for GPU acceleration.
+
+======================================================================
+seed 40
+======================================================================
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/dual_legnini23_regr_node_40_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/conda/envs/interscale/lib/python3.12/site-packages/geome/ann2data/basic.py:90: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:206.)
+  return torch.from_numpy(pd.get_dummies(obj).to_numpy()).to(torch.float)
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+  local: 5 dims at cumulative cutoff 0.6 -> [12  8 13 10  3]
+  global: 4 dims at cumulative cutoff 0.6 -> [ 4 10  2  6]
+  local: program panel = 17 genes
+  global: program panel = 23 genes
+  median per-gene R2 local=-1.772  global=-1.969
+  median per-gene r  local=0.0178  global=0.0070  (genes r>0.2: 18 / 8)
+  pred/true sd ratio local=0.363  global=0.422
+  wrote /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/analysis/seed40_arrays.npz
+
+======================================================================
+seed 41
+======================================================================
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/dual_legnini23_regr_node_41_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+  local: 4 dims at cumulative cutoff 0.6 -> [12  8 10  6]
+  global: 5 dims at cumulative cutoff 0.6 -> [11  5 12  0  9]
+  local: program panel = 30 genes
+  global: program panel = 22 genes
+  median per-gene R2 local=-1.834  global=-1.741
+  median per-gene r  local=0.0315  global=-0.0027  (genes r>0.2: 17 / 7)
+  pred/true sd ratio local=0.437  global=0.421
+  wrote /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/analysis/seed41_arrays.npz
+
+======================================================================
+seed 42
+======================================================================
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/dual_legnini23_regr_node_42_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+  local: 5 dims at cumulative cutoff 0.6 -> [11  9  8  5  3]
+  global: 7 dims at cumulative cutoff 0.6 -> [ 5 11 14  4  3  6  1]
+  local: program panel = 18 genes
+  global: program panel = 15 genes
+  median per-gene R2 local=-1.430  global=-1.223
+  median per-gene r  local=0.0128  global=0.0384  (genes r>0.2: 22 / 11)
+  pred/true sd ratio local=0.370  global=0.399
+  wrote /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/analysis/seed42_arrays.npz
+
+======================================================================
+seed 43
+======================================================================
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/dual_legnini23_regr_node_43_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+  local: 5 dims at cumulative cutoff 0.6 -> [15  0  9 11 14]
+  global: 6 dims at cumulative cutoff 0.6 -> [ 9 10  7  6  5 12]
+  local: program panel = 20 genes
+  global: program panel = 26 genes
+  median per-gene R2 local=-1.703  global=-0.380
+  median per-gene r  local=0.1035  global=0.0333  (genes r>0.2: 29 / 19)
+  pred/true sd ratio local=0.443  global=0.428
+  wrote /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/analysis/seed43_arrays.npz
+
+======================================================================
+seed 44
+======================================================================
+/opt/conda/envs/interscale/lib/python3.12/site-packages/scvi/data/fields/_base_field.py:63: UserWarning: adata.layers[log1p_norm] does not contain unnormalized count data. Are you sure this is what you want?
+  self.validate_field(adata)
+/opt/conda/envs/interscale/lib/python3.12/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Nr. of zero expression cells: 648
+Loading model from /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/dual_legnini23_regr_node_44_GCN_self-attn-transformer_model.pt
+Unclear checkpoint format. Attempting remapping anyway.
+State dict remapping applied. Source detected: unknown
+Load GEX from .layers/log1p_norm
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+[34mINFO    [0m Creating graph using `[3;35mNone[0m` transform and `[1;36m1[0m` libraries.               
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+/opt/interscale_src/interscale/evaluation/_gene_rank_analysis.py:65: RuntimeWarning: invalid value encountered in log1p
+  r2_scores_log = [np.log1p(r2) if not np.isnan(r2) else np.nan for r2 in r2_scores]
+  local: 5 dims at cumulative cutoff 0.6 -> [ 2 12  0 13  4]
+  global: 4 dims at cumulative cutoff 0.6 -> [4 1 7 5]
+  local: program panel = 20 genes
+  global: program panel = 33 genes
+  median per-gene R2 local=-1.626  global=-0.705
+  median per-gene r  local=0.0202  global=0.0136  (genes r>0.2: 21 / 20)
+  pred/true sd ratio local=0.517  global=0.378
+  wrote /lustre/groups/ml01/projects/2024_spatial_long_range_GT_francesca.drummer/results/legnini23_revision/seed_stability/analysis/seed44_arrays.npz
+
+extracted=[40, 41, 42, 43, 44] skipped=[] failed=[]
+WARNING: no GPU visible on cpusrv27.scidom.de -- running without --nv.
+         torch.cuda.is_available() will be False. Submit to gpu_p
+         (or interactive_gpu_p / cemp_gpu_p) for GPU acceleration.
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from /home/icb/francesca.drummer/.netrc.
+
+=== per-seed sanity checks ===
+ seed  n_obs  n_vars  n_dims_local  n_dims_global  program_size_local  program_size_global  median_gene_r2_local  median_gene_r2_global  median_gene_r_local  median_gene_r_global  q90_gene_r_global  n_genes_r_gt_0.2_local  n_genes_r_gt_0.2_global  pred_true_sd_ratio_global wandb_state wandb_val_r2 wandb_test_r2 wandb_val_pearson wandb_epochs
+   40  43114      88             5              4                  17                   23             -1.771662              -1.969369             0.017799              0.006995           0.186882                      18                        8                   0.421534    finished    -0.889499     -2.000372          0.126647          100
+   41  43114      88             4              5                  30                   22             -1.833512              -1.741011             0.031528             -0.002726           0.189496                      17                        7                   0.421379    finished    -0.409441     -2.541609          0.122699          100
+   42  43114      88             5              7                  18                   15             -1.430152              -1.222589             0.012819              0.038403           0.210982                      22                       11                   0.398670    finished    -2.268554     -1.313321          0.113825          100
+   43  43114      88             5              6                  20                   26             -1.703003              -0.380423             0.103539              0.033323           0.377792                      29                       19                   0.428031    finished    -0.778777     -0.868807          0.115836          100
+   44  43114      88             5              4                  20                   33             -1.626148              -0.705303             0.020204              0.013633           0.369166                      21                       20                   0.377736    finished    -0.584699      -0.72005          0.126515          100
+
+=== cross-seed stability (10 seed pairs) ===
+ component                         metric            level   n   mean    sd  median    min   max  permutation_null
+     local              spearman_loadings  per_matched_dim 124 -0.010 0.140  -0.021 -0.357 0.372               NaN
+     local                  jaccard_top10  per_matched_dim 124  0.425 0.109   0.429  0.176 0.667             0.063
+     local                  jaccard_top20  per_matched_dim 124  0.543 0.090   0.538  0.379 0.739             0.131
+     local              spearman_loadings per_selected_dim  40 -0.008 0.147  -0.006 -0.357 0.266               NaN
+     local                  jaccard_top10 per_selected_dim  40  0.402 0.107   0.429  0.176 0.538             0.063
+     local                  jaccard_top20 per_selected_dim  40  0.527 0.088   0.538  0.379 0.739             0.131
+     local             abs_r_matched_dims  per_matched_dim 160  0.416 0.136   0.407  0.072 0.722               NaN
+     local                   discard_rate    per_seed_pair  10  0.225 0.084   0.250  0.062 0.312               NaN
+     local                jaccard_program    per_seed_pair  10  0.165 0.064   0.167  0.057 0.250             0.134
+    global              spearman_loadings  per_matched_dim  53  0.004 0.149   0.013 -0.478 0.251               NaN
+    global                  jaccard_top10  per_matched_dim  53  0.440 0.105   0.429  0.333 0.667             0.063
+    global                  jaccard_top20  per_matched_dim  53  0.553 0.084   0.538  0.379 0.739             0.130
+    global              spearman_loadings per_selected_dim  18 -0.001 0.129   0.012 -0.270 0.207               NaN
+    global                  jaccard_top10 per_selected_dim  18  0.476 0.098   0.538  0.333 0.667             0.063
+    global                  jaccard_top20 per_selected_dim  18  0.545 0.074   0.538  0.379 0.667             0.130
+    global             abs_r_matched_dims  per_matched_dim 160  0.251 0.124   0.237  0.026 0.654               NaN
+    global                   discard_rate    per_seed_pair  10  0.669 0.191   0.625  0.312 0.938               NaN
+    global                jaccard_program    per_seed_pair  10  0.234 0.087   0.225  0.088 0.375             0.153
+gene_level                label_agreement    per_seed_pair  10  0.284 0.137   0.298  0.067 0.562               NaN
+gene_level       spearman_rank_difference    per_seed_pair  10  0.009 0.129  -0.028 -0.147 0.208               NaN
+gene_level sign_agreement_rank_difference    per_seed_pair  10  0.480 0.047   0.483  0.398 0.568               NaN
+wrote /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/legnini23/seed_stability/seed_stability_boxplot.png
+
+wrote /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/legnini23/seed_stability/stability_summary.csv and /home/icb/francesca.drummer/1-Projects/A3_InterScale/InterScale_reproducibility/figures/legnini23/seed_stability/stability_pairs.csv
