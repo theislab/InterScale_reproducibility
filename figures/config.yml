@@ -46,6 +46,14 @@ palettes:
     condition:
         Ctrl: "#005F73"
         SHH: "#EE9B00" # closest to SHH source
+    genes: # dorsoventral genes (gene_sets.legnini23.dorsoventral), Fig. 3C
+      SHH: "#e377c2"
+      NKX2.2: "#2ca02c"
+      NKX6.1: "#d62728"
+      PAX6: "#8c564b"
+      OLIG2: "#9467bd"
+      IRX3: "#ff7f0e"
+      DBX2: "#1f77b4"
   melton25: #to change 
     Acinar: "#028E95"
     Alpha: "#f56d18"
@@ -102,4 +110,13 @@ slide_examples: # example slides/fov we use in the publication
   Melton_Jimenez:
     Ctrl: "1_12"
     T1D: "1_10"
-    
+gene_sets: # gene sets used in the publication; lists keep their order
+  legnini23:
+    dorsoventral: # SHH-induced dorsoventral patterning, ordered ventral -> dorsal (Fig. 3B)
+      - SHH
+      - NKX2.2
+      - NKX6.1
+      - PAX6
+      - OLIG2
+      - IRX3
+      - DBX2

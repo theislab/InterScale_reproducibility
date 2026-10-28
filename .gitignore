@@ -148,6 +148,7 @@ dmypy.json
 *.txt.gz
 *.gmt
 *.gmx
+.out
 
 data/
 figures/
